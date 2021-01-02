@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   min-height: 12rem;
+  padding: 0 1rem;
   background-color: ${({ theme }) => theme.secondary};
   display: flex;
   flex-flow: column wrap;

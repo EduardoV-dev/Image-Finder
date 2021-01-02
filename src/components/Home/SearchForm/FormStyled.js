@@ -9,6 +9,7 @@ export const Form = styled.form`
   margin: 0 auto;
 
   @media screen and (min-width: 768px) {
+    padding: 3rem;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -68,7 +69,7 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.accent};
   font-size: 1rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.secondary};
   transition: all 0.3s ease-out;
 
   &:hover,
