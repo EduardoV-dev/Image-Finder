@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
+import Error from '../Error';
 import useTerm from '../../../hooks/custom/useTerm';
 import { SearchContext } from '../../../hooks/context/SearchContext';
 import { Form, FormControl, Label, Input, Button } from './FormStyled';
 
 const SearchForm = () => {
-  const [term, handleOnChange] = useTerm('');
-  const { handleSearchSubmit } = useContext(SearchContext);
+  const [input, handleOnChange] = useTerm('');
+  const { formError, handleSearchSubmit } = useContext(SearchContext);
+
+  const errorComponent = formError ? <Error>El término es obligatorio</Error> : null
 
   return (
     <Form
-      onSubmit={e => handleSearchSubmit(e, term)}
+      onSubmit={e => handleSearchSubmit(e, input)}
     >
       <FormControl>
         <Label>Busca una Imagen</Label>
@@ -24,6 +27,7 @@ const SearchForm = () => {
           type="submit"
         >Buscar Imagen</Button>
       </FormControl>
+      {errorComponent}
     </Form>
   );
 }

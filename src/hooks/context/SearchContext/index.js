@@ -1,11 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 import SearchReducer from '../../reducer/SearchReducer';
 import {
+  pipe,
   handleSearchFormError,
   termIsEmpty,
   handleTermSaving,
   handleImageSaving
 } from '../../../utils/Searches';
+import { handleNewPage, handlePaginationSaving } from '../../../utils/Pagination';
 import { fetchImages } from '../../../Services/Images';
 
 export const SearchContext = createContext();
@@ -17,33 +19,49 @@ const SearchProvider = ({ children }) => {
     images: [],
     page: 1,
     totalPages: 0,
-    imagesPerPage: 30
+    imagesPerPage: 30,
+    loading: true
   }
   const [state, dispatch] = useReducer(SearchReducer, initialState);
 
-  const { term, page, imagesPerPage } = state;
+  const { term, formError, images, page, totalPages, imagesPerPage, loading } = state;
 
   // Event for submitting the SearchForm
-  const handleSearchSubmit = (e, term) => {
+  const handleSearchSubmit = (e, input) => {
     e.preventDefault();
-
-    termIsEmpty(dispatch, term);
-    handleSearchFormError(dispatch, false);
-    handleTermSaving(dispatch, term);
+    pipe(
+      termIsEmpty,
+      handleSearchFormError(dispatch),
+      handleTermSaving(dispatch)
+    )(input);
   }
 
-  const handleImagesSearch = async () => {
-    const images = await fetchImages({ term, page, imagesPerPage });
-    handleImageSaving(dispatch, images.data);
+  const handleImagesSearch = () => {
+    pipe(
+      fetchImages,
+      handleImageSaving(dispatch, page)
+    )({ term, page, imagesPerPage });
+  }
+
+  const handlePagination = direction => {
+    pipe(
+      handleNewPage(direction),
+      handlePaginationSaving(dispatch)
+    )({ page, totalPages });
   }
 
   return (
     <SearchContext.Provider
       value={{
-        term: state.term,
-        images: state.images,
+        term,
+        images,
+        page,
+        totalPages,
+        formError,
+        loading,
         handleSearchSubmit,
-        handleImagesSearch
+        handleImagesSearch,
+        handlePagination
       }}
     >
       {children}
