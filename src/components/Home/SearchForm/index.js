@@ -1,14 +1,22 @@
-import React from 'react';
-import {Form, FormControl, Label, Input, Button} from './FormStyled';
+import React, { useContext } from 'react';
+import useTerm from '../../../hooks/custom/useTerm';
+import { SearchContext } from '../../../hooks/context/SearchContext';
+import { Form, FormControl, Label, Input, Button } from './FormStyled';
 
 const SearchForm = () => {
-  return (  
-    <Form>
+  const [term, handleOnChange] = useTerm('');
+  const { handleSearchSubmit } = useContext(SearchContext);
+
+  return (
+    <Form
+      onSubmit={e => handleSearchSubmit(e, term)}
+    >
       <FormControl>
         <Label>Busca una Imagen</Label>
         <Input
           type="text"
           placeholder="Ejemplo: Espacio, Comida..."
+          onChange={handleOnChange}
         />
       </FormControl>
       <FormControl>
@@ -19,5 +27,5 @@ const SearchForm = () => {
     </Form>
   );
 }
- 
+
 export default SearchForm;

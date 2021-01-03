@@ -1,20 +1,21 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Header from '../../components/Home/Header';
 import SearchForm from '../../components/Home/SearchForm';
 import ImagesList from '../../components/Home/ImagesList';
-import Footer from '../../components/Home/Pagination';
+import Pagination from '../../components/Home/Pagination';
+import SearchProvider from '../../hooks/context/SearchContext';
 import { Main } from './HomeStyled';
 
 const Home = () => {
   return (
-    <Fragment>
+    <SearchProvider>
       <Header />
       <Main>
         <SearchForm />
         <ImagesList />
       </Main>
-      <Footer />
-    </Fragment>
+      <Pagination />
+    </SearchProvider>
   );
 }
 
