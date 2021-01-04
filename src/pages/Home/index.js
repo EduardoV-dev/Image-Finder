@@ -1,16 +1,18 @@
 import React from 'react';
-import Header from '../../components/Home/Header';
+import Header from '../../components/Home/HomeHeader';
 import SearchForm from '../../components/Home/SearchForm';
 import ImagesList from '../../components/Home/ImagesList';
 import Pagination from '../../components/Home/Pagination';
+import Main from '../../components/layout/Main';
 import SearchProvider from '../../hooks/context/SearchContext';
-import { Main } from './HomeStyled';
 
 const Home = () => {
   return (
     <SearchProvider>
       <Header />
-      <Main>
+      <Main
+        minHeight={'4rem'}
+      >
         <SearchForm />
         <ImagesList />
       </Main>

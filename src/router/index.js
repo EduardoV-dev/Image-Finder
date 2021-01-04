@@ -11,7 +11,7 @@ const AppRouter = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/img/:id" exact component={ImgView} />
+          <Route path="/image/:id" exact component={ImgView} />
         </Switch>
       </Router>
     </ThemeProvider>

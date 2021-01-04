@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Main = styled.main`
+export const MainSC = styled.main`
   position: relative;
   z-index: 1;
 
@@ -10,9 +10,9 @@ export const Main = styled.main`
     z-index: -1;
     display: block;
     width: 100%;
-    min-height: 4rem;
+    min-height: ${({ minHeight }) => minHeight || 'auto'};
+    background-color: ${({ theme }) => theme.secondary};
     top: 0;
     left: 0;
-    background-color: ${({theme}) => theme.secondary};
   }
 `;
