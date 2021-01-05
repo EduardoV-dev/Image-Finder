@@ -1,10 +1,10 @@
 import React from 'react';
-import {Aside} from './SidebarStyled';
+import { Aside } from './SidebarStyled';
 
 const Siderbar = (props) => {
-  return (  
+  return (
     <Aside {...props} />
   );
 }
- 
+
 export default Siderbar;
