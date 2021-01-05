@@ -1,6 +1,6 @@
 import {
   CONTROL_PAGINATION
-} from '../../hooks/reducer/types';
+} from '../../hooks/reducer/types/Search';
 
 export const handleTotalPages = (imagesPerPage, totalHits) => Math.ceil(totalHits / imagesPerPage);
 

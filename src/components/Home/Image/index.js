@@ -2,9 +2,9 @@ import React from 'react';
 import { Figure, Img } from './ImageStyled';
 
 const Image = ({ image }) => {
-  const { largeImageURL } = image;
+  const { id, largeImageURL } = image;
   return (
-    <Figure>
+    <Figure to={`/image/${id}`}>
       <Img
         src={largeImageURL}
         alt='Imagen'

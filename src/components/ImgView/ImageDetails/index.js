@@ -1,10 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import Dropdown from '../Dropdown';
 import LikeIcon from '../../../assets/icons/bx-like.svg';
 import ViewsIcon from '../../../assets/icons/eye-regular.svg';
 import placeholder from '../../../assets/Images/sky.jpg';
-import { UserInfo, Figure, Img, ReactionsBox, Reaction } from './ImageDetailsStyled'
+import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
+import { UserInfo, Figure, Img, ReactionsBox, Reaction, Button } from './ImageDetailsStyled'
 
 const ImageDetails = () => {
+   const { isDropdown, toggleDropdown } = useContext(ImageDetailsContext);
+
+  const dropdownComponent = isDropdown ? <Dropdown /> : null
+
   return (
     <Fragment>
       <UserInfo>
@@ -27,8 +33,8 @@ const ImageDetails = () => {
           <Img
             src={LikeIcon}
             alt={'Likes'}
-            width={'32px'}
-            height={'32px'}
+            width={'20px'}
+            height={'20px'}
           />
           <span>14520</span>
         </Reaction>
@@ -38,17 +44,19 @@ const ImageDetails = () => {
           <Img
             src={ViewsIcon}
             alt={'Vistas'}
-            width={'32px'}
-            height={'32px'}
+            width={'20px'}
+            height={'20px'}
           />
           <span>14520</span>
         </Reaction>
       </ReactionsBox>
-      <button
+      <Button
         type="button"
+        onClick={toggleDropdown}
       >
         Descargar
-      </button>
+      </Button>
+      {dropdownComponent}
     </Fragment >
   );
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Header from '../../components/ImgView/ImgViewHeader';
 import BigImage from '../../components/ImgView/BigImage';
 import ImageDetails from '../../components/ImgView/ImageDetails';
@@ -6,10 +6,12 @@ import Main from '../../components/layout/Main';
 import Content from '../../components/layout/Content';
 import Sidebar from '../../components/layout/Sidebar';
 import Grid from '../../components/ui/Grid';
+import ImageDetailsProvider from '../../hooks/context/ImageDetailsContext';
 
 const ImgView = () => {
+
   return (
-    <Fragment>
+    <ImageDetailsProvider>
       <Header />
       <Main
         minHeight={'4rem'}
@@ -20,8 +22,8 @@ const ImgView = () => {
             grid={'1/4'}
           >
             <BigImage
-              // src={}
-              // alt={}
+            // src={}
+            // alt={}
             />
           </Content>
           <Sidebar
@@ -32,7 +34,7 @@ const ImgView = () => {
           </Sidebar>
         </Grid>
       </Main>
-    </Fragment>
+    </ImageDetailsProvider>
   );
 }
 

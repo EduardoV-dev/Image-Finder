@@ -3,7 +3,7 @@ import {
   FORM_ERROR,
   SAVE_TERM,
   SAVE_IMAGES
-} from '../../hooks/reducer/types';
+} from '../../hooks/reducer/types/Search';
 
 export const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
 
@@ -23,7 +23,6 @@ export const handleTermSaving = dispatch => term => dispatch({ type: SAVE_TERM, 
 
 export const handleImageSaving = (dispatch, page) => async images => {
   const pics = await images;
-  console.log(pics.data);
   dispatch({
     type: SAVE_IMAGES,
     payload: {

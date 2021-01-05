@@ -3,7 +3,7 @@ import {
   SAVE_TERM,
   SAVE_IMAGES,
   CONTROL_PAGINATION
-} from '../types';
+} from '../types/Search';
 import { handleTotalPages } from '../../../utils/Pagination';
 
 const SearchReducer = (state, action) => {

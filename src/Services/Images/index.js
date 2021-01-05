@@ -9,3 +9,8 @@ export const fetchImages = async params => (await APIBase({
   page: params.page,
   per_page: params.imagesPerPage
 }));
+
+export const fetchImageDetailsById = async id => (await APIBase({
+  key: APIKey,
+  id
+}));

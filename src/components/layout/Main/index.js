@@ -1,10 +1,10 @@
 import React from 'react';
-import {MainSC} from './MainStyled';
+import { MainSC } from './MainStyled';
 
 const Main = (props) => {
-  return (  
+  return (
     <MainSC {...props} />
   );
 }
- 
+
 export default Main;
