@@ -10,7 +10,13 @@ export const fetchImages = async params => (await APIBase({
   per_page: params.imagesPerPage
 }));
 
-export const fetchImageDetailsById = async id => (await APIBase({
-  key: APIKey,
-  id
-}));
+export const fetchImageDetailsById = async imageId => {
+  const details = await APIBase({
+    key: APIKey,
+    id: imageId
+  });
+  return details.data;
+}
+
+export const resolvePromise = async promise => 
+  await promise;

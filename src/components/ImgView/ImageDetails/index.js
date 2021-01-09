@@ -1,15 +1,26 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import Dropdown from '../Dropdown';
 import LikeIcon from '../../../assets/icons/bx-like.svg';
 import ViewsIcon from '../../../assets/icons/eye-regular.svg';
-import placeholder from '../../../assets/Images/sky.jpg';
+import { withRouter } from 'react-router-dom';
 import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
+import { formatNumber, extractImages } from '../../../utils/Image';
 import { UserInfo, Figure, Img, ReactionsBox, Reaction, Button } from './ImageDetailsStyled'
 
-const ImageDetails = () => {
-   const { isDropdown, toggleDropdown } = useContext(ImageDetailsContext);
+const ImageDetails = ({ match: { params } }) => {
+  const { isDropdown, imageDetails, handleDropdown, handleImageId } = useContext(ImageDetailsContext);
+  const { id } = params;
 
-  const dropdownComponent = isDropdown ? <Dropdown /> : null
+  // eslint-disable-next-line
+  useEffect(() => handleImageId(id), []);
+
+  if (!imageDetails) return null;
+
+  const { likes, views, user, userImageURL } = imageDetails;
+
+  const imagesSizes = extractImages(imageDetails);
+
+  const dropdownComponent = isDropdown ? <Dropdown imagesSizes={imagesSizes} /> : null
 
   return (
     <Fragment>
@@ -17,13 +28,13 @@ const ImageDetails = () => {
         <p>Imagen subida por:</p>
         <Figure>
           <Img
-            src={placeholder}
+            src={userImageURL}
             alt='Persona'
             borderRadius={'30px'}
             width={'48px'}
             height={'48px'}
           />
-          <span>Alicia Navarrete</span>
+          <span>{user}</span>
         </Figure>
       </UserInfo>
       <ReactionsBox>
@@ -36,7 +47,7 @@ const ImageDetails = () => {
             width={'20px'}
             height={'20px'}
           />
-          <span>14520</span>
+          <span>{formatNumber(likes)}</span>
         </Reaction>
         <Reaction
           ml={'1rem'}
@@ -47,12 +58,12 @@ const ImageDetails = () => {
             width={'20px'}
             height={'20px'}
           />
-          <span>14520</span>
+          <span>{formatNumber(views)}</span>
         </Reaction>
       </ReactionsBox>
       <Button
         type="button"
-        onClick={toggleDropdown}
+        onClick={handleDropdown}
       >
         Descargar
       </Button>
@@ -61,4 +72,4 @@ const ImageDetails = () => {
   );
 }
 
-export default ImageDetails;
+export default withRouter(ImageDetails);

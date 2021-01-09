@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
+import { withRouter } from 'react-router-dom';
 import { Img } from './BigImageStyled';
-import placeholder from '../../../assets/Images/sky.jpg';
 
-const BigImage = ({ src, alt }) => {
+const BigImage = () => {
+  const { imageDetails, imageId, handleFetchImageInfo } = useContext(ImageDetailsContext);
+
+  // eslint-disable-next-line
+  useEffect(() => handleFetchImageInfo(), [imageId]);
+
+  if (!imageDetails) return null;
+
+  const { tags, largeImageURL } = imageDetails;
+
   return (
     <Img
-      src={placeholder}
-      alt='img'
+      src={largeImageURL}
+      alt={tags}
     />
   );
 }
 
-export default BigImage;
+export default withRouter(BigImage);

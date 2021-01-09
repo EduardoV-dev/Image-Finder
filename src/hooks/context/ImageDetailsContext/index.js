@@ -1,8 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import {
-  TOGGLE_DROPDOWN,
-  SAVE_IMAGEID
-} from '../../reducer/types/ImageDetails';
+  toggleDropdown,
+  catchImageId,
+  saveImageDetails
+} from '../../../utils/Image';
+import { fetchImageDetailsById } from '../../../Services/Images';
+import { pipe } from '../../../utils/Searches';
+
 import ImageDetailsReducer from '../../reducer/ImageDetailsReducer';
 
 export const ImageDetailsContext = createContext();
@@ -10,25 +14,36 @@ export const ImageDetailsContext = createContext();
 const ImageDetailsProvider = ({ children }) => {
   const initialState = {
     isDropdown: false,
-    imageId: null
+    imageId: null,
+    imageDetails: null,
+    imageSizes: []
   }
 
   const [state, dispatch] = useReducer(ImageDetailsReducer, initialState);
 
-  const { isDropdown } = state;
+  const { isDropdown, imageId, imageDetails } = state;
 
-  console.log(isDropdown);
+  const handleDropdown = toggleDropdown(dispatch);
 
-  const toggleDropdown = () => dispatch({ type: TOGGLE_DROPDOWN });
+  const handleImageId = catchImageId(dispatch);
 
-  const handleImageId = imageId => dispatch({ type: SAVE_IMAGEID, payload: imageId })
+  const handleFetchImageInfo = async () => {
+    if (!imageId) return;
+    pipe(
+      fetchImageDetailsById,
+      saveImageDetails(dispatch)
+    )(imageId);
+  }
 
   return (
     <ImageDetailsContext.Provider
       value={{
         isDropdown,
-        toggleDropdown,
-        handleImageId
+        imageId,
+        imageDetails,
+        handleDropdown,
+        handleImageId,
+        handleFetchImageInfo
       }}
     >
       {children}
