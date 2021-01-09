@@ -1,5 +1,5 @@
 import React from 'react';
-import { Aside } from './SidebarStyled';
+import { Aside } from './styled';
 
 const Siderbar = (props) => {
   return (

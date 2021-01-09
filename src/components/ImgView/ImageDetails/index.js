@@ -5,7 +5,7 @@ import ViewsIcon from '../../../assets/icons/eye-regular.svg';
 import { withRouter } from 'react-router-dom';
 import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
 import { formatNumber, extractImages } from '../../../utils/Image';
-import { UserInfo, Figure, Img, ReactionsBox, Reaction, Button } from './ImageDetailsStyled'
+import { UserInfo, Figure, Img, ReactionsBox, Reaction, Button } from './styled';
 
 const ImageDetails = ({ match: { params } }) => {
   const { isDropdown, imageDetails, handleDropdown, handleImageId } = useContext(ImageDetailsContext);
@@ -29,7 +29,6 @@ const ImageDetails = ({ match: { params } }) => {
         <Figure>
           <Img
             src={userImageURL}
-            alt='Persona'
             borderRadius={'30px'}
             width={'48px'}
             height={'48px'}

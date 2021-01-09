@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../components/ImgView/ImgViewHeader';
+import Header from '../../components/ImgView/Header';
 import BigImage from '../../components/ImgView/BigImage';
 import ImageDetails from '../../components/ImgView/ImageDetails';
 import Main from '../../components/layout/Main';

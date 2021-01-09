@@ -1,5 +1,5 @@
 import React from 'react';
-import { Li, Radio, Label } from './DropdownItemStyled';
+import { Li, Radio, Label } from './styled';
 
 const DropdownItem = ({ text, resolution, value, checked, onChange}) => {
   return (

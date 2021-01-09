@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentSC } from './ContentStyled';
+import { ContentSC } from './styled';
 
 const Content = (props) => {
   return (

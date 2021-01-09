@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainSC } from './MainStyled';
+import { MainSC } from './styled';
 
 const Main = (props) => {
   return (

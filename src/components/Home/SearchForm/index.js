@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Error from '../Error';
 import useTerm from '../../../hooks/custom/useTerm';
 import { SearchContext } from '../../../hooks/context/SearchContext';
-import { Form, FormControl, Label, Input, Button } from './FormStyled';
+import { Form, FormControl, Label, Input, Button } from './styled';
 
 const SearchForm = () => {
   const [input, handleOnChange] = useTerm('');

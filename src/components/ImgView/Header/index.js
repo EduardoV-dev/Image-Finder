@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../layout/Header';
-import Container from '../../layout/Container';
-import { Input, Button } from './ImgViewHeaderStyled';
+import Container from '../../ui/Container';
+import { Input, Button } from './styled';
 
 const ImgViewHeader = () => {
   return (

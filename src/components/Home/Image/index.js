@@ -1,15 +1,20 @@
 import React from 'react';
-import { Figure, Img } from './ImageStyled';
+import { FigureLink } from '../../ui/Image';
 
 const Image = ({ image }) => {
   const { id, largeImageURL } = image;
   return (
-    <Figure to={`/image/${id}`}>
-      <Img
-        src={largeImageURL}
-        alt='Imagen'
-      />
-    </Figure>
+    <FigureLink
+      to={`/image/${id}`}
+      src={largeImageURL}
+      alt='Imagen desde pixabay'
+      minHeight={'22rem'}
+      maxHeight={'38rem'}
+      maxWidth={'100%'}
+      borderRadius={'20px'}
+    >
+      {/* Space for creating an overlay for the images */}
+    </FigureLink>
   );
 }
 

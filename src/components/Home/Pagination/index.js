@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SearchContext } from '../../../hooks/context/SearchContext';
-import { Footer, Status, ButtonGroup, Button } from './PaginationStyled';
+import { Footer, Status, ButtonGroup, Button } from './styled';
 
 const Pagination = () => {
   const { images, page, totalPages, loading, handlePagination } = useContext(SearchContext);

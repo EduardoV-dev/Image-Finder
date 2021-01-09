@@ -2,7 +2,7 @@ import React from 'react';
 import DropdownItem from '../DropdownItem';
 import useImageSizeSelected from '../../../hooks/custom/useImageSizeSelected';
 import { formatResolution, displayImageInNewTab } from '../../../utils/Image';
-import { DropBox, Title, DropItems, ButtonGroup, Button } from './DropdownStyled';
+import { DropBox, Title, DropItems, ButtonGroup, Button } from './styled';
 
 const Drowndown = ({ imagesSizes }) => {
   const { small, medium, original } = imagesSizes;
@@ -37,7 +37,7 @@ const Drowndown = ({ imagesSizes }) => {
       <ButtonGroup>
         <Button
           type="button"
-        >Guardar</Button>
+        >Descargar</Button>
         <Button
           type="button"
           open

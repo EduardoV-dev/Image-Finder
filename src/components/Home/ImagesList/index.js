@@ -3,7 +3,7 @@ import Image from '../Image';
 import Spinner from '../Spinner';
 import Error from '../Error';
 import { SearchContext } from '../../../hooks/context/SearchContext';
-import { ImagesContainer } from './ImagesListStyled';
+import { ImagesContainer } from './styled';
 
 const ImagesList = () => {
   const { term, images, page, loading, handleImagesSearch } = useContext(SearchContext);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContainerSC } from './ContainerStyled.js';
+import { ContainerSC } from './styled';
 
 const Container = (props) => {
   return (
