@@ -1,10 +1,10 @@
 import React from 'react';
-import {GridSC} from './GridStyled';
+import { GridSC } from './styled';
 
 const Grid = (props) => {
-  return (  
+  return (
     <GridSC {...props} />
   );
 }
- 
+
 export default Grid;

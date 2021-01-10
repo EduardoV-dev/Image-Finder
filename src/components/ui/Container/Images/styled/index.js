@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ImagesContainer = styled.section`
+export const Container = styled.section`
   width: 90%;
   max-width: 75rem;
   padding: 1rem;

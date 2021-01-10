@@ -1,22 +1,8 @@
 import React from 'react';
 import { Image } from './styled';
-const Img = ({
-  src,
-  alt,
-  minHeight,
-  maxHeight,
-  maxWidth,
-  borderRadius
-}) => {
+const Img = (props) => {
   return (
-    <Image
-      src={src}
-      alt={alt}
-      minHeight={minHeight}
-      maxHeight={maxHeight}
-      maxWidth={maxWidth}
-      borderRadius={borderRadius}
-    />
+    <Image {...props} />
   );
 }
 

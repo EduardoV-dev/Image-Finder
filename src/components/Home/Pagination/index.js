@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import Footer from '../../layout/Footer';
+import { P, Span } from '../../ui/Text';
+import { Button, ButtonGroup } from '../../ui/Button';
 import { SearchContext } from '../../../hooks/context/SearchContext';
-import { Footer, Status, ButtonGroup, Button } from './styled';
 
 const Pagination = () => {
   const { images, page, totalPages, loading, handlePagination } = useContext(SearchContext);
@@ -9,15 +11,21 @@ const Pagination = () => {
 
   return (
     <Footer>
-      <Status>Pagina <span>{page}</span> de <span>{totalPages}</span></Status>
+      <P
+        status
+      >Pagina <Span>{page}</Span> de <Span>{totalPages}</Span></P>
       <ButtonGroup>
         <Button
           type="button"
           onClick={() => handlePagination('prev')}
+          margin={'0.5rem'}
+          padding={'0.5rem 1rem'}
         >&laquo; Anterior</Button>
         <Button
           type="button"
           onClick={() => handlePagination('next')}
+          margin={'0.5rem'}
+          padding={'0.5rem 1rem'}
         >Siguiente &raquo;</Button>
       </ButtonGroup>
     </Footer>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../layout/Header';
-import Container from '../../ui/Container';
+import { Normal } from '../../ui/Container';
 import { Input, Button } from './styled';
 
 const ImgViewHeader = () => {
@@ -8,7 +8,7 @@ const ImgViewHeader = () => {
     <Header
       minHeight={'8rem'}
     >
-      <Container
+      <Normal
         imgView
       >
         <Input
@@ -18,7 +18,7 @@ const ImgViewHeader = () => {
         <Button
           type="button"
         >Buscar</Button>
-      </Container>
+      </Normal>
     </Header>
   );
 }

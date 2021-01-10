@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Paragraph = styled.p`
   text-align: center;
@@ -9,4 +9,12 @@ export const Paragraph = styled.p`
   @media screen and (min-width: 576px) {
     width: 31rem;
   }
+
+  ${({ status }) => status && css`
+    margin-top: 1rem;
+
+    @media screen and (min-width: 576px) {
+      width: 100%;
+    }
+  `};
 `;

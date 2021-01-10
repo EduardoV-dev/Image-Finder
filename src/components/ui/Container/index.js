@@ -1,10 +1,3 @@
-import React from 'react';
-import { ContainerSC } from './styled';
-
-const Container = (props) => {
-  return (
-    <ContainerSC {...props} />
-  );
-}
-
-export default Container;
+export { default as Normal } from './Normal';
+export { default as Images } from './Images';
+export { default as Form } from './Form';
