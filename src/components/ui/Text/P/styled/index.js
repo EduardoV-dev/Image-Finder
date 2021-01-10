@@ -5,10 +5,17 @@ export const Paragraph = styled.p`
   line-height: 1.5;
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
+  margin: ${({ margin }) => margin || '0'};
 
   @media screen and (min-width: 576px) {
     width: 31rem;
   }
+
+  ${({ block }) => block && css`
+    @media screen and (min-width: 576px) {
+      width: 100%;
+    }
+  `};
 
   ${({ status }) => status && css`
     margin-top: 1rem;

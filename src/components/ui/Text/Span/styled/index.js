@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SpanSC = styled.span`
-  font-weight: bold;
-  color: ${({ theme }) => theme.secondary};
+  font-weight: ${({ fontWeight }) => fontWeight || 'regular'};
+  color: ${({ theme, color }) => color || theme.secondary};
+
+  ${({ noUserSelect }) => noUserSelect && css`
+    user-select: none;
+  `};
 `;

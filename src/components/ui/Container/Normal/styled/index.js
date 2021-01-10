@@ -1,15 +1,21 @@
 import styled, { css } from 'styled-components';
 
 export const ContainerSC = styled.div`
-  width: 100%;
-  max-width: 75rem;
-  margin: 0 auto;
+  width: ${({ width }) => width || '100%'};
+  max-width: ${({ maxWidth }) => maxWidth || '75rem'};
+  min-height: ${({ minHeight }) => minHeight || 'auto'};
+  margin: ${({ margin }) => margin || '0 auto'};
+  padding: ${({ padding }) => padding || '0'};
+  border-radius: ${({ borderRadius }) => borderRadius || '0'};
 
   ${({ imgView }) => imgView && css`
-    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 
     @media screen and (min-width: 576px) {
-      text-align: left;
+      justify-content: flex-start
     }
   `};
 
@@ -21,7 +27,17 @@ export const ContainerSC = styled.div`
     }
   `};
 
-  ${({ gridChild }) => gridChild && css`
-    grid-column: ${({ grid }) => grid};
+  ${({ userInfo }) => userInfo && css`
+    margin-top: 2.5rem;
+    border-bottom: 1px solid ${({ theme }) => theme.secondary};
+    text-align: center;
+    padding-bottom: 1rem;
+  `};
+
+  ${({ flexRowCenter }) => flexRowCenter && css`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   `};
 `;

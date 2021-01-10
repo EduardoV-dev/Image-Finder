@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
 import { withRouter } from 'react-router-dom';
-import { Img } from './styled';
+import { Img } from '../../ui/Image';
 
 const BigImage = () => {
   const { imageDetails, imageId, handleFetchImageInfo } = useContext(ImageDetailsContext);
@@ -17,6 +17,7 @@ const BigImage = () => {
     <Img
       src={largeImageURL}
       alt={tags}
+      borderRadius={'10px'}
     />
   );
 }

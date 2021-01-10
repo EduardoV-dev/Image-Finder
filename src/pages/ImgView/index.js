@@ -21,10 +21,7 @@ const ImgView = () => {
             gridChild
             grid={'1/4'}
           >
-            <BigImage
-            // src={}
-            // alt={}
-            />
+            <BigImage />
           </Content>
           <Sidebar
             gridChild

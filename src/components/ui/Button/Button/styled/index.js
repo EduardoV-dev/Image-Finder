@@ -4,11 +4,11 @@ export const ButtonSC = styled.button`
   border: none;
   outline: none;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: ${({ borderRadius }) => borderRadius || '10px'};
   padding: ${({ padding }) => padding || '0'};
   margin: ${({ margin }) => margin || '0'};
   font-weight: ${({ fontWeight }) => fontWeight || 'regular'};
-  background-color: ${({ theme }) => theme.accent};
+  background-color: ${({ backgroundColor, theme }) => backgroundColor || theme.accent};
   color: ${({ theme }) => theme.secondary};
   transition: all 0.3s ease-out;
   
@@ -21,5 +21,11 @@ export const ButtonSC = styled.button`
   ${({ block }) => block && css`
     display: block;
     width: 100%;
+  `};
+
+  ${({imgViewHeader}) => imgViewHeader && css`
+    @media screen and (min-width: 576px) {
+      padding: 0.8rem 2rem;
+    }
   `};
 `;

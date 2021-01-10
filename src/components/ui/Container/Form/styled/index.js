@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.form`
   max-width: 56rem;
@@ -15,4 +15,24 @@ export const Container = styled.form`
     justify-content: space-between;
     align-items: center;
   }
+
+  ${({ imgView }) => imgView && css`
+    width: 100%;
+    max-width: 75rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    @media screen and (min-width: 576px) {
+      justify-content: flex-start
+    }
+
+    @media screen and (min-width: 768px) {
+      padding: 0;
+    }
+  `};
 `;
