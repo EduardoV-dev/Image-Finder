@@ -3,8 +3,8 @@ import {
   SAVE_IMAGEID,
   SAVE_DETAILS
 } from '../../hooks/reducer/types/ImageDetails';
-import { resolvePromise } from '../../Services/Images'; import { pipe } from '../Searches';
-;
+import { resolvePromise } from '../../services/api/Images'; 
+import { pipe } from '../Searches';
 
 export const toggleDropdown = dispatch => () =>
   dispatch({ type: TOGGLE_DROPDOWN });

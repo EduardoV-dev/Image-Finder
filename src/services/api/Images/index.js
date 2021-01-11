@@ -1,5 +1,5 @@
-import { URLBase, APIKey } from '../../Services/settings';
-import { handleFetch } from '../../utils/Searches';
+import { URLBase, APIKey } from '../../../services/api/settings';
+import { handleFetch } from '../../../utils/Searches';
 
 const APIBase = handleFetch(URLBase);
 

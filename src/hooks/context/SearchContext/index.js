@@ -8,7 +8,7 @@ import {
   handleImageSaving
 } from '../../../utils/Searches';
 import { handleNewPage, handlePaginationSaving } from '../../../utils/Pagination';
-import { fetchImages } from '../../../Services/Images';
+import { fetchImages } from '../../../services/api/Images';
 
 export const SearchContext = createContext();
 

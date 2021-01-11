@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from '../pages/Home';
-import ImgView from '../pages/ImgView';
+import Home from '../../pages/Home';
+import ImgView from '../../pages/ImgView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme';
+import { theme } from '../../components/ui/theme';
 
 const AppRouter = () => {
   return (
