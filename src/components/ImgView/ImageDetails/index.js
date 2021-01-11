@@ -4,7 +4,7 @@ import LikeIcon from '../../../assets/icons/bx-like.svg';
 import ViewsIcon from '../../../assets/icons/eye-regular.svg';
 import { Normal } from '../../ui/Container';
 import { P, Span } from '../../ui/Text';
-import { Figure, Img } from '../../ui/Image';
+import { Figure } from '../../ui/Image';
 import { Button } from '../../ui/Button';
 import { withRouter } from 'react-router-dom';
 import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext';
@@ -26,7 +26,6 @@ const ImageDetails = ({ match: { params } }) => {
   return (
     <>
       <Normal
-        width={'65%'}
         maxWidth={'auto'}
       >
         <Normal
@@ -56,42 +55,42 @@ const ImageDetails = ({ match: { params } }) => {
           <Normal
             width={'auto'}
             minHeight={'50px'}
-            margin={'0 1rem 0 0'}
             padding={'0 1rem'}
             borderRadius={'50px'}
             flexRowCenter
           >
-            <Img
+            <Figure
               src={LikeIcon}
               alt={'Likes'}
               width={'20px'}
               height={'20px'}
               margin={'0 0.5rem 0 0'}
-            />
-            <Span
-              color={({ theme }) => theme.text}
-              noUserSelect
-            >{formatNumber(likes)}</Span>
+            >
+              <Span
+                color={({ theme }) => theme.text}
+                noUserSelect
+              >{formatNumber(likes)}</Span>
+            </Figure>
           </Normal>
           <Normal
             width={'auto'}
             minHeight={'50px'}
-            margin={'0 0 0 1rem'}
             padding={'0 1rem'}
             borderRadius={'50px'}
             flexRowCenter
           >
-            <Img
+            <Figure
               src={ViewsIcon}
               alt={'Vistas'}
               width={'20px'}
               height={'20px'}
               margin={'0 0.5rem 0 0'}
-            />
-            <Span
-              color={({ theme }) => theme.text}
-              noUserSelect
-            >{formatNumber(views)}</Span>
+            >
+              <Span
+                color={({ theme }) => theme.text}
+                noUserSelect
+              >{formatNumber(views)}</Span>
+            </Figure>
           </Normal>
         </Normal>
         <Button

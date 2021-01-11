@@ -17,16 +17,10 @@ const ImgView = () => {
         minHeight={'4rem'}
       >
         <Grid>
-          <Content
-            gridChild
-            grid={'1/4'}
-          >
+          <Content>
             <BigImage />
           </Content>
-          <Sidebar
-            gridChild
-            grid={'4/6'}
-          >
+          <Sidebar>
             <ImageDetails />
           </Sidebar>
         </Grid>

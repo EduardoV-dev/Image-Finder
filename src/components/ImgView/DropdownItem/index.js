@@ -1,21 +1,31 @@
 import React from 'react';
-import { Li, Radio, Label } from './styled';
+import { LiElement } from '../../ui/List';
+import { Input } from '../../ui/Input';
+import { Label, Span } from '../../ui/Text';
 
-const DropdownItem = ({ text, resolution, value, checked, onChange}) => {
+const DropdownItem = ({ text, resolution, value, checked, onChange }) => {
   return (
-    <Li>
-      <Label>
-        <Radio
+    <LiElement>
+      <Label
+        fontWeight={'regular'}
+        width={'auto'}
+        marginBottom={'0'}
+      >
+        <Input
           type="radio"
           name="res"
           value={value}
           checked={checked}
           onChange={onChange}
+          width={'auto'}
+          radio
         />
         {text}
       </Label>
-      <span>{resolution}</span>
-    </Li>
+      <Span
+        color={({ theme }) => theme.text}
+      >{resolution}</Span>
+    </LiElement>
   );
 }
 

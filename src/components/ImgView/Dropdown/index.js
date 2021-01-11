@@ -1,17 +1,29 @@
 import React from 'react';
 import DropdownItem from '../DropdownItem';
+import { Normal } from '../../ui/Container';
+import { H1 } from '../../ui/Text';
+import { UlList } from '../../ui/List';
+import { ButtonGroup, Button } from '../../ui/Button';
 import useImageSizeSelected from '../../../hooks/custom/useImageSizeSelected';
 import { formatResolution, displayImageInNewTab } from '../../../utils/Image';
-import { DropBox, Title, DropItems, ButtonGroup, Button } from './styled';
 
 const Drowndown = ({ imagesSizes }) => {
   const { small, medium, original } = imagesSizes;
   const [selectedImageSize, setSelectedImageSize] = useImageSizeSelected('small');
 
   return (
-    <DropBox>
-      <Title>Tamaño de la Imagen</Title>
-      <DropItems>
+    <Normal
+      backgroundColor={({ theme }) => theme.secondary}
+      borderRadius={'10px'}
+      padding={'1rem'}
+      margin={'1.5rem auto'}
+      position={'absolute'}
+      dropDown
+    >
+      <H1
+        fontSize={'1rem'}
+      >Tamaño de la Imagen</H1>
+      <UlList>
         <DropdownItem
           text='Pequeño'
           resolution={formatResolution(small.width, small.height)}
@@ -33,18 +45,26 @@ const Drowndown = ({ imagesSizes }) => {
           checked={selectedImageSize === 'original'}
           onChange={setSelectedImageSize}
         />
-      </DropItems>
-      <ButtonGroup>
+      </UlList>
+      <ButtonGroup
+        dropDown
+      >
         <Button
           type="button"
+          padding={'0.6rem 1.7rem'}
+          borderRadius={'30px'}
+          fontWeight={'bold'}
         >Descargar</Button>
         <Button
           type="button"
-          open
           onClick={() => displayImageInNewTab({ selectedImageSize, imagesSizes })}
+          padding={'0.6rem 1.7rem'}
+          borderRadius={'30px'}
+          backgroundColor={({ theme }) => theme.primaryDarken}
+          color={({ theme }) => theme.text}
         >Abrir</Button>
       </ButtonGroup>
-    </DropBox>
+    </Normal>
   );
 }
 

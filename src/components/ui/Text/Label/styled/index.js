@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const LabelSC = styled.label`
   display: block;
-  width: 100%;
+  width: ${({ width }) => width || '100%'};
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: ${({ fontWeight }) => fontWeight || 'bold'};
   color: ${({ theme }) => theme.text};
-  margin-bottom: 0.5rem;
+  margin-bottom: ${({ marginBottom }) => marginBottom || '0.5rem'};
 `;

@@ -26,4 +26,8 @@ export const InputSC = styled.input`
       width: 19rem;
     }
   `};
+
+  ${({ radio }) => radio && css`
+    margin-right: 0.5rem;
+  `};
 `;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Image from '../Image';
-import Spinner from '../Spinner';
+import Spinner from '../../common/Spinner';
 import Error from '../Error';
 import { Images } from '../../ui/Container';
 import { SearchContext } from '../../../hooks/context/SearchContext';

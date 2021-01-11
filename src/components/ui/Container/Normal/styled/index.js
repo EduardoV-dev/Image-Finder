@@ -7,6 +7,8 @@ export const ContainerSC = styled.div`
   margin: ${({ margin }) => margin || '0 auto'};
   padding: ${({ padding }) => padding || '0'};
   border-radius: ${({ borderRadius }) => borderRadius || '0'};
+  background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
+  position: ${({ position }) => position || 'relative'};
 
   ${({ imgView }) => imgView && css`
     display: flex;
@@ -28,7 +30,6 @@ export const ContainerSC = styled.div`
   `};
 
   ${({ userInfo }) => userInfo && css`
-    margin-top: 2.5rem;
     border-bottom: 1px solid ${({ theme }) => theme.secondary};
     text-align: center;
     padding-bottom: 1rem;
@@ -39,5 +40,29 @@ export const ContainerSC = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+  `};
+
+  ${({ dropDown }) => dropDown && css`
+    width: 17.5rem;
+    top: 86%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    &::before {
+      content: '';
+      border: 15px solid red;
+      border-color: transparent transparent ${({ theme }) => theme.secondary} transparent;
+      position: absolute;
+      top: -13%;
+      left: calc(50% - 15px);
+    }
+
+    @media screen and (min-width: 576px) {  
+      width: 16.5rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+      width: 17.5rem;
+    }
   `};
 `;

@@ -1,7 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const ContentSC = styled.section`
-  ${({ gridChild }) => gridChild && css`
-    grid-column: ${({ grid }) => grid};
-  `};
+  grid-area: BigImage;
 `;

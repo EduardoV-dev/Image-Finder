@@ -18,6 +18,8 @@ const BigImage = () => {
       src={largeImageURL}
       alt={tags}
       borderRadius={'10px'}
+      maxWidth={'45rem'}
+      maxHeight={'70vh'}
     />
   );
 }

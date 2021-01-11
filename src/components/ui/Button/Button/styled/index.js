@@ -9,7 +9,7 @@ export const ButtonSC = styled.button`
   margin: ${({ margin }) => margin || '0'};
   font-weight: ${({ fontWeight }) => fontWeight || 'regular'};
   background-color: ${({ backgroundColor, theme }) => backgroundColor || theme.accent};
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ color, theme }) => color || theme.secondary};
   transition: all 0.3s ease-out;
   
   &:hover,
@@ -23,7 +23,7 @@ export const ButtonSC = styled.button`
     width: 100%;
   `};
 
-  ${({imgViewHeader}) => imgViewHeader && css`
+  ${({ imgViewHeader }) => imgViewHeader && css`
     @media screen and (min-width: 576px) {
       padding: 0.8rem 2rem;
     }
