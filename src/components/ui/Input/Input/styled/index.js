@@ -5,7 +5,7 @@ export const InputSC = styled.input`
   font-size: ${({ fontSize }) => fontSize || '1rem'};
   border-radius: ${({ borderRadius }) => borderRadius || '10px'};
   background-color: ${({ backgroundColor }) => backgroundColor || '#fff'};
-  color: ${({ color }) => color || '#000'};
+  color: ${({ fontColor }) => fontColor || '#000'};
   padding: ${({ padding }) => padding || '0.7rem'};
   border: none;
   outline: none;

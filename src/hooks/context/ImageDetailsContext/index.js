@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import {
   toggleDropdown,
   catchImageId,
-  saveImageDetails
+  saveImageDetails,
+  cleanImageDetails
 } from '../../../utils/Image';
 import { fetchImageDetailsById } from '../../../services/api/Images';
 import { pipe } from '../../../utils/Searches';
@@ -16,15 +17,14 @@ const ImageDetailsProvider = ({ children }) => {
     isDropdown: false,
     imageId: null,
     imageDetails: null,
-    imageSizes: []
+    imageSizes: [],
   }
 
   const [state, dispatch] = useReducer(ImageDetailsReducer, initialState);
 
-  const { isDropdown, imageId, imageDetails } = state;
+  const { isDropdown, imageId, imageDetails, loading } = state;
 
   const handleDropdown = toggleDropdown(dispatch);
-
   const handleImageId = catchImageId(dispatch);
 
   const handleFetchImageInfo = async () => {
@@ -35,15 +35,19 @@ const ImageDetailsProvider = ({ children }) => {
     )(imageId);
   }
 
+  const cleanDetails = cleanImageDetails(dispatch);
+
   return (
     <ImageDetailsContext.Provider
       value={{
         isDropdown,
         imageId,
         imageDetails,
+        loading,
         handleDropdown,
         handleImageId,
-        handleFetchImageInfo
+        handleFetchImageInfo,
+        cleanDetails
       }}
     >
       {children}

@@ -4,13 +4,15 @@ import { Form } from '../../ui/Container';
 import { FormControl, Input } from '../../ui/Input';
 import { Label } from '../../ui/Text';
 import { Button } from '../../ui/Button';
-import useTerm from '../../../hooks/custom/useTerm';
 import { SearchContext } from '../../../hooks/context/SearchContext';
 
 const SearchForm = () => {
-  const [input, handleOnChange] = useTerm('');
-  const { formError, handleSearchSubmit } = useContext(SearchContext);
-
+  const {
+    input,
+    formError,
+    handleSearchSubmit,
+    handleInputOnChange
+  } = useContext(SearchContext);
   const errorComponent = formError ? <Error>El término es obligatorio</Error> : null;
 
   return (
@@ -22,7 +24,8 @@ const SearchForm = () => {
         <Input
           type="text"
           placeholder="Ejemplo: Espacio, Comida..."
-          onChange={handleOnChange}
+          onChange={handleInputOnChange}
+          value={input}
         />
       </FormControl>
       <FormControl>

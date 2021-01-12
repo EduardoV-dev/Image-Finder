@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../../components/Home/Header';
 import SearchForm from '../../components/Home/SearchForm';
 import ImagesList from '../../components/Home/ImagesList';
 import Pagination from '../../components/Home/Pagination';
 import Main from '../../components/layout/Main';
-import SearchProvider from '../../hooks/context/SearchContext';
+import { ImageDetailsContext } from '../../hooks/context/ImageDetailsContext';
 
 const Home = () => {
+  const { cleanDetails } = useContext(ImageDetailsContext);
+  // eslint-disable-next-line
+  useEffect(() => cleanDetails(), []);
+
   return (
-    <SearchProvider>
+    <>
       <Header />
       <Main
         minHeight={'4rem'}
@@ -17,7 +21,7 @@ const Home = () => {
         <ImagesList />
       </Main>
       <Pagination />
-    </SearchProvider>
+    </>
   );
 }
 

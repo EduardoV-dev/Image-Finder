@@ -13,6 +13,7 @@ import { formatNumber, extractImages } from '../../../utils/Image';
 const ImageDetails = ({ match: { params } }) => {
   const { isDropdown, imageDetails, handleDropdown, handleImageId } = useContext(ImageDetailsContext);
   const { id } = params;
+  console.log(`a ${id}`);
 
   // eslint-disable-next-line
   useEffect(() => handleImageId(id), []);
@@ -44,7 +45,7 @@ const ImageDetails = ({ match: { params } }) => {
             margin={'0 1rem 0 0'}
           >
             <Span
-              color={({ theme }) => theme.text}
+              fontColor={({ theme }) => theme.text}
             >{user}</Span>
           </Figure>
         </Normal>
@@ -67,7 +68,7 @@ const ImageDetails = ({ match: { params } }) => {
               margin={'0 0.5rem 0 0'}
             >
               <Span
-                color={({ theme }) => theme.text}
+                fontColor={({ theme }) => theme.text}
                 noUserSelect
               >{formatNumber(likes)}</Span>
             </Figure>
@@ -87,7 +88,7 @@ const ImageDetails = ({ match: { params } }) => {
               margin={'0 0.5rem 0 0'}
             >
               <Span
-                color={({ theme }) => theme.text}
+                fontColor={({ theme }) => theme.text}
                 noUserSelect
               >{formatNumber(views)}</Span>
             </Figure>

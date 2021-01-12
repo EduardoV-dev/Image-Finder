@@ -23,7 +23,7 @@ const DropdownItem = ({ text, resolution, value, checked, onChange }) => {
         {text}
       </Label>
       <Span
-        color={({ theme }) => theme.text}
+        fontColor={({ theme }) => theme.text}
       >{resolution}</Span>
     </LiElement>
   );

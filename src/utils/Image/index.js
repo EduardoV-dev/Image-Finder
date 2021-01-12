@@ -1,9 +1,10 @@
 import {
   TOGGLE_DROPDOWN,
   SAVE_IMAGEID,
-  SAVE_DETAILS
+  SAVE_DETAILS,
+  CLEAN_DETAILS
 } from '../../hooks/reducer/types/ImageDetails';
-import { resolvePromise } from '../../services/api/Images'; 
+import { resolvePromise } from '../../services/api/Images';
 import { pipe } from '../Searches';
 
 export const toggleDropdown = dispatch => () =>
@@ -61,3 +62,6 @@ export const displayImageInNewTab = pipe(
   getImageURL,
   openBlankURL
 );
+
+export const cleanImageDetails = dispatch => () =>
+  dispatch({ type: CLEAN_DETAILS });

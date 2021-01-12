@@ -1,7 +1,8 @@
 import {
   TOGGLE_DROPDOWN,
   SAVE_IMAGEID,
-  SAVE_DETAILS
+  SAVE_DETAILS,
+  CLEAN_DETAILS
 } from '../types/ImageDetails';
 
 const ImageDetailsReducer = (state, action) => {
@@ -19,7 +20,14 @@ const ImageDetailsReducer = (state, action) => {
     case SAVE_DETAILS:
       return {
         ...state,
-        imageDetails: action.payload.hits[0]
+        imageDetails: action.payload.hits[0],
+        loading: false
+      }
+    case CLEAN_DETAILS: 
+      return {
+        ...state,
+        imageDetails: null,
+        loading: true
       }
     default: 
       return state;

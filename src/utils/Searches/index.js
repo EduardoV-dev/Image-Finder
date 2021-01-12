@@ -14,7 +14,7 @@ export const termIsEmpty = term => ({
   term
 });
 
-export const handleSearchFormError = dispatch => (value) => {
+export const handleSearchFormError = dispatch => value => {
   dispatch({ type: FORM_ERROR, payload: value.termIsEmpty });
   return value.term;
 }

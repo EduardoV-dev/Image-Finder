@@ -9,6 +9,7 @@ import {
 } from '../../../utils/Searches';
 import { handleNewPage, handlePaginationSaving } from '../../../utils/Pagination';
 import { fetchImages } from '../../../services/api/Images';
+import useTerm from '../../custom/useTerm';
 
 export const SearchContext = createContext();
 
@@ -23,8 +24,8 @@ const SearchProvider = ({ children }) => {
     loading: true
   }
   const [state, dispatch] = useReducer(SearchReducer, initialState);
-
   const { term, formError, images, page, totalPages, imagesPerPage, loading } = state;
+  const [input, handleInputOnChange] = useTerm(''); 
 
   // Event for submitting the SearchForm
   const handleSearchSubmit = (e, input) => {
@@ -59,9 +60,11 @@ const SearchProvider = ({ children }) => {
         totalPages,
         formError,
         loading,
+        input,
         handleSearchSubmit,
         handleImagesSearch,
-        handlePagination
+        handlePagination,
+        handleInputOnChange
       }}
     >
       {children}
