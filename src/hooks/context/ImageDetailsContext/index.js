@@ -3,7 +3,9 @@ import {
   toggleDropdown,
   catchImageId,
   saveImageDetails,
-  cleanImageDetails
+  cleanImageDetails,
+  defineImagesVisibility,
+  setImageVisibility
 } from '../../../utils/Image';
 import { fetchImageDetailsById } from '../../../services/api/Images';
 import { pipe } from '../../../utils/Searches';
@@ -18,11 +20,12 @@ const ImageDetailsProvider = ({ children }) => {
     imageId: null,
     imageDetails: null,
     imageSizes: [],
+    imagesVisible: false
   }
 
   const [state, dispatch] = useReducer(ImageDetailsReducer, initialState);
 
-  const { isDropdown, imageId, imageDetails, loading } = state;
+  const { isDropdown, imageId, imageDetails, loading, imagesVisible } = state;
 
   const handleDropdown = toggleDropdown(dispatch);
   const handleImageId = catchImageId(dispatch);
@@ -36,6 +39,8 @@ const ImageDetailsProvider = ({ children }) => {
   }
 
   const cleanDetails = cleanImageDetails(dispatch);
+  const handleImageVisibility = defineImagesVisibility(dispatch);
+  const setImagesVisible = setImageVisibility(dispatch);
 
   return (
     <ImageDetailsContext.Provider
@@ -44,10 +49,13 @@ const ImageDetailsProvider = ({ children }) => {
         imageId,
         imageDetails,
         loading,
+        imagesVisible,
         handleDropdown,
         handleImageId,
         handleFetchImageInfo,
-        cleanDetails
+        cleanDetails,
+        handleImageVisibility,
+        setImagesVisible
       }}
     >
       {children}

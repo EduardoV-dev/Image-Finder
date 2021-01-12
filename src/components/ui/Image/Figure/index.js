@@ -4,6 +4,8 @@ import { FigureSC } from './styled';
 
 const Figure = ({
   src,
+  onLoad,
+  style,
   children,
   width,
   height,
@@ -19,6 +21,8 @@ const Figure = ({
     >
       <Img
         src={src}
+        onLoad={onLoad}
+        style={style}
         width={width}
         height={height}
         maxHeight={maxHeight}

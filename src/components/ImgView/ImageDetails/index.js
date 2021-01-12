@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Dropdown from '../Dropdown';
 import LikeIcon from '../../../assets/icons/bx-like.svg';
 import ViewsIcon from '../../../assets/icons/eye-regular.svg';
+import Spinner from '../../common/Spinner';
 import { Normal } from '../../ui/Container';
 import { P, Span } from '../../ui/Text';
 import { Figure } from '../../ui/Image';
@@ -11,14 +12,20 @@ import { ImageDetailsContext } from '../../../hooks/context/ImageDetailsContext'
 import { formatNumber, extractImages } from '../../../utils/Image';
 
 const ImageDetails = ({ match: { params } }) => {
-  const { isDropdown, imageDetails, handleDropdown, handleImageId } = useContext(ImageDetailsContext);
+  const {
+    isDropdown,
+    imageDetails,
+    handleDropdown,
+    handleImageId,
+    loading,
+    imagesVisible,
+    setImagesVisible
+  } = useContext(ImageDetailsContext);
   const { id } = params;
-  console.log(`a ${id}`);
-
   // eslint-disable-next-line
   useEffect(() => handleImageId(id), []);
 
-  if (!imageDetails) return null;
+  if (!imageDetails || loading) return <Spinner />;
 
   const { likes, views, user, userImageURL } = imageDetails;
   const imagesSizes = extractImages(imageDetails);
@@ -38,11 +45,13 @@ const ImageDetails = ({ match: { params } }) => {
           >Imagen subida por:</P>
           <Figure
             src={userImageURL}
+            style={() => setImagesVisible(imagesVisible)}
             minHeight={'50px'}
             borderRadius={'30px'}
             width={'48px'}
             height={'48px'}
             margin={'0 1rem 0 0'}
+
           >
             <Span
               fontColor={({ theme }) => theme.text}

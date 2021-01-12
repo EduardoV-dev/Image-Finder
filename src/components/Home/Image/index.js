@@ -8,7 +8,7 @@ const Image = ({ image }) => {
       to={`/image/${id}`}
       src={largeImageURL}
       alt='Imagen desde pixabay'
-      minHeight={'22rem'}
+      minHeight={'15rem'}
       maxHeight={'38rem'}
       maxWidth={'100%'}
       borderRadius={'20px'}

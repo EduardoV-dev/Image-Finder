@@ -2,7 +2,8 @@ import {
   TOGGLE_DROPDOWN,
   SAVE_IMAGEID,
   SAVE_DETAILS,
-  CLEAN_DETAILS
+  CLEAN_DETAILS,
+  IMAGES_VISIBLE
 } from '../../hooks/reducer/types/ImageDetails';
 import { resolvePromise } from '../../services/api/Images';
 import { pipe } from '../Searches';
@@ -65,3 +66,9 @@ export const displayImageInNewTab = pipe(
 
 export const cleanImageDetails = dispatch => () =>
   dispatch({ type: CLEAN_DETAILS });
+
+export const defineImagesVisibility = dispatch => () =>
+  dispatch({ type: IMAGES_VISIBLE });
+
+export const setImageVisibility = visible =>
+  visible ? { display: 'block' } : { display: 'none' };

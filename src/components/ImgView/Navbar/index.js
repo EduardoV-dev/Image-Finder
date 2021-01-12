@@ -8,8 +8,7 @@ import { SearchContext } from '../../../hooks/context/SearchContext';
 const Navbar = () => {
   const { input, handleSearchSubmit, handleInputOnChange } = useContext(SearchContext);
   const history = useHistory();
-
-  const searchImage = e => {
+  const searchImage = (e) => {
     handleSearchSubmit(e, input);
     history.push('/');
   }
@@ -33,6 +32,7 @@ const Navbar = () => {
       />
       <Button
         type="button"
+        onClick={searchImage}
         backgroundColor={({ theme }) => theme.primaryDarken}
         padding={'0.8rem 1rem'}
         fontWeight={'bold'}
