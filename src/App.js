@@ -1,9 +1,38 @@
-import React from 'react';
-import AppRouter from './router';
+import React, { useEffect } from 'react';
+import i18next from 'i18next';
+import { initReactI18next, useTranslation } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import HttpApi from 'i18next-http-backend';
+import { Provider } from 'react-redux';
 
-function App() {
+import { MainRouter } from '@components/routers';
+import store from './redux/store';
+
+i18next
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(HttpApi)
+  .init({
+    supportedLngs: ['en', 'es'],
+    detection: {
+      order: ['path', 'cookie', 'htmlTag', 'localStorage', 'sessionStorage', 'navigator', 'querystring', 'subdomain'],
+      caches: ['cookie'],
+    },
+    fallbackLng: "en",
+    backend: { loadPath: '/assets/language/{{lng}}/translation.json' },
+  });
+
+const App = () => {
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('html_title');
+  }, [t]);
+
   return (
-    <AppRouter />
+   <Provider store={store}>
+      <MainRouter />
+   </Provider>
   );
 }
 

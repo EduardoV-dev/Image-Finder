@@ -4,7 +4,7 @@ import {
   catchImageId,
   saveImageDetails
 } from '../../../utils/Image';
-import { fetchImageDetailsById } from '../../../Services/Images';
+import { fetchImageDetailsById } from '../../../services/Images';
 import { pipe } from '../../../utils/Searches';
 
 import ImageDetailsReducer from '../../reducer/ImageDetailsReducer';

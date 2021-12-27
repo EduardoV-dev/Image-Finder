@@ -1,0 +1,9 @@
+@use './theme';
+
+@function getColor($color-name) {
+  @return map-get($color-theme, $color-name);
+}
+
+@function getBp($bp) {
+  @return map-get($breakpoints, $bp);
+}

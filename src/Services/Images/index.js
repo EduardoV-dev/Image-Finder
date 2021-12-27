@@ -1,4 +1,4 @@
-import { URLBase, APIKey } from '../../Services/settings';
+import { URLBase, APIKey } from '../settings';
 import { handleFetch } from '../../utils/Searches';
 
 const APIBase = handleFetch(URLBase);
