@@ -6,6 +6,8 @@ module.exports = {
       "@components": "./src/components",
       "@consts": "./src/consts",
       "@images": "./public/assets/images",
+      "@utils": "./src/utils",
+      "@services": "./src/services",
     })(config);
 
     return config;

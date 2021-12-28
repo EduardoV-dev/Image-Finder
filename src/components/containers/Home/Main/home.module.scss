@@ -1,0 +1,15 @@
+.header {
+  position: relative;
+
+  h1,
+  p {
+    transform: translateY(-100%) scale(1.3);
+    animation: showElement 0.5s ease forwards;
+
+    @keyframes showElement {
+      to {
+        transform: translateY(0) scale(1);
+      }
+    }
+  }
+}
