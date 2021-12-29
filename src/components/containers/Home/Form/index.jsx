@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 
 import {
   Card,
@@ -11,8 +10,6 @@ import useForm from './useForm';
 import styles from './form.module.scss';
 
 const Form = () => {
-  const { pathname } = useLocation();
-  console.log(pathname);
   const { t } = useTranslation();
   const { keyword, handleChange, handleSubmit } = useForm();
 

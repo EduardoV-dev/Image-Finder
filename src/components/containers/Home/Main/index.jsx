@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Header, Footer } from '@components/layout';
 import Heading from '../Heading'
 import Form from '../Form';

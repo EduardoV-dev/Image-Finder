@@ -8,6 +8,7 @@ module.exports = {
       "@images": "./public/assets/images",
       "@utils": "./src/utils",
       "@services": "./src/services",
+      "@redux": "./src/redux",
     })(config);
 
     return config;

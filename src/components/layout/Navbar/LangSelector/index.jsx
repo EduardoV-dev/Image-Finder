@@ -1,6 +1,7 @@
 import i18next from 'i18next';
-import { useTranslation } from 'react-i18next';
 import cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { languages } from '@consts/langs';
 import englishLangPath from '@images/English.png';
@@ -8,8 +9,14 @@ import spanishLangPath from '@images/Spanish.png';
 import styles from './lang.module.scss';
 
 const LangSelector = ({ className }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const currentLanguageCode = cookies.get('i18next') || 'en';
+
+  const handleLangChange = (langCode) => {
+    i18next.changeLanguage(langCode);
+    navigate(`/${langCode}`);
+  }
 
   return (
     <div className={`dropdown ${className}`}>
@@ -32,7 +39,7 @@ const LangSelector = ({ className }) => {
           <li key={idx}>
             <button
               className={`dropdown-item ${code === currentLanguageCode && 'active'}`}
-              onClick={() => i18next.changeLanguage(code)}
+              onClick={() => handleLangChange(code)}
               disabled={code === currentLanguageCode && 'text-muted'}
             >
               <span
