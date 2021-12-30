@@ -9,6 +9,7 @@ module.exports = {
       "@utils": "./src/utils",
       "@services": "./src/services",
       "@redux": "./src/redux",
+      "@hooks": "./src/hooks",
     })(config);
 
     return config;

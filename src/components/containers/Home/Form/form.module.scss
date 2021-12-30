@@ -1,6 +1,6 @@
 @use '/src/styles/functions' as fn;
 
-form {
+.form {
   &::before {
     width: 100%;
     min-height: 100px;

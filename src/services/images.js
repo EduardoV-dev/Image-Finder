@@ -3,6 +3,7 @@ import {
   PHOTOS_ENDPOINT,
   IMAGES_PER_PAGE,
   SEARCH_PHOTOS_ENDPOINT,
+  INITIAL_PAGE,
 } from '@consts/api';
 
 export const fetchLatestImages = async page => {
@@ -12,7 +13,11 @@ export const fetchLatestImages = async page => {
       per_page: IMAGES_PER_PAGE
     },
   });
-  return data.data;
+  
+  return {
+    data: data.data,
+    totalPages: INITIAL_PAGE,
+  }
 }
 
 export const fetchImagesByTerm = async (term, page) => {
@@ -23,5 +28,9 @@ export const fetchImagesByTerm = async (term, page) => {
       page,
     }
   });
-  return data.data;
+  
+  return {
+    data: data.data.results,
+    totalPages: data.data.total_pages,
+  }
 }

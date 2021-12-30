@@ -2,13 +2,16 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import logoPath from '@images/logo.png';
-import LangSelector from '@components/layout/Navbar/LangSelector';
+import LangSelector from '../LangSelector';
 
-const Navbar = ({ className }) => {
+const Navbar = ({ className = '', children }) => {
   const { t } = useTranslation();
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-primary w-100 ${className}`}>
+    <nav
+      className={`navbar navbar-expand-lg navbar-dark bg-primary w-100 ${className}`}
+      style={{minHeight: '70px'}}
+    >
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img
@@ -30,9 +33,7 @@ const Navbar = ({ className }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li> */}
+            {children}
           </ul>
           <div className="d-flex">
             <LangSelector />

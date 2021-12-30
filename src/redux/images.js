@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { isNextPage } from '../utils/check';
+
 const imagesSlice = createSlice({
   name: 'images',
   initialState: {
@@ -8,34 +10,32 @@ const imagesSlice = createSlice({
     isLoading: false,
     images: [],
     error: null,
+    totalPages: 0,
   },
   reducers: {
     loadTerm: (state, action) => {
       state.term = action.payload;
       state.images = [];
+      state.page = 1;
+      state.error = null;
+      state.totalPages = 0;
     },
     loading: state => {
       state.isLoading = true;
     },
     loadImages: (state, action) => {
-      const photos = state.term !== ''
-        ? action.payload.images.results
-        : action.payload.images;
-
-      state.page = action.payload.page;
+      state.images = [...state.images, ...action.payload.data];
+      state.totalPages = action.payload.totalPages;
       state.isLoading = false;
-      state.images = [...state.images, ...photos];
       state.error = null;
     },
     loadError: (state, action) => {
-      state = {
-        ...state,
-        error: action.payload,
-        isLoading: false,
-      }
       state.error = action.payload;
       state.isLoading = false;
     },
+    loadMoreImages: state => {
+      state.page = isNextPage(state.page, state.totalPages) ? state.page + 1 : state.page;
+    }
   }
 });
 
@@ -44,5 +44,6 @@ export const {
   loadImages,
   loading,
   loadError,
+  loadMoreImages,
 } = imagesSlice.actions;
 export default imagesSlice.reducer;

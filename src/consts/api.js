@@ -5,3 +5,5 @@ export const USERS_ENDPOINT = 'users';
 export const PHOTOS_ENDPOINT = 'photos';
 export const SEARCH_PHOTOS_ENDPOINT = 'search/photos';
 export const IMAGES_PER_PAGE = 30;
+export const INITIAL_PAGE = 0;
+export const REFRESH_ELEMENTS_AT = 5;
