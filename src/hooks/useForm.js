@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { loadTerm } from "@redux/images";
 import { keywordOnChange } from "@redux/form";
-import { useEffect } from "react";
 
 const useForm = () => {
   const navigate = useNavigate();
@@ -21,10 +21,10 @@ const useForm = () => {
     e.preventDefault();
     if (term === keyword) return;
     dispatch(loadTerm(keyword));
-    navigate('/');
   }
 
   useEffect(() =>
+    !pathname.includes('/image') &&
     navigate(`${pathname}?query=${term === '' ? 'all' : term}`)
     , [navigate, pathname, term]);
 

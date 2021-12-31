@@ -15,7 +15,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="*"
           element={<Navigate to={`/${cookies.get(LANG_COOKIE)}`} />}
         />
         <Route path={`/${cookies.get(LANG_COOKIE)}`} element={<Home />} />
