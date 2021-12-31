@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { animated, useSpring } from 'react-spring';
+import { animated } from 'react-spring';
 
 import Heading from '../Heading'
 import Form from '../Form';
@@ -9,39 +8,31 @@ import {
   Navbar,
   Footer,
 } from '@components/layout';
-import { SearchForm } from '@components/commons';
-import useForm from '../../../../hooks/useForm';
+import { SearchForm, ScrollToTop } from '@components/commons';
+import { SCROLLY_TO_RENDER_NAVBAR } from '@consts/ui';
+import { useForm, useScaleAnimationOnScroll } from '@hooks';
 
 const Home = () => {
   const { keyword, handleChange, handleSubmit } = useForm();
-  const [showNavbar, setShowNavbar] = useState(false);
-  const spring = useSpring({
-    opacity: showNavbar ? 1 : 0,
-    transform: `scale(${showNavbar ? 1 : 0})`,
-  });
-
-  useEffect(() => {
-    const onScroll = () => setShowNavbar(window.scrollY >= 400);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const { show, spring } = useScaleAnimationOnScroll(SCROLLY_TO_RENDER_NAVBAR);
 
   return (
     <>
       <Header>
         <Navbar>
-          {showNavbar && (
-            <animated.div style={spring}>
-              <li className="nav-link">
-                <SearchForm
-                  {...{
-                    keyword,
-                    handleChange,
-                    handleSubmit
-                  }}
-                />
-              </li>
-            </animated.div>
+          {show && (
+            <animated.li
+              className="nav-link"
+              style={spring}
+            >
+              <SearchForm
+                {...{
+                  keyword,
+                  handleChange,
+                  handleSubmit
+                }}
+              />
+            </animated.li>
           )}
         </Navbar>
       </Header>
@@ -57,6 +48,7 @@ const Home = () => {
         <PhotosList />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

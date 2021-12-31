@@ -1,0 +1,15 @@
+.btn {
+  z-index: 1;
+  bottom: 10%;
+  right: 10%;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    transform: scale(1.1) !important;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+  }
+}

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { getCurrentYear } from '@utils/date';
+import { getCurrentYear } from '@utils/data';
 
 const Footer = ({ className }) => {
   const { t } = useTranslation();

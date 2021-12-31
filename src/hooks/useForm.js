@@ -1,23 +1,32 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { loadTerm } from "@redux/images";
 import { keywordOnChange } from "@redux/form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const useForm = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { keyword } = useSelector(state => state.form);
+  const {
+    form: { keyword },
+    images: { term },
+  } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { value } }) => dispatch(keywordOnChange(value));
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (term === keyword) return;
     dispatch(loadTerm(keyword));
-    pathname !== '/' && navigate('/');
+    navigate('/');
   }
+
+  useEffect(() =>
+    navigate(`${pathname}?query=${term === '' ? 'all' : term}`)
+    , [navigate, pathname, term]);
 
   return {
     keyword,

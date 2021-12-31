@@ -1,22 +1,17 @@
-import i18next from 'i18next';
-import cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { languages } from '@consts/langs';
+
 import englishLangPath from '@images/English.png';
 import spanishLangPath from '@images/Spanish.png';
 import styles from './lang.module.scss';
+import useLang from './useLang';
 
 const LangSelector = ({ className }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
-  const currentLanguageCode = cookies.get('i18next') || 'en';
-
-  const handleLangChange = (langCode) => {
-    i18next.changeLanguage(langCode);
-    navigate(`/${langCode}`);
-  }
+  const {
+    currentLanguageCode,
+    handleLangChange
+  } = useLang();
 
   return (
     <div className={`dropdown ${className}`}>

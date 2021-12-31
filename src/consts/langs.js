@@ -10,3 +10,5 @@ export const languages = [
     flag_code: 'gb',
   },
 ];
+
+export const LANG_COOKIE = 'i18next';
