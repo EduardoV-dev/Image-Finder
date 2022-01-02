@@ -11,4 +11,4 @@ export const languages = [
   },
 ];
 
-export const LANG_COOKIE = 'i18next';
+// export const LANG_COOKIE = 'i18next';

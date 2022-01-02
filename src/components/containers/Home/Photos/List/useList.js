@@ -1,6 +1,5 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 
 import {
   loading,
@@ -27,17 +26,24 @@ const useList = () => {
   const paginate = async () =>
     dispatch(loadMoreImages());
 
-  const fetchImages = useCallback(async () => {
-    dispatch(loading());
-    try {
-      const imagesInfo = await (isTermEmpty(term) ? fetchLatestImages(page) : fetchImagesByTerm(term, page));
-      dispatch(loadImages(imagesInfo));
-    } catch (e) {
-      dispatch(loadError(e));
-    }
-  }, [term, page, dispatch]);
 
-  useEffect(() => fetchImages(), [term, page, fetchImages]);
+  useEffect(() => {
+    const fetchImages = async () => {
+      dispatch(loading());
+      try {
+        const imagesInfo = await (
+          isTermEmpty(term)
+            ? fetchLatestImages(page)
+            : fetchImagesByTerm(term, page)
+        );
+        dispatch(loadImages(imagesInfo));
+      } catch (e) {
+        dispatch(loadError(e));
+      }
+    }
+
+    fetchImages();
+  }, [term, page, dispatch]);
 
   return {
     images: formatListImagesData(images),

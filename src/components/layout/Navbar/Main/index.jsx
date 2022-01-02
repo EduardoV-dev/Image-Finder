@@ -10,7 +10,7 @@ const Navbar = ({ className = '', children }) => {
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-dark bg-primary w-100 ${className}`}
-      style={{minHeight: '70px'}}
+      style={{ minHeight: '70px' }}
     >
       <div className="container">
         <Link className="navbar-brand" to="/">

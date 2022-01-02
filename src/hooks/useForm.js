@@ -1,19 +1,20 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import queryString from 'query-string';
 
 import { loadTerm } from "@redux/images";
-import { keywordOnChange } from "@redux/form";
+import { keywordOnChange, setFirstRender } from "@redux/form";
 
 const useForm = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const { search } = useLocation();
   const {
-    form: { keyword },
+    form: { keyword, firstRender },
     images: { term },
   } = useSelector(state => state);
-  const dispatch = useDispatch();
+  const { query = '' } = queryString.parse(search);
 
   const handleChange = ({ target: { value } }) => dispatch(keywordOnChange(value));
 
@@ -21,12 +22,15 @@ const useForm = () => {
     e.preventDefault();
     if (term === keyword) return;
     dispatch(loadTerm(keyword));
+    navigate(`/${keyword === '' ? '' : `?query=${keyword}`}`);
   }
 
-  useEffect(() =>
-    !pathname.includes('/image') &&
-    navigate(`${pathname}?query=${term === '' ? 'all' : term}`)
-    , [navigate, pathname, term]);
+  useEffect(() => {
+    if (!firstRender) return;
+    dispatch(keywordOnChange(query));
+    dispatch(loadTerm(query));
+    dispatch(setFirstRender(false));
+  }, [firstRender, dispatch, query]);
 
   return {
     keyword,
