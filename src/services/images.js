@@ -13,7 +13,7 @@ export const fetchLatestImages = async page => {
       per_page: IMAGES_PER_PAGE
     },
   });
-  
+
   return {
     data: data.data,
     totalPages: INITIAL_PAGE,
@@ -28,9 +28,15 @@ export const fetchImagesByTerm = async (term, page) => {
       page,
     }
   });
-  
+
   return {
     data: data.data.results,
     totalPages: data.data.total_pages,
   }
 }
+
+export const fetchImageById = async id => {
+  const data = await Axios.get(`/${PHOTOS_ENDPOINT}/${id}`);
+
+  return data;
+} 

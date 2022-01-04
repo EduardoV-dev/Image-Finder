@@ -5,14 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { Home, ImgView } from '@components/containers';
+import { Home, Image } from '@components/containers';
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/image/:id" element={<ImgView />} />
+        <Route path="/image/:id" element={<Image />} />
       </Routes>
     </BrowserRouter>
   );

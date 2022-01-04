@@ -6,13 +6,11 @@ export const formatImageData = image => ({
   views: image.views,
   tags: getTags(image.tags_preview),
   imagesURL: image.urls,
-  username: image.user.username,
+  user: {
+    name: image.user.name,
+    profile_image: image.user.profile_image.medium,
+  },
 });
 
 const getTags = tags =>
   tags.map(tag => tag.title);
-
-export const formatUserData = user => ({
-  name: user.name,
-  profile_image: user.profile_image.medium,
-});

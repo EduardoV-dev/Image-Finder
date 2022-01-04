@@ -1,15 +1,13 @@
-import styles from './header.module.scss';
+const style = {
+  zIndex: 100,
+}
 
 const Header = ({ className, ...props }) => {
   return (
     <header
-      className={
-        `w-100 position-sticky top-0
-        ${className}
-        ${styles.header}
-        `
-      }
       {...props}
+      className={`w-100 position-sticky top-0 ${className}`}
+      style={style}
     />
   );
 }

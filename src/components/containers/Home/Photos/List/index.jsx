@@ -11,7 +11,7 @@ const PhotosList = () => {
   const { images, isLoading, paginate } = useList();
 
   return (
-    <>
+    <div className="position-relative">
       {(isLoading && !images.length)
         ? (<Spinner />)
         : (
@@ -31,7 +31,7 @@ const PhotosList = () => {
           </Card>
         )}
       {(isLoading && images.length) && <Spinner />}
-    </>
+    </div>
 
   );
 }

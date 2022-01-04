@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import { isNextPage } from '@utils/check';
+import { hasNextPage } from '@utils/check';
 
 const imagesSlice = createSlice({
   name: 'images',
@@ -34,7 +33,7 @@ const imagesSlice = createSlice({
       state.isLoading = false;
     },
     loadMoreImages: state => {
-      state.page = isNextPage(state.page, state.totalPages) ? state.page + 1 : state.page;
+      state.page = hasNextPage(state.page, state.totalPages) ? state.page + 1 : state.page;
     },
   }
 });

@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logoPath from '@images/logo.png';
 import LangSelector from '../LangSelector';
 
 const Navbar = ({ className = '', children }) => {
   const { t } = useTranslation();
+  const { search } = useLocation();
 
   return (
     <nav
@@ -13,7 +14,7 @@ const Navbar = ({ className = '', children }) => {
       style={{ minHeight: '70px' }}
     >
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to={`/${search ? search : ''}`}>
           <img
             src={logoPath}
             alt=""

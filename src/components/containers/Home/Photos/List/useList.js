@@ -11,8 +11,7 @@ import {
   fetchImagesByTerm,
   fetchLatestImages,
 } from '@services/images';
-import { isTermEmpty } from '@utils/check';
-import { formatListImagesData } from '@utils/formatData';
+import { formatListImagesData } from './formatData';
 
 const useList = () => {
   const dispatch = useDispatch();
@@ -26,13 +25,12 @@ const useList = () => {
   const paginate = async () =>
     dispatch(loadMoreImages());
 
-
   useEffect(() => {
     const fetchImages = async () => {
       dispatch(loading());
       try {
         const imagesInfo = await (
-          isTermEmpty(term)
+          term === ''
             ? fetchLatestImages(page)
             : fetchImagesByTerm(term, page)
         );
