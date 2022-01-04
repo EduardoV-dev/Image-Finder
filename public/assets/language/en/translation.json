@@ -8,5 +8,7 @@
   "home_search_input_placeholder": "Example: Space, Food...",
   "home_search_button": "Search image",
   "footer_createdBy": "WebApp created by Eduardo Varela",
-  "footer_rights": "All rights reserved"
+  "footer_rights": "All rights reserved",
+  "home_likes": "Likes",
+  "image_uploaded_by": "Image uploaded by"
 }

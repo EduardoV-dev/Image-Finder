@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Card,
@@ -11,6 +12,7 @@ import { useLoadedImages } from '@hooks';
 import styles from './photo.module.scss';
 
 const PhotoItem = ({ image }) => {
+  const { t } = useTranslation();
   const { isLoaded, handleLoad } = useLoadedImages();
   const {
     id,
@@ -33,7 +35,7 @@ const PhotoItem = ({ image }) => {
           onLoad={handleLoad}
         />
         <div className="px-3 pb-3 bottom-0 left-0 d-flex flex-wrap justify-content-between align-items-center overlay-child">
-          <p className="text-light">Likes: <span className="fw-bold text-light">{likes}</span></p>
+          <p className="text-light">{t('home_likes')}: <span className="fw-bold text-light">{likes}</span></p>
           <Avatar
             src={photo}
             alt={name}

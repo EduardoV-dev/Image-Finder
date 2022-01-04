@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +16,7 @@ import { formatUserData } from '@utils/formatData';
 
 const Data = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
   const { isLoaded, handleLoad } = useLoadedImages();
   const { photo, user } = useSelector(state => state.photo);
   const { username = '' } = photo;
@@ -35,7 +37,7 @@ const Data = () => {
 
   return (
     <Card className="p-5 container">
-      <p className="text-light text-center mb-3">Imagen subida por: </p>
+      <p className="text-light text-center mb-3">{t('image_uploaded_by')}: </p>
       <div className="d-flex flex-wrap align-items-center mx-auto">
         <Avatar
           size="64px"
@@ -46,7 +48,7 @@ const Data = () => {
         <span className="text-light ms-3">{name}</span>
       </div>
       <hr className="border border-1 border-info" />
-      <Dropdown />
+      {/* <Dropdown /> */}
       {!isLoaded && (
         <Overlay>
           <Spinner />

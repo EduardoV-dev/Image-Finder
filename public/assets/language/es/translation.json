@@ -8,5 +8,7 @@
   "home_search_input_placeholder": "Ejemplo: Espacio, Comida...",
   "home_search_button": "Buscar imagen",
   "footer_createdBy": "Aplicación web creada por Eduardo Varela",
-  "footer_rights": "Todos los derechos reservados"
+  "footer_rights": "Todos los derechos reservados",
+  "home_likes": "Me gustas",
+  "image_uploaded_by": "Imagen subida por"
 }
