@@ -1,0 +1,21 @@
+@use '/src/styles/functions' as fn;
+
+.category {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(fn.getColor(dark), 0.3);
+  cursor: default;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(fn.getColor(dark), 0.8);
+  }
+
+  &:first-of-type {
+    border-radius: 10px 0 0 10px;
+  }
+
+  &:last-of-type {
+    border-radius: 0 10px 10px 0;
+  }
+}

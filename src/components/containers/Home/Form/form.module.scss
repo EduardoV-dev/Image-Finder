@@ -1,0 +1,17 @@
+@use '/src/styles/functions' as fn;
+
+.form {
+  &::before {
+    width: 100%;
+    min-height: 100px;
+    content: "";
+    position: absolute;
+    top: -50px;
+    background-color: fn.getColor(info);
+  }
+
+  & .formCard {
+    width: 90%;
+    max-width: 56.25rem;
+  }
+}

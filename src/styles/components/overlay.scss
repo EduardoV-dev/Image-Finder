@@ -1,0 +1,35 @@
+@use "/src/styles/functions" as fn;
+@use "/src/styles/mixins/transition.scss" as tr;
+
+.overlay {
+  position: relative;
+  @include tr.transition();
+
+  &:hover::before {
+    background-color: transparent;
+  }
+
+  &:hover &-child {
+    opacity: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(fn.getColor(dark), 0.3);
+    @include tr.transition();
+    pointer-events: none;
+  }
+
+  &-child {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    opacity: 1;
+    @include tr.transition();
+  }
+}
