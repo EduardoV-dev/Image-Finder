@@ -8,7 +8,6 @@ import {
   Spinner,
   Overlay,
 } from '@components/commons';
-import Dropdown from '../Dropdown/Main';
 import { useLoadedImages } from '@hooks';
 import { fetchUserData } from '@services/user';
 import { loadUser } from '@redux/photo';
@@ -48,7 +47,6 @@ const Data = () => {
         <span className="text-light ms-3">{name}</span>
       </div>
       <hr className="border border-1 border-info" />
-      {/* <Dropdown /> */}
       {!isLoaded && (
         <Overlay>
           <Spinner />
