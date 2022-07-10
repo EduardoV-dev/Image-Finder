@@ -1,3 +1,2 @@
-export { default as useForm } from './useForm';
-export { default as useScaleAnimationOnScroll } from './useScaleAnimationOnScroll';
+export { default as useShowOnScrollAnimation } from './useShowOnScrollAnimation';
 export { default as useLoadedImages } from './useLoadedImages';

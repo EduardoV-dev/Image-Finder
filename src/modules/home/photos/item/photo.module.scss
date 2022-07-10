@@ -1,0 +1,15 @@
+@use "/src/styles/abstract/functions" as fns;
+
+.container {
+  &__img {
+    outline: 2px solid fns.getColor(light);
+    outline-offset: -10px;
+
+    transition: all 0.5s ease;
+
+    &:hover {
+      outline-offset: -20px;
+      transform: scale(1.1);
+    }
+  }
+}

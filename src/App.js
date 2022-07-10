@@ -1,39 +1,48 @@
 import React, { useEffect } from 'react';
 import i18next from 'i18next';
-import { initReactI18next, useTranslation } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
+import { initReactI18next, useTranslation } from 'react-i18next';
 import { Provider } from 'react-redux';
 
-import { MainRouter } from '@components/routers';
+import { AppRouter } from '@routes';
 import store from './redux/store';
 
 i18next
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .use(HttpApi)
-  .init({
-    supportedLngs: ['en', 'es'],
-    detection: {
-      order: ['path', 'cookie', 'htmlTag', 'localStorage', 'sessionStorage', 'navigator', 'querystring', 'subdomain'],
-      caches: ['cookie'],
-    },
-    fallbackLng: "en",
-    backend: { loadPath: '/assets/language/{{lng}}/translation.json' },
-  });
+    .use(initReactI18next)
+    .use(LanguageDetector)
+    .use(HttpApi)
+    .init({
+        supportedLngs: ['en', 'es'],
+        detection: {
+            order: [
+                'path',
+                'cookie',
+                'htmlTag',
+                'localStorage',
+                'sessionStorage',
+                'navigator',
+                'querystring',
+                'subdomain',
+            ],
+            caches: ['cookie'],
+        },
+        fallbackLng: 'en',
+        backend: { loadPath: '/assets/language/{{lng}}/translation.json' },
+    });
 
 const App = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  useEffect(() => {
-    document.title = t('html_title');
-  }, [t]);
+    useEffect(() => {
+        document.title = t('html_title');
+    }, [t]);
 
-  return (
-   <Provider store={store}>
-      <MainRouter />
-   </Provider>
-  );
-}
+    return (
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    );
+};
 
 export default App;

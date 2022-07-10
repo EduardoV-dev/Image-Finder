@@ -1,0 +1,7 @@
+@use "./functions" as fns;
+
+@mixin responsive($bp) {
+  @media screen and (min-width: fns.getBreakpoint($bp)) {
+    @content;
+  }
+}

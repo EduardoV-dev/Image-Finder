@@ -1,17 +1,14 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
-import 'bootstrap/dist/js/bootstrap';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+import './styles/global.scss';
 import 'flag-icon-css/sass/flag-icons.scss';
 
-import App from './App';
-import { OnWait } from '@components/containers';
-import './styles/global.scss';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-ReactDOM.render(
-  <Suspense fallback={OnWait}>
+root.render(
     <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Suspense>,
-  document.getElementById('root')
+        <App />
+    </React.StrictMode>,
 );

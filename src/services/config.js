@@ -1,10 +1,8 @@
 import axios from 'axios';
-import {
-  URL_BASE,
-  ACCESS_KEY
-} from '@consts/api';
+
+const BASE_URL = 'https://api.unsplash.com';
 
 export const Axios = axios.create({
-  baseURL: URL_BASE,
-  params: { client_id: ACCESS_KEY },
+    baseURL: BASE_URL,
+    params: { client_id: process.env.REACT_APP_UNSPLASH_ACCESS_KEY },
 });

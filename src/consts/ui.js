@@ -1,2 +1,0 @@
-export const SCROLLY_TO_RENDER_NAVBAR = 400;
-export const SCROLLY_TO_RENDER_SCROLL_TO_TOP = 1000;

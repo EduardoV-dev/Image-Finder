@@ -1,0 +1,19 @@
+.app {
+  height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+
+  /* Selects content and footer */
+
+  & > * {
+    flex: 100%;
+  }
+
+  /* Selects footer component */
+
+  & > footer {
+    align-self: flex-end;
+  }
+}

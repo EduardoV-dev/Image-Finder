@@ -1,7 +1,0 @@
-@use '/src/styles/functions';
-
-@mixin responsive($bp) {
-  @media screen and (min-width: getBp($bp)) {
-    @content;
-  }
-}
