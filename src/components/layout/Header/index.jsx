@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
-import { animated } from 'react-spring';
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import { animated, config, useSpring } from 'react-spring';
+import { useSelector } from 'react-redux';
 
-import logoPath from '@images/logo.png';
-import LanguageSelector from './language-selector';
 import { SearchInputForm } from '@components';
 import { useShowOnScrollAnimation } from '@hooks';
+import logoPath from '@images/logo.png';
+import LanguageSelector from './language-selector';
 
 /**
  * After passing this value in the window scrollY, the navbar will be visible.
@@ -15,37 +16,48 @@ import { useShowOnScrollAnimation } from '@hooks';
  */
 const SCROLLY_TO_RENDER_SEARCH_INPUT = 400;
 
+const SCROLLY_TO_CHANGE_BG_COLOR = 50;
+
 const Header = ({ bgColor, searchInputType }) => {
     /* --- Hooks --- */
 
+    const scrollY = useSelector((state) => state.ui.scrollY);
     const { t } = useTranslation();
     const { search } = useLocation();
-    const spring = useShowOnScrollAnimation(SCROLLY_TO_RENDER_SEARCH_INPUT);
 
-    /* --- State --- */
+    /* --- Animations --- */
 
-    const bgClass = bgColor === 'dark' ? 'bg-primary' : 'bg-info';
+    const [searchInputScale, doPassedScrollYToRender] =
+        useShowOnScrollAnimation(SCROLLY_TO_RENDER_SEARCH_INPUT);
+
+    /** Transition will be applied if bgColor prop is dark */
+
+    const bgTransitionSpring = useSpring({
+        backgroundColor:
+            scrollY >= SCROLLY_TO_CHANGE_BG_COLOR ? '#102e4a' : '#4097da',
+
+        config: config.gentle,
+    });
 
     /* --- Components --- */
 
     const SearchInput = <SearchInputForm id="header-search-form" />;
 
     const AnimatedSearchInput = (
-        <animated.div style={spring}>{SearchInput}</animated.div>
+        <animated.div style={searchInputScale}>{SearchInput}</animated.div>
     );
 
     return (
-        <header
-            className={`w-100 position-sticky top-0`}
-            style={{ zIndex: 10 }}
+        <animated.header
+            className={`w-100 position-sticky top-0 ${
+                bgColor === 'sky-blue' && 'bg-info'
+            }`}
+            style={{ zIndex: 10, ...bgTransitionSpring }}
         >
-            <Navbar className={bgClass} variant="dark" expand="md">
+            <Navbar expand="lg" variant="dark">
                 <Container>
-                    <Link
-                        className="navbar-brand"
-                        to={`/${search ? search : ''}`}
-                    >
-                        <Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link className="navbar-brand" to={`/${search ?? ''}`}>
                             <img
                                 src={logoPath}
                                 alt=""
@@ -54,25 +66,25 @@ const Header = ({ bgColor, searchInputType }) => {
                                 className="d-inline-block align-text-top"
                             />
                             <span className="ms-2">{t('html_title')}</span>
-                        </Navbar.Brand>
-                    </Link>
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbar" />
+                    <Navbar.Collapse id="navbar">
+                        <Nav className="me-auto my-2 my-lg-0">
+                            {searchInputType === 'not-animated' && SearchInput}
 
-                    <Navbar.Toggle aria-controls="menu" />
+                            {searchInputType === 'animated-on-scroll' &&
+                                doPassedScrollYToRender &&
+                                AnimatedSearchInput}
+                        </Nav>
 
-                    <Navbar.Collapse
-                        className="d-flex justify-content-between"
-                        id="menu"
-                    >
-                        {searchInputType === 'not-animated' && SearchInput}
-
-                        {searchInputType === 'animated-on-scroll' &&
-                            AnimatedSearchInput}
-
-                        <LanguageSelector />
+                        <div className="d-flex">
+                            <LanguageSelector />
+                        </div>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </header>
+        </animated.header>
     );
 };
 

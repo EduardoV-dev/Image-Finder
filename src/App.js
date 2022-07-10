@@ -34,12 +34,13 @@ i18next
 const App = () => {
     const { t } = useTranslation();
 
+    /* Updates the document title when the language is changed */
     useEffect(() => {
         document.title = t('html_title');
     }, [t]);
 
     return (
-        <Provider store={store}>
+        <Provider {...{ store }}>
             <AppRouter />
         </Provider>
     );

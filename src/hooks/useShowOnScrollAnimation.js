@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { config, useSpring } from 'react-spring';
 
 /**
@@ -11,6 +12,7 @@ import { config, useSpring } from 'react-spring';
 const useShowOnScrollAnimation = (scrollYToRender) => {
     /* --- Hooks --- */
 
+    const scrollY = useSelector((state) => state.ui.scrollY);
     const [show, setShow] = React.useState(false);
 
     /* --- Animations --- */
@@ -25,14 +27,10 @@ const useShowOnScrollAnimation = (scrollYToRender) => {
     });
 
     React.useEffect(() => {
-        const handleScroll = () => setShow(window.scrollY >= scrollYToRender);
+        setShow(scrollY >= scrollYToRender);
+    }, [scrollY, scrollYToRender]);
 
-        window.addEventListener('scroll', handleScroll);
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrollYToRender]);
-
-    return spring;
+    return [spring, show];
 };
 
 export default useShowOnScrollAnimation;

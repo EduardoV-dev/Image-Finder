@@ -22,7 +22,7 @@ const Form = () => {
                         {t('home_search_label')}
                     </BootForm.Label>
 
-                    <SearchInputForm htmlFor="form-search" />
+                    <SearchInputForm id="form-search" />
                 </BootForm.Group>
             </Card>
         </section>

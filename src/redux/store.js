@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import imagesReducer from './images';
 import formReducer from './form';
+import imagesReducer from './images';
 import photoReducer from './photo';
+import UIReducer from './ui';
 
 const store = configureStore({
-  reducer: {
-    images: imagesReducer,
-    form: formReducer,
-    photo: photoReducer,
-  },
+    reducer: {
+        form: formReducer,
+        images: imagesReducer,
+        photo: photoReducer,
+        ui: UIReducer,
+    },
 });
 
 export default store;

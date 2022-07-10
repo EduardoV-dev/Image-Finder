@@ -13,6 +13,15 @@ import Masonry from 'react-masonry-css';
  */
 const REFRESH_ELEMENTS_AT = 5;
 
+/** Breakpoints work as desktop first */
+const BREAKPOINTS_COLS = {
+    375: 1,
+    576: 2,
+    1200: 3,
+    1400: 4,
+    default: 5,
+};
+
 const Photos = () => {
     /* --- Hooks --- */
 
@@ -20,15 +29,17 @@ const Photos = () => {
 
     /* --- Components --- */
 
-    const Images = images.map((image, idx) => (
-        <Fragment key={images.id}>
-            <PhotoItem image={image} />
+    const Images = images.map((image, idx) => {
+        return (
+            <Fragment key={images.id}>
+                <PhotoItem image={image} />
 
-            {idx === images.length - REFRESH_ELEMENTS_AT && (
-                <Waypoint onEnter={paginate} />
-            )}
-        </Fragment>
-    ));
+                {idx === images.length - REFRESH_ELEMENTS_AT && (
+                    <Waypoint onEnter={paginate} />
+                )}
+            </Fragment>
+        );
+    });
 
     return (
         <Container className="mt-5">
@@ -36,7 +47,7 @@ const Photos = () => {
                 <Spinner />
             ) : (
                 <Masonry
-                    breakpointCols={{ default: 4 }}
+                    breakpointCols={BREAKPOINTS_COLS}
                     className="masonry-grid"
                     columnClassName="masonry-grid__column"
                 >

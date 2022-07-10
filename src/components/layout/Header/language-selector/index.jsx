@@ -19,7 +19,7 @@ const LANGUAGES = [
     },
 ];
 
-const LangSelector = ({ className }) => {
+const LangSelector = () => {
     /* --- Hooks --- */
 
     const { t } = useTranslation();
@@ -52,7 +52,7 @@ const LangSelector = ({ className }) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle>
+            <Dropdown.Toggle variant="dark">
                 <span className="me-2">{t('language')}</span>
                 <img
                     style={{ width: '32px' }}

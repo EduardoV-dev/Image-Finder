@@ -10,16 +10,14 @@ import styles from './scrollTop.module.scss';
  */
 const SCROLLY_TO_RENDER_SCROLL_TO_TOP = 1000;
 
-const style = {
-    img: {
-        width: '64px',
-        height: '64px',
-        objectFit: 'cover',
-    },
-};
-
 const ScrollToTop = () => {
-    const spring = useShowOnScrollAnimation(SCROLLY_TO_RENDER_SCROLL_TO_TOP);
+    /* --- Hooks --- */
+
+    const [scaleAnimation] = useShowOnScrollAnimation(
+        SCROLLY_TO_RENDER_SCROLL_TO_TOP,
+    );
+
+    /* --- Handlers --- */
 
     const scrollTop = () => window.scrollTo({ top: 0 });
 
@@ -28,14 +26,13 @@ const ScrollToTop = () => {
             <animated.button
                 type="button"
                 className={`position-fixed btn ${styles.btn}`}
-                style={spring}
+                style={scaleAnimation}
                 onClick={scrollTop}
             >
                 <img
                     src={arrowPath}
-                    alt=""
+                    alt="Scroll To Top"
                     className="d-block img-fluid"
-                    style={style.img}
                 />
             </animated.button>
         </>
