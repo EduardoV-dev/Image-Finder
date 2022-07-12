@@ -1,12 +1,12 @@
+import { formatImagesData } from '@utils/formatData';
 import { Axios } from './config';
 
 const PHOTOS_ENDPOINT = 'photos';
 const SEARCH_PHOTOS_ENDPOINT = 'search/photos';
 const IMAGES_PER_PAGE = 30;
-const INITIAL_PAGE = 0;
 
 export const fetchLatestImages = async (page) => {
-    const data = await Axios.get(`/${PHOTOS_ENDPOINT}`, {
+    const { data: images } = await Axios.get(`/${PHOTOS_ENDPOINT}`, {
         params: {
             page,
             per_page: IMAGES_PER_PAGE,
@@ -14,8 +14,8 @@ export const fetchLatestImages = async (page) => {
     });
 
     return {
-        data: data.data,
-        totalPages: INITIAL_PAGE,
+        data: formatImagesData(images),
+        totalPages: Infinity,
     };
 };
 
@@ -29,7 +29,7 @@ export const fetchImagesByTerm = async (term, page) => {
     });
 
     return {
-        data: data.data.results,
+        data: formatImagesData(data.data.results),
         totalPages: data.data.total_pages,
     };
 };

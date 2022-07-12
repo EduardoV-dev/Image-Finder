@@ -4,9 +4,13 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from '@routes';
 import store from './redux/store';
+
+const client = new QueryClient();
 
 i18next
     .use(initReactI18next)
@@ -40,9 +44,13 @@ const App = () => {
     }, [t]);
 
     return (
-        <Provider {...{ store }}>
-            <AppRouter />
-        </Provider>
+        <QueryClientProvider {...{ client }}>
+            <Provider {...{ store }}>
+                <AppRouter />
+            </Provider>
+
+            <ReactQueryDevtools />
+        </QueryClientProvider>
     );
 };
 

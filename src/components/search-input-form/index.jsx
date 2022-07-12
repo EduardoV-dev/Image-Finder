@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 
-import { loadTerm } from '@redux/images';
 import { keywordOnChange, setFirstRender } from '@redux/form';
+import { loadTerm } from '@redux/images';
 
 const SearchInputForm = ({ id }) => {
     /* --- Hooks --- */
@@ -22,8 +22,8 @@ const SearchInputForm = ({ id }) => {
     /* --- State --- */
 
     const { query = '' } = queryString.parse(search);
-    const { keyword, firstRender } = form;
     const { term } = images;
+    const { keyword, firstRender } = form;
 
     /* --- Effects --- */
 

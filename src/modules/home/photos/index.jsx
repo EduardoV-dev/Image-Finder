@@ -25,17 +25,17 @@ const BREAKPOINTS_COLS = {
 const Photos = () => {
     /* --- Hooks --- */
 
-    const { images, isLoading, paginate } = useImagesFetch();
+    const { images, isLoading, handleNextPage } = useImagesFetch();
 
     /* --- Components --- */
 
     const Images = images.map((image, idx) => {
         return (
-            <Fragment key={images.id}>
-                <PhotoItem image={image} />
+            <Fragment key={image.id + idx}>
+                <PhotoItem {...{ image }} />
 
                 {idx === images.length - REFRESH_ELEMENTS_AT && (
-                    <Waypoint onEnter={paginate} />
+                    <Waypoint onEnter={handleNextPage} />
                 )}
             </Fragment>
         );

@@ -1,15 +1,31 @@
-import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loading, loadImages, loadError, loadMoreImages } from '@redux/images';
 import { fetchImagesByTerm, fetchLatestImages } from '@services/images';
+import { appendImages, nextPage } from '@redux/images';
 
 const useImagesFetch = () => {
-    /* --- Hooks --- */
+    /* --- Hooks and State --- */
 
     const dispatch = useDispatch();
-    const { term, page, images, isLoading } = useSelector(
-        (state) => state.images,
+    const { images, page, term } = useSelector((state) => state.images);
+
+    const { isLoading, isFetching } = useQuery(
+        ['images', page, term],
+        () =>
+            term !== ''
+                ? fetchImagesByTerm(term, page)
+                : fetchLatestImages(page),
+        {
+            onSuccess: (images) => {
+                dispatch(
+                    appendImages({
+                        images: images.data,
+                        totalPages: images.totalPages,
+                    }),
+                );
+            },
+        },
     );
 
     /* --- Handlers --- */
@@ -18,49 +34,13 @@ const useImagesFetch = () => {
      * Gets the next page images and append them to the current data.
      * @returns {void}
      */
-    const paginate = async () => dispatch(loadMoreImages());
-
-    /* --- Effects --- */
-
-    useEffect(() => {
-        (async () => {
-            dispatch(loading());
-
-            try {
-                const imagesInfo = await (term === ''
-                    ? fetchLatestImages(page)
-                    : fetchImagesByTerm(term, page));
-
-                dispatch(loadImages(imagesInfo));
-            } catch (e) {
-                dispatch(loadError(e));
-            }
-        })();
-    }, [term, page, dispatch]);
+    const handleNextPage = () => dispatch(nextPage());
 
     return {
-        images: formatImagesData(images),
-        isLoading,
-        paginate,
+        images,
+        isLoading: isLoading || isFetching,
+        handleNextPage,
     };
 };
 
 export default useImagesFetch;
-
-/**
- *
- * @param {IImage[]} images - images dataset fetched from API
- * @returns {IImage[]} - A formatted version of the array but removing unnecesary data.
- */
-function formatImagesData(images) {
-    return images.map((image) => ({
-        id: image.id,
-        alt: image.alt_description || '',
-        url: image.urls.small,
-        likes: image.likes,
-        user: {
-            name: image.user.name || '',
-            photo: image.user.profile_image.small,
-        },
-    }));
-}
