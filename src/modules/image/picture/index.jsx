@@ -1,23 +1,57 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { animated, useSpring, config } from 'react-spring';
 
-import Category from './category';
 import { Image, Spinner, Overlay } from '@components';
 import { useLoadedImages } from '@hooks';
-
-const style = {
-    pContainer: {
-        borderRadius: '0 0 10px 10px',
-        backgroundColor: 'rgba(252,252,252,0.4)',
-    },
-};
+import styles from './picture.module.scss';
 
 const Picture = () => {
+    /* --- Hooks --- */
+
     const { photo } = useSelector((state) => state.photo);
     const { isLoaded, handleLoad } = useLoadedImages();
 
-    if (JSON.stringify(photo) === '{}') return null;
+    /* --- Animations --- */
+
+    const entranceXSlide = useSpring({
+        from: { opacity: 0, x: -100 },
+        to: { opacity: 1, x: 0 },
+
+        pause: !isLoaded,
+        config: config.gentle,
+    });
+
+    const entranceScale = useSpring({
+        from: { opacity: 0, scale: 1.5 },
+        to: { opacity: 1, scale: 1 },
+
+        pause: !isLoaded,
+        config: config.gentle,
+    });
+
+    if (JSON.stringify(photo) === '{}') return <></>;
+
+    /* --- State --- */
 
     const { alt_description, description, tags, imagesURL } = photo;
+
+    /* --- Components --- */
+
+    const ImageTags = tags.map((tag) => (
+        <Link className={styles.category} key={tag} to={`/?query=${tag}`}>
+            {tag}
+        </Link>
+    ));
+
+    const ImageDescription = (
+        <animated.div
+            className={styles['description-container']}
+            style={entranceXSlide}
+        >
+            <p className="text-white fw-bold">{description}</p>
+        </animated.div>
+    );
 
     return (
         <div className="position-relative">
@@ -26,20 +60,19 @@ const Picture = () => {
                     src={imagesURL.full}
                     alt={alt_description}
                     onLoad={handleLoad}
+                    style={entranceScale}
                 />
-                <div className="position-absolute top-0 left-0 p-3 d-flex flex-wrap">
-                    {isLoaded &&
-                        tags.map((tag) => <Category key={tag}>{tag}</Category>)}
-                </div>
-                {isLoaded && (
-                    <div
-                        className="position-absolute bottom-0 left-0 p-2 w-100"
-                        style={style.pContainer}
-                    >
-                        <p className="text-dark fw-bold">{description}</p>
-                    </div>
-                )}
+
+                <animated.div
+                    className={styles['tags-container']}
+                    style={entranceXSlide}
+                >
+                    {isLoaded && ImageTags}
+                </animated.div>
+
+                {isLoaded && description && ImageDescription}
             </div>
+
             {!isLoaded && (
                 <Overlay>
                     <Spinner />

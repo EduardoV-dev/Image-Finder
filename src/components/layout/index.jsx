@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Header, { headerPropTypes } from './header';
+import Header, { headerDefaultProps, headerPropTypes } from './header';
 import Footer from './footer';
 import styles from './layout.module.scss';
 
@@ -26,6 +26,7 @@ Layout.propTypes = {
 
 Layout.defaultProps = {
     className: '',
+    ...headerDefaultProps,
 };
 
 export default Layout;

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { debounce } from 'debounce';
 
-import { Home, Image } from '@pages';
+import { Home, Image, NotFound } from '@pages';
 import { setScrollY } from '@redux/ui';
 
 const AppRouter = () => {
@@ -25,6 +25,7 @@ const AppRouter = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/image/:id" element={<Image />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

@@ -6,6 +6,7 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ToastContainer } from 'react-toastify';
 
 import { AppRouter } from '@routes';
 import store from './redux/store';
@@ -32,7 +33,7 @@ i18next
             caches: ['cookie'],
         },
         fallbackLng: 'en',
-        backend: { loadPath: '/assets/language/{{lng}}/translation.json' },
+        backend: { loadPath: '/translations/{{lng}}/translation.json' },
     });
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
             <Provider {...{ store }}>
                 <AppRouter />
             </Provider>
+            <ToastContainer />
 
             <ReactQueryDevtools />
         </QueryClientProvider>

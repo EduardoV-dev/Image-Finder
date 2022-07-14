@@ -13,7 +13,11 @@ const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
 
     return (
         <Link to={`/image/${id}`}>
-            <Card className={styles.container}>
+            <Card
+                className={`${styles.container} ${
+                    isLoaded && styles['image-loaded']
+                }`}
+            >
                 <figure className={styles.container__img}>
                     <Image src={url} alt={alt} onLoad={handleLoad} />
                 </figure>

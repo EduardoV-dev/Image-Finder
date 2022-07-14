@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { animated, config, useSpring } from 'react-spring';
 
 import { Form as BootForm } from 'react-bootstrap';
 import { Card, SearchInputForm } from '@components';
@@ -9,11 +10,18 @@ const Form = () => {
 
     const { t } = useTranslation();
 
+    /* --- Animations --- */
+
+    const sectionFormSpring = useSpring({
+        from: { opacity: 0, scale: 0 },
+        to: { opacity: 1, scale: 1 },
+
+        config: config.gentle,
+    });
+
     return (
-        <section className={`position-relative w-100 ${styles.form}`}>
-            <Card
-                className={`d-md-flex flex-md-row py-5 px-3 mx-auto p-md-5 ${styles.formCard}`}
-            >
+        <animated.section className={styles.form}>
+            <Card className={styles['form-card']} style={sectionFormSpring}>
                 <BootForm.Group className="w-100">
                     <BootForm.Label
                         htmlFor="form-search"
@@ -25,7 +33,7 @@ const Form = () => {
                     <SearchInputForm id="form-search" />
                 </BootForm.Group>
             </Card>
-        </section>
+        </animated.section>
     );
 };
 

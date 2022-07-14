@@ -7,7 +7,7 @@ import { config, useSpring } from 'react-spring';
  * Animation will be triggered after passing scrollYToRender param.
  *
  * @param {number} scrollYToRender - window scroll Y.
- * @returns {Object} -
+ * @returns {[spring: any, show: boolean]} - spring for animation, show for telling if the scrollYToRender param has been passed or not.
  */
 const useShowOnScrollAnimation = (scrollYToRender) => {
     /* --- Hooks --- */

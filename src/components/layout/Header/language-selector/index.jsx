@@ -3,8 +3,8 @@ import cookies from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'react-bootstrap';
 
-import englishLangImg from '@images/English.png';
-import spanishLangImg from '@images/Spanish.png';
+import englishLangImg from '@assets/png/English.png';
+import spanishLangImg from '@assets/png/Spanish.png';
 
 const LANGUAGES = [
     {

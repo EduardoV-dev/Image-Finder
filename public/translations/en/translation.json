@@ -1,0 +1,19 @@
+{
+    "html_title": "Searimage",
+    "language": "Language",
+    "home_title": "Images Search Engine",
+    "home_subtitle": "The images displayed in this webpage are from",
+    "home_subtitle_source": "Unsplash",
+    "home_search_label": "Search an image",
+    "home_search_input_placeholder": "Example: Space, Food...",
+    "home_search_button": "Search image",
+    "home_not_found": "No results were found for",
+    "home_no_more_results": "Those were all the results for",
+    "footer_createdBy": "WebApp created by Eduardo Varela",
+    "footer_rights": "All rights reserved",
+    "home_likes": "Likes",
+    "image_uploaded_by": "Image uploaded by",
+    "404_not_found": "This page does not exist, perhaps you were looking for cats pictures?",
+    "404_link": "Cats Pictures",
+    "404_query": "Cats"
+}

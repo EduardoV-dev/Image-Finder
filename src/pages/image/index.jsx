@@ -1,32 +1,15 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { Layout } from '@components';
 import { Data, Picture } from '@modules/image';
-import { fetchImageById } from '@services/images';
-import { loadPhoto } from '@redux/photo';
-import { formatImageData } from '@utils/formatData';
-import { Container, Row, Col } from 'react-bootstrap';
+import useImageDetails from './useImageDetails';
 
 const Image = () => {
     /* ---  Hooks --- */
 
     const { id } = useParams();
-    const dispatch = useDispatch();
-
-    /* --- Effects --- */
-
-    useEffect(() => {
-        fetchImageById(id)
-            .then((data) => {
-                const image = formatImageData(data.data);
-                dispatch(loadPhoto(image));
-            })
-            .catch(console.log);
-
-        return () => dispatch(loadPhoto({}));
-    }, [id, dispatch]);
+    useImageDetails(id);
 
     return (
         <Layout
@@ -36,10 +19,10 @@ const Image = () => {
         >
             <Container>
                 <Row className="justify-content-sm-between gap-3">
-                    <Col xs={12} md={6} lg={7}>
+                    <Col xs={12} lg={7}>
                         <Picture />
                     </Col>
-                    <Col xs={12} md={5} lg={4}>
+                    <Col xs={12} lg={4}>
                         <Data />
                     </Col>
                 </Row>

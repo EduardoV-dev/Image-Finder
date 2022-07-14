@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 import { SearchInputForm } from '@components';
 import { useShowOnScrollAnimation } from '@hooks';
-import logoPath from '@images/logo.png';
+import logoPath from '@assets/png/logo.png';
 import LanguageSelector from './language-selector';
 
 /**
@@ -89,13 +89,16 @@ const Header = ({ bgColor, searchInputType }) => {
 };
 
 export const headerPropTypes = {
-    bgColor: PropTypes.oneOf(['dark', 'sky-blue']).isRequired,
-    searchInputType: PropTypes.oneOf(['animated-on-scroll', 'not-animated'])
-        .isRequired,
+    bgColor: PropTypes.oneOf(['dark', 'sky-blue']),
+    searchInputType: PropTypes.oneOf(['animated-on-scroll', 'not-animated']),
 };
 
-Header.propTypes = {
-    ...headerPropTypes,
+export const headerDefaultProps = {
+    bgColor: 'dark',
+    searchInputType: 'not-animated',
 };
+
+Header.propTypes = headerPropTypes;
+Header.defaultProps = headerDefaultProps;
 
 export default Header;

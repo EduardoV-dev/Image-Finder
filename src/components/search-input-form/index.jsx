@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
-import queryString from 'query-string';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { keywordOnChange, setFirstRender } from '@redux/form';
+import { keywordOnChange } from '@redux/form';
 import { loadTerm } from '@redux/images';
 
 const SearchInputForm = ({ id }) => {
@@ -16,31 +14,12 @@ const SearchInputForm = ({ id }) => {
     const dispatch = useDispatch();
 
     const { t } = useTranslation();
-    const { search } = useLocation();
     const { form, images } = useSelector((state) => state);
 
     /* --- State --- */
 
-    const { query = '' } = queryString.parse(search);
     const { term } = images;
-    const { keyword, firstRender } = form;
-
-    /* --- Effects --- */
-
-    useEffect(() => {
-        /* For dispatching only in the first render */
-        if (!firstRender) return;
-
-        /* Loads query string into the form input value */
-        dispatch(keywordOnChange(query));
-
-        /* Loads the term for fetching automatically the images
-            by the term
-        */
-        dispatch(loadTerm(query));
-
-        dispatch(setFirstRender(false));
-    }, [firstRender, query, dispatch]);
+    const { keyword } = form;
 
     /* --- Handlers --- */
 

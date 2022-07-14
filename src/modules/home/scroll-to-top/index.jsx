@@ -1,6 +1,6 @@
 import { animated } from 'react-spring';
 
-import arrowPath from '@images/Up_arrow.png';
+import arrowPath from '@assets/png/Up_arrow.png';
 import { useShowOnScrollAnimation } from '@hooks';
 import styles from './scrollTop.module.scss';
 

@@ -5,6 +5,8 @@
   flex-wrap: wrap;
   gap: 3rem;
 
+  overflow-y: auto;
+
   /* Selects content and footer */
 
   & > * {
