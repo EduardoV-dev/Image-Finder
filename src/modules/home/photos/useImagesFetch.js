@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { fetchImagesByTerm, fetchLatestImages } from '@services/images';
-import { appendImages, nextPage, loadTerm } from '@redux/images';
+import { appendImages, clearData, nextPage } from '@redux/images';
 
 const useImagesFetch = () => {
     /* --- Hooks --- */
@@ -13,6 +13,8 @@ const useImagesFetch = () => {
     const { images, page, term, totalPages } = useSelector(
         (state) => state.images,
     );
+
+    console.log(term);
 
     /* --- Queries --- */
 
@@ -39,7 +41,7 @@ const useImagesFetch = () => {
     /* --- Effects --- */
 
     useEffect(() => {
-        return () => dispatch(loadTerm(''));
+        return () => dispatch(clearData());
     }, [dispatch]);
 
     /* --- Handlers --- */

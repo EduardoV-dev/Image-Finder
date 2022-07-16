@@ -26,7 +26,8 @@ const Home = () => {
 
         /* Loads the term for automatically fetching the images */
         dispatch(loadTerm(query));
-    }, [query, dispatch]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
 
     return (
         <Layout bgColor="dark" searchInputType="animated-on-scroll">

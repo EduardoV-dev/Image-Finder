@@ -8,8 +8,8 @@ This is an app that is built on ReactJS. Gets the images from [Pixabay](https://
 -   Image Finder by using a term to filter the search with.
 -   Pagination.
 -   Components for Error Handling.
--   Personalized view for images
--   Routes handling
+-   Personalized view for images.
+-   Routes handling.
 
 ## Deployment:
 

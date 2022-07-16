@@ -1,23 +1,36 @@
 import PropTypes from 'prop-types';
+import { animated, config, useSpring } from 'react-spring';
 
-const ResultSign = ({ children, illustration }) => (
-    <figure
-        style={{
-            width: '100%',
-            maxWidth: '400px',
-            margin: '1.5rem auto 0',
-        }}
-    >
-        {illustration}
+const ResultSign = ({ children, illustration }) => {
+    /* --- Animations --- */
 
-        <figcaption
-            className="text-white text-center fw-bold mt-5"
-            style={{ fontSize: '2rem' }}
+    const fadeInSpring = useSpring({
+        from: { opacity: 0, y: 50 },
+        to: { opacity: 1, y: 0 },
+
+        config: config.gentle,
+    });
+
+    return (
+        <animated.figure
+            style={{
+                width: '100%',
+                maxWidth: '400px',
+                margin: '1.5rem auto 0',
+                ...fadeInSpring,
+            }}
         >
-            {children}
-        </figcaption>
-    </figure>
-);
+            {illustration}
+
+            <figcaption
+                className="text-white text-center fw-bold mt-5"
+                style={{ fontSize: '2rem' }}
+            >
+                {children}
+            </figcaption>
+        </animated.figure>
+    );
+};
 
 ResultSign.propTypes = {
     children: PropTypes.node.isRequired,

@@ -25,8 +25,14 @@ const imagesSlice = createSlice({
                     ? state.page + 1
                     : state.page;
         },
+        clearData: (state) => {
+            state.images = [];
+            state.page = 1;
+            state.totalPages = 0;
+        },
     },
 });
 
-export const { loadTerm, appendImages, nextPage } = imagesSlice.actions;
+export const { loadTerm, appendImages, nextPage, clearData } =
+    imagesSlice.actions;
 export default imagesSlice.reducer;
