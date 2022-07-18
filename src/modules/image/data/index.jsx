@@ -1,15 +1,15 @@
+import { useState } from 'react';
+import { config, useSpring } from 'react-spring';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { Avatar, Card, Overlay, Spinner } from '@components';
-import { useLoadedImages } from '@hooks';
-import { config, useSpring } from 'react-spring';
+import { Card, Image } from '@components';
 
 const Data = () => {
     /* --- Hooks --- */
 
     const { t } = useTranslation();
-    const { isLoaded, handleLoad } = useLoadedImages();
+    const [isLoaded, setIsLoaded] = useState(false);
     const { name, profile_image } = useSelector((state) => state.photo.user);
 
     /* --- Animations --- */
@@ -25,24 +25,15 @@ const Data = () => {
     if (!name || !profile_image) return <></>;
 
     return (
-        <Card className="p-5 container" style={entranceScale}>
+        <Card className="p-5" style={entranceScale}>
             <p className="text-light text-center mb-3">
                 {t('image_uploaded_by')}:{' '}
             </p>
+
             <div className="d-flex flex-wrap align-items-center mx-auto">
-                <Avatar
-                    size="64px"
-                    src={profile_image}
-                    alt=""
-                    onLoad={handleLoad}
-                />
+                <Image src={profile_image} alt={name} onLoad={setIsLoaded} />
                 <span className="text-light ms-3">{name}</span>
             </div>
-            {!isLoaded && (
-                <Overlay>
-                    <Spinner />
-                </Overlay>
-            )}
         </Card>
     );
 };

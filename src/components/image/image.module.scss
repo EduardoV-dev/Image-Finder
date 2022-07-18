@@ -1,0 +1,26 @@
+.image {
+  position: relative;
+  min-height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.loaded {
+    min-height: auto;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  // Selecting spinner
+
+  & > div {
+    margin: 0 auto;
+    position: absolute;
+  }
+}

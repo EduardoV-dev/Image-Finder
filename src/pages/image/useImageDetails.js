@@ -11,7 +11,7 @@ import { loadPhoto, loadUser } from '@redux/photo';
  * Fetches the image details needed to display the image.
  *
  * @param {string} imageId - the image id from the url.
- * @returns {void} - void, since the data is fetched and stored in redux for global disponibility.
+ * @returns {void}
  */
 const useImageDetails = (imageId) => {
     /* --- Hooks --- */
@@ -21,15 +21,19 @@ const useImageDetails = (imageId) => {
 
     /* --- Queries --- */
 
-    useQuery(['image-details', imageId], () => fetchImageById(imageId), {
+    useQuery(['image-details'], () => fetchImageById(imageId), {
         onSuccess: (photo) => dispatch(loadPhoto(photo)),
         onError: (err) => toast.error(err.message),
     });
 
-    useQuery(['user-details', username], () => fetchUserData(username), {
-        onSuccess: (user) => dispatch(loadUser(user)),
-        onError: (err) => toast.error(err.message),
-    });
+    useQuery(
+        username && ['user-details', username],
+        () => username && fetchUserData(username),
+        {
+            onSuccess: (user) => dispatch(loadUser(user)),
+            onError: (err) => toast.error(err.message),
+        },
+    );
 
     /* --- Effects --- */
 

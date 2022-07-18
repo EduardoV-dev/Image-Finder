@@ -2,12 +2,12 @@ import Masonry from 'react-masonry-css';
 import { Fragment } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 import { ResultSign, Spinner } from '@components';
 import { ReactComponent as ResultsNotFoundIcon } from '@assets/svg/results-not-found.svg';
 import PhotoItem from './item';
 import useImagesFetch from './useImagesFetch';
-import { useTranslation } from 'react-i18next';
 
 /**
  * Refreshing rate for fetching more images, more images will be fetched when
@@ -30,7 +30,6 @@ const Photos = () => {
     const { t } = useTranslation();
     const { images, isLoading, isLastPage, term, handleNextPage } =
         useImagesFetch();
-    // const images = [{}];
 
     /* --- Components --- */
 
@@ -46,10 +45,23 @@ const Photos = () => {
         );
     });
 
+    const NoResultsSign = (
+        <ResultSign illustration={<ResultsNotFoundIcon />}>
+            {t('home_not_found')} <span className="text-info">{term}</span>
+        </ResultSign>
+    );
+
+    const NoMoreResultsSign = (
+        <ResultSign illustration={<ResultsNotFoundIcon />}>
+            {t('home_no_more_results')}{' '}
+            <span className="text-info">{term}</span>
+        </ResultSign>
+    );
+
     return (
         <Container className="mt-5">
             {isLoading && !images.length ? (
-                <Spinner />
+                <Spinner loaded={isLoading} />
             ) : (
                 <>
                     <Masonry
@@ -60,23 +72,13 @@ const Photos = () => {
                         {Images}
                     </Masonry>
 
-                    {!images.length && (
-                        <ResultSign illustration={<ResultsNotFoundIcon />}>
-                            {t('home_not_found')}{' '}
-                            <span className="text-info">{term}</span>
-                        </ResultSign>
-                    )}
+                    {!images.length && NoResultsSign}
 
-                    {isLastPage && images.length && (
-                        <ResultSign illustration={<ResultsNotFoundIcon />}>
-                            {t('home_no_more_results')}{' '}
-                            <span className="text-info">{term}</span>
-                        </ResultSign>
-                    )}
+                    {isLastPage && images.length && NoMoreResultsSign}
                 </>
             )}
 
-            {isLoading && images.length && <Spinner />}
+            {isLoading && images.length && <Spinner loaded={isLoading} />}
         </Container>
     );
 };
