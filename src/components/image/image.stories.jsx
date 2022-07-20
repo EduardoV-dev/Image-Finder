@@ -8,7 +8,6 @@ export default {
         className: '',
         src: 'https://placekitten.com/150',
         style: {},
-
         onLoad: () => {},
     },
 };

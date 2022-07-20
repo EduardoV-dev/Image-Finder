@@ -10,6 +10,6 @@ const Template = (args) => <ResultSign {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-    children: 'Basic Result Sign Message',
+    children: <h1 className="text-dark">Result Sign Message</h1>,
     illustration: <NoResults />,
 };

@@ -40,7 +40,8 @@ Image.propTypes = {
     alt: PropTypes.string,
     /** ClassName for styling the component */
     className: PropTypes.string,
-    /** If false, the spinner while loading the image won't be displayed, otherwise,
+    /**
+     * If false, the spinner while loading the image won't be displayed, otherwise,
      * will be displayed.
      */
     noSpinner: PropTypes.bool,
@@ -59,7 +60,7 @@ Image.defaultProps = {
     noSpinner: false,
     style: {},
 
-    onLoad: () => {},
+    onLoad: (loaded) => {},
 };
 
 export default Image;

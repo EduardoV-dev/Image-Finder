@@ -50,8 +50,8 @@ const App = () => {
             <Provider {...{ store }}>
                 <AppRouter />
             </Provider>
-            <ToastContainer />
 
+            <ToastContainer />
             <ReactQueryDevtools />
         </QueryClientProvider>
     );

@@ -61,7 +61,7 @@ const SearchInputForm = ({ id }) => {
 };
 
 SearchInputForm.propTypes = {
-    /* Prop due to testing need */
+    /* id of the input type text. Prop for testing necessities */
     id: PropTypes.string.isRequired,
 };
 

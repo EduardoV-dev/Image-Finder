@@ -7,6 +7,7 @@ import store from '@redux/store';
 export default {
     title: 'Layout/App',
     component: Layout,
+
     decorators: [withRouter],
     parameters: {
         reactRouter: {
@@ -15,8 +16,24 @@ export default {
         },
     },
     args: {
-        children: <div style={{ minHeight: '400vh' }}>Layout Children</div>,
+        children: <div style={{ minHeight: '250vh' }}>Layout Children</div>,
         className: '',
+        bgColor: 'dark',
+        searchInputType: 'not-animated',
+    },
+    argTypes: {
+        bgColor: {
+            control: {
+                type: 'select',
+                options: ['dark', 'sky-blue'],
+            },
+        },
+        searchInputType: {
+            control: {
+                type: 'select',
+                options: ['animated-on-scroll', 'not-animated'],
+            },
+        },
     },
 };
 
@@ -27,11 +44,13 @@ const Template = (args) => (
 );
 
 export const DarkHeader = Template.bind({});
-DarkHeader.args = {
-    bgColor: 'dark',
-};
 
 export const SkyBlueHeader = Template.bind({});
 SkyBlueHeader.args = {
     bgColor: 'sky-blue',
+};
+
+export const AnimatedHeaderSearchInput = Template.bind({});
+AnimatedHeaderSearchInput.args = {
+    searchInputType: 'animated-on-scroll',
 };

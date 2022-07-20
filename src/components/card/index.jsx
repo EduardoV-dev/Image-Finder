@@ -8,8 +8,8 @@ import { animated } from 'react-spring';
 const Card = ({ className, style, ...rest }) => {
     return (
         <animated.div
-            className={`card bg-secondary border border-dark border-1 ${className}`}
-            style={{ borderRadius: '15px', ...style }}
+            className={`card w-100 bg-secondary border border-dark border-1 ${className}`}
+            style={{ borderRadius: '15px', height: 'max-content', ...style }}
             {...rest}
         />
     );

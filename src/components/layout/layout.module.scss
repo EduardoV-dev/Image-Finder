@@ -1,43 +1,30 @@
-.app {
-  height: 100%;
+.scroll-to-top {
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
+  transition: all 0.3s ease !important;
 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-
-  overflow-y: auto;
-
-  /* Selects content and footer */
-
-  & > * {
-    flex: 100%;
+  &:hover {
+    transform: scale(1.1) !important;
   }
 
-  /* Selects footer component */
-
-  & > footer {
-    align-self: flex-end;
+  &:active,
+  &:focus {
+    box-shadow: none !important;
   }
 
-  .scroll-to-top {
-    z-index: 1000;
-    bottom: 20px;
-    right: 20px;
-    transition: all 0.3s ease !important;
-
-    &:hover {
-      transform: scale(1.1) !important;
-    }
-
-    &:active,
-    &:focus {
-      box-shadow: none !important;
-    }
-
-    img {
-      width: 64px;
-      height: 64px;
-      object-fit: cover;
-    }
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
   }
+}
+
+.content {
+  flex-basis: 100%;
+}
+
+.footer {
+  flex-basis: 100%;
+  align-self: flex-end;
 }

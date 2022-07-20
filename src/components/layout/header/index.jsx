@@ -5,18 +5,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { animated, config, useSpring } from 'react-spring';
 import { useSelector } from 'react-redux';
 
-import { SearchInputForm } from '@components';
+import { SearchInputForm } from '@modules/features';
 import { useShowOnScrollAnimation } from '@hooks';
+import * as constants from './constants';
 import logoPath from '@assets/png/logo.png';
 import LanguageSelector from './language-selector';
-
-/**
- * After passing this value in the window scrollY, the navbar will be visible.
- * Else it will be hidden.
- */
-const SCROLLY_TO_RENDER_SEARCH_INPUT = 400;
-
-const SCROLLY_TO_CHANGE_BG_COLOR = 50;
 
 const Header = ({ bgColor, searchInputType }) => {
     /* --- Hooks --- */
@@ -28,13 +21,15 @@ const Header = ({ bgColor, searchInputType }) => {
     /* --- Animations --- */
 
     const [searchInputScale, doPassedScrollYToRender] =
-        useShowOnScrollAnimation(SCROLLY_TO_RENDER_SEARCH_INPUT);
+        useShowOnScrollAnimation(constants.SCROLLY_TO_RENDER_SEARCH_INPUT);
 
     /** Transition will be applied if bgColor prop is dark */
 
     const bgTransitionSpring = useSpring({
         backgroundColor:
-            scrollY >= SCROLLY_TO_CHANGE_BG_COLOR ? '#102e4a' : '#4097da',
+            scrollY >= constants.SCROLLY_TO_CHANGE_BG_COLOR
+                ? constants.DARK_BG_COLOR
+                : constants.SKY_BLUE_BG_COLOR,
 
         config: config.gentle,
     });

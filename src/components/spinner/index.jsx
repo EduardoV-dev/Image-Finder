@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import { animated, config, useTransition } from 'react-spring';
 import styles from './spinner.module.scss';
 
+/**
+ * It's a component that renders a spinner when the user is loading something.
+ * When the data is loaded, the spinner dissolves with a smooth transition.
+ */
 const Spinner = ({ loaded }) => {
     const transition = useTransition(loaded, {
         enter: { opacity: 1, scale: 1 },
@@ -54,6 +58,7 @@ const Spinner = ({ loaded }) => {
 };
 
 Spinner.propTypes = {
+    /** Value that describes if the data is loaded or not */
     loaded: PropTypes.bool.isRequired,
 };
 

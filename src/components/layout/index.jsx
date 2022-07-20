@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLayoutEffect, useRef } from 'react';
 import { debounce } from 'debounce';
 
 import arrowImg from '@assets/png/Up_arrow.png';
 import Footer from './footer';
 import Header, { headerDefaultProps, headerPropTypes } from './header';
-import { setScrollY } from '@redux/ui';
 import { useShowOnScrollAnimation } from '@hooks';
+import { setScrollY } from '@redux/ui';
 import styles from './layout.module.scss';
 
 /**
@@ -17,11 +17,14 @@ import styles from './layout.module.scss';
  */
 const SCROLLY_TO_RENDER_SCROLL_TO_TOP = 1000;
 
+/**
+ * This component is responsible for the layout of the app, it renders a scroll to top component when
+ * the user scrolls down the page and reaches 1000.
+ */
 const Layout = ({ children, className, ...rest }) => {
     /* --- Hooks --- */
 
     const dispatch = useDispatch();
-    const layoutRef = useRef(null);
 
     /* --- Animations --- */
 
@@ -31,29 +34,26 @@ const Layout = ({ children, className, ...rest }) => {
 
     /* --- Effects --- */
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const handleScroll = debounce(
-            () => dispatch(setScrollY(layoutRef.current.scrollTop)),
-            100,
+            () => dispatch(setScrollY(window.scrollY)),
+            200,
         );
 
-        layoutRef.current.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
 
-        return () =>
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            layoutRef.current.removeEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     /* --- Handlers --- */
 
-    const scrollTop = () =>
-        layoutRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
     return (
-        <div className={styles.app} ref={layoutRef} id="layout">
-            <section>
+        <>
+            <section className={styles.content}>
                 {/* rest contains header props ({ bgColor, withSearchInput }) */}
 
                 <Header {...rest} />
@@ -65,7 +65,7 @@ const Layout = ({ children, className, ...rest }) => {
                     type="button"
                     className={`position-fixed btn ${styles['scroll-to-top']}`}
                     style={scaleAnimation}
-                    onClick={scrollTop}
+                    onClick={scrollToTop}
                 >
                     <img
                         src={arrowImg}
@@ -75,15 +75,26 @@ const Layout = ({ children, className, ...rest }) => {
                 </animated.button>
             </section>
 
-            <Footer />
-        </div>
+            <Footer className={styles.footer} />
+        </>
     );
 };
 
 Layout.propTypes = {
+    /** Content inside the layout as JSX Elements */
     children: PropTypes.node.isRequired,
+    /** Layout class name for children container */
     className: PropTypes.string,
-    ...headerPropTypes,
+    /**
+     * Header background color, if bgColor is equals to 'dark' will add a on scroll
+     * transition to the background color from 'sky blue' to 'dark.
+     */
+    bgColor: headerPropTypes.bgColor,
+    /**
+     * 'animated-on-scroll' will add a scroll animation on header when bgColor is equals to 'dark',
+     * otherwise it will not add any animation.
+     */
+    searchInputType: headerPropTypes.searchInputType,
 };
 
 Layout.defaultProps = {

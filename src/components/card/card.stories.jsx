@@ -9,7 +9,7 @@ const Template = (args) => <Card {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-    children: <h1>Hello World</h1>,
+    children: <h1 className="text-white">Hello World</h1>,
     className: '',
     style: {},
 };

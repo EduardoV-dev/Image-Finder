@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { animated, config, useSpring } from 'react-spring';
 
 import { Form as BootForm } from 'react-bootstrap';
-import { Card, SearchInputForm } from '@components';
+import { Card } from '@components';
+import { SearchInputForm } from '@modules/features';
 import styles from './form.module.scss';
 
 const Form = () => {
