@@ -1,15 +1,24 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { animated } from 'react-spring';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { Card, Image } from '@components';
+import { useHoverTransition } from '@hooks';
 import styles from './photo.module.scss';
 
 const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
     /* --- Hooks --- */
 
-    const [isLoaded, setIsLoaded] = useState(false);
     const { t } = useTranslation();
+    const [hoverTransition, { handleMouseEnter, handleMouseLeave }] =
+        useHoverTransition(false);
+
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    /* --- State --- */
+
+    const formattedLikes = Intl.NumberFormat('en-US').format(likes);
 
     return (
         <Link to={`/image/${id}`}>
@@ -17,6 +26,8 @@ const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
                 className={`${styles.container} ${
                     isLoaded && styles['image-loaded']
                 }`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 <Image
                     src={url}
@@ -25,14 +36,21 @@ const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
                     className={styles.container__img}
                 />
 
-                <div className={styles.container__data}>
-                    <p className="text-light">
-                        {t('home_likes')}:{' '}
-                        <span className="fw-bold text-light">{likes}</span>
-                    </p>
+                {isLoaded && (
+                    <animated.div
+                        className={styles.container__data}
+                        style={hoverTransition}
+                    >
+                        <p className="text-light">
+                            {t('home_likes')}:{' '}
+                            <span className="fw-bold text-light">
+                                {formattedLikes}
+                            </span>
+                        </p>
 
-                    <Image src={user.photo} alt={user.name} noSpinner />
-                </div>
+                        <Image src={user.photo} alt={user.name} noSpinner />
+                    </animated.div>
+                )}
             </Card>
         </Link>
     );

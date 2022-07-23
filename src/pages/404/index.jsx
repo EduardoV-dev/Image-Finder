@@ -5,7 +5,7 @@ import { ResultSign, Layout } from '@components';
 import { ReactComponent as NotFoundIcon } from '@assets/svg/404.svg';
 import { Button } from 'react-bootstrap';
 
-const NotFound = () => {
+const NotFound404 = () => {
     /* --- Hooks --- */
 
     const { t } = useTranslation();
@@ -28,4 +28,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default NotFound404;

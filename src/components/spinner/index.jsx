@@ -59,7 +59,11 @@ const Spinner = ({ loaded }) => {
 
 Spinner.propTypes = {
     /** Value that describes if the data is loaded or not */
-    loaded: PropTypes.bool.isRequired,
+    loaded: PropTypes.bool,
 };
+
+Spinner.defaultProps = {
+    loaded: false,
+}
 
 export default Spinner;

@@ -22,11 +22,19 @@ Card.propTypes = {
     className: PropTypes.string,
     /** This prop is intended for passing react-spring animation as style */
     style: PropTypes.object,
+
+    /** Mouse enter event */
+    onMouseEnter: PropTypes.func,
+    /** Mouse leave event */
+    onMouseLeave: PropTypes.func,
 };
 
 Card.defaultProps = {
     className: '',
     style: {},
+
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
 };
 
 export default Card;

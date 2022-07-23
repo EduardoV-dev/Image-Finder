@@ -1,17 +1,20 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { animated, useSpring, config } from 'react-spring';
 
 import { Image } from '@components';
+import { useHoverTransition } from '@hooks';
 import styles from './picture.module.scss';
-import { useState } from 'react';
 
 const Picture = () => {
     /* --- Hooks --- */
 
     const { photo } = useSelector((state) => state.photo);
+    const [hoverTransition, { handleMouseEnter, handleMouseLeave }] =
+        useHoverTransition(true);
+
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isHovering, setIsHovering] = useState(false);
 
     /* --- Animations --- */
 
@@ -31,14 +34,7 @@ const Picture = () => {
         config: config.gentle,
     });
 
-    const fadeData = useSpring({
-        opacity: isHovering ? 1 : 0,
-        y: isHovering ? 0 : -10,
-
-        config: config.gentle,
-    });
-
-    /* --- Rendering Fallback --- */
+    /* --- Conditional Rendering --- */
 
     if (JSON.stringify(photo) === '{}') return <></>;
 
@@ -47,15 +43,9 @@ const Picture = () => {
     const { alt_description, description, tags, imagesURL } = photo;
 
     const dataAnimations = {
-        ...fadeData,
+        ...hoverTransition,
         ...entranceXSlide,
     };
-
-    /* --- Handlers --- */
-
-    const handleMouseEnter = () => setIsHovering(true);
-
-    const handleMouseLeave = () => setIsHovering(false);
 
     /* --- Components --- */
 
