@@ -1,0 +1,10 @@
+@use "./variables" as vars;
+@use "./theme" as th;
+
+@function getColor($color-name) {
+  @return map-get(th.$theme-colors, $color-name);
+}
+
+@function getBreakpoint($bp) {
+  @return map-get(vars.$breakpoints, $bp);
+}

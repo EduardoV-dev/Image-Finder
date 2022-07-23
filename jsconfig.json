@@ -1,0 +1,8 @@
+{
+    "extends": "./jsconfig.paths.json",
+    "compilerOptions": {
+        "baseUrl": "./src"
+    },
+    "include": ["src", "src/**/*.js", "src/**/*.jsx"],
+    "exclude": ["node_modules"]
+}

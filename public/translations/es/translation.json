@@ -1,0 +1,19 @@
+{
+    "html_title": "Busimagen",
+    "language": "Idioma",
+    "home_title": "Buscador de imágenes",
+    "home_subtitle": "Las imágenes mostradas en esta página web son extraidas de",
+    "home_subtitle_source": "Unsplash",
+    "home_search_label": "Busca una imagen",
+    "home_search_input_placeholder": "Ejemplo: Espacio, Comida...",
+    "home_search_button": "Buscar imagen",
+    "home_not_found": "No hay resultados para",
+    "home_no_more_results": "Esos fueron todos los resultados para",
+    "footer_createdBy": "Aplicación web creada por Eduardo Varela",
+    "footer_rights": "Todos los derechos reservados",
+    "home_likes": "Me gustas",
+    "image_uploaded_by": "Imagen subida por",
+    "404_not_found": "La página visitada no existe, ¿tal vez querías buscar fotos de gatos?",
+    "404_link": "Fotos de Gatos",
+    "404_query": "Gatos"
+}

@@ -1,0 +1,50 @@
+@use "/src/styles/abstract/functions" as fns;
+
+.tags-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  display: flex;
+  align-items: center;
+}
+
+.category {
+  display: block;
+
+  background-color: rgba(fns.getColor(dark), 0.3);
+  color: white;
+  cursor: default;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(fns.getColor(dark), 0.8);
+    color: white;
+  }
+
+  &:last-of-type {
+    border-radius: 0 10px 10px 0;
+  }
+
+  &:first-of-type {
+    border-radius: 10px 0 0 10px;
+  }
+}
+
+.description-container {
+  width: 100%;
+
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 0 0 10px 10px;
+  background-color: rgba(fns.getColor(dark), 0.5);
+  padding: 0.5rem;
+}

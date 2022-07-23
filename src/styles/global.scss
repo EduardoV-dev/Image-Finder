@@ -1,3 +1,6 @@
-@import './theme';
+/* Imported for overriding bootstrap theme */
+
+@import "./abstract/theme";
+
 @import "~bootstrap/scss/bootstrap";
-@import "./base";
+@import "./core/base";

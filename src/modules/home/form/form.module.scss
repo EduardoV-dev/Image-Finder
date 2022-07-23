@@ -1,0 +1,33 @@
+@use "/src/styles/abstract/functions" as fns;
+@use "/src/styles/abstract/mixins" as mi;
+
+.form {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+
+    width: 100%;
+    min-height: 100px;
+
+    position: absolute;
+    top: -50px;
+
+    background-color: fns.getColor(info);
+  }
+
+  .form-card {
+    width: 90%;
+    max-width: 56.25rem;
+    margin: 0 auto;
+
+    padding: 1.25rem 0.75rem;
+
+    @include mi.responsive(md) {
+      display: flex;
+
+      padding: 2rem 2rem 2.5rem;
+    }
+  }
+}

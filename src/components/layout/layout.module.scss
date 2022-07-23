@@ -1,0 +1,30 @@
+.scroll-to-top {
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    transform: scale(1.1) !important;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+  }
+}
+
+.content {
+  flex-basis: 100%;
+}
+
+.footer {
+  flex-basis: 100%;
+  align-self: flex-end;
+}
