@@ -6,6 +6,7 @@ const IMAGES_PER_PAGE = 30;
 
 /**
  * Get latest photos from Unsplash API
+ *
  * @param {number} page - Number of page to fetch
  * @returns {{data: object[], totalPages: number}} - Images formatted data
  */
@@ -59,6 +60,7 @@ export const fetchImagesByTerm = (term, page) =>
 
 /**
  * Fetches an image details by passing the image id
+ *
  * @param {string} id - Image id to fetch its details
  * @returns {object} - Formatted image details without unnecesary data
  */

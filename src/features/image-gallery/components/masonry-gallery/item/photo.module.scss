@@ -1,0 +1,88 @@
+@use "/src/assets/styles/abstract/functions" as fns;
+
+.container {
+  position: relative;
+  overflow: hidden;
+  border: none;
+
+  margin-bottom: 15px;
+
+  &.image-loaded {
+    animation: entrance 1s ease-in-out forwards;
+
+    @keyframes entrance {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .container {
+      &__data {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__img {
+    position: relative;
+
+    margin: 0;
+
+    transition: all 0.3s ease;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background-color: rgba(fns.getColor("dark"), 0.35);
+      pointer-events: none;
+
+      transition: all 0.2s ease;
+    }
+
+    &:hover,
+    &:focus {
+      outline-offset: -20px;
+      transform: scale(1.03);
+
+      &::before {
+        background-color: transparent;
+      }
+    }
+
+    img {
+      outline: 2px solid fns.getColor(light);
+      outline-offset: -10px;
+    }
+  }
+
+  &__data {
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    padding: 0 1rem 1rem;
+    opacity: 0;
+  }
+}

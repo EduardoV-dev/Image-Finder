@@ -1,23 +1,13 @@
-import { Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-import { Spinner } from '@components';
 import routes from './routes';
 
 const AppRouter = () => {
-    /* --- Components --- */
+    /* --- Hooks --- */
 
-    const AppRoutes = routes.map(({ element: Page, path }) => (
-        <Route {...{ path }} key={path} element={<Page />} />
-    ));
+    const appRoutes = useRoutes(routes);
 
-    return (
-        <BrowserRouter>
-            <Suspense fallback={<Spinner />}>
-                <Routes>{AppRoutes}</Routes>
-            </Suspense>
-        </BrowserRouter>
-    );
+    return <>{appRoutes}</>;
 };
 
 export default AppRouter;

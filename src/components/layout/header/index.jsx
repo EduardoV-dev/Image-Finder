@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { animated, config, useSpring } from 'react-spring';
 import { useSelector } from 'react-redux';
 
-import { SearchInputForm } from '@modules/features';
+import { SearchInputForm } from '@features/image-gallery';
 import { useShowOnScrollAnimation } from '@hooks';
 import * as constants from './constants';
 import logoPath from '@assets/png/logo.png';

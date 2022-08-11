@@ -1,14 +1,15 @@
 {
     "compilerOptions": {
         "paths": {
-            "@components": ["./components/*"],
-            "@modules": ["./modules/*"],
-            "@routes": ["./routes/*"],
-            "@pages": ["./pages/*"],
             "@assets": ["./assets/*"],
-            "@services": ["./services/*"],
+            "@components": ["./components/*"],
+            "@features": ["./features/*"],
+            "@hooks": ["./hooks/*"],
+            "@lib": ["./lib/*"],
+            "@providers": ["./providers/*"],
+            "@routes": ["./routes/*"],
             "@store": ["./store/*"],
-            "@hooks": ["./hooks/*"]
+            "@services": ["./services/*"]
         }
     }
 }
