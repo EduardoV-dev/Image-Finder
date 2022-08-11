@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 
 import { Layout } from '@components';
 import { Heading, Form, Photos } from '@modules/home';
-import { keywordOnChange } from '@redux/form';
-import { loadTerm } from '@redux/images';
+import { keywordOnChange } from '@store/form';
+import { loadTerm } from '@store/images';
 
 const Home = () => {
     /* --- Hooks --- */

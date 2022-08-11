@@ -9,7 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
 
 import { AppRouter } from '@routes';
-import store from './redux/store';
+import store from './store/store';
 
 const client = new QueryClient();
 

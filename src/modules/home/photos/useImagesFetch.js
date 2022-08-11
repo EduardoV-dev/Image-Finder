@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { fetchImagesByTerm, fetchLatestImages } from '@services/images';
-import { appendImages, clearData, nextPage } from '@redux/images';
+import { appendImages, clearData, nextPage } from '@store/images';
 
 const useImagesFetch = () => {
     /* --- Hooks --- */

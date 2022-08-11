@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { fetchImageById } from '@services/images';
 import { fetchUserData } from '@services/user';
-import { loadPhoto, loadUser } from '@redux/photo';
+import { loadPhoto, loadUser } from '@store/photo';
 
 /**
  * Fetches the image details needed to display the image.

@@ -7,7 +7,7 @@
             "@pages": ["./pages/*"],
             "@assets": ["./assets/*"],
             "@services": ["./services/*"],
-            "@redux": ["./redux/*"],
+            "@store": ["./store/*"],
             "@hooks": ["./hooks/*"]
         }
     }

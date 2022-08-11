@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { keywordOnChange } from '@redux/form';
-import { loadTerm } from '@redux/images';
+import { keywordOnChange } from '@store/form';
+import { loadTerm } from '@store/images';
 
 const SearchInputForm = ({ id }) => {
     /* --- Hooks --- */

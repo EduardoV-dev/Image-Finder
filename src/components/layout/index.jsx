@@ -8,7 +8,7 @@ import arrowImg from '@assets/png/Up_arrow.png';
 import Footer from './footer';
 import Header, { headerDefaultProps, headerPropTypes } from './header';
 import { useShowOnScrollAnimation } from '@hooks';
-import { setScrollY } from '@redux/ui';
+import { setScrollY } from '@store/ui';
 import styles from './layout.module.scss';
 
 /**

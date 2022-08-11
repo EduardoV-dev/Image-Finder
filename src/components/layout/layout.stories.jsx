@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 import Layout from '.';
-import store from '@redux/store';
+import store from '@store/store';
 
 export default {
     title: 'Layout/App',
