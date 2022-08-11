@@ -15,7 +15,7 @@ This is an app that is built on ReactJS. Gets the images from [Pixabay](https://
 
 The site is deployed on the Netlify Plaform:
 
--   [Busimagen](https://busimagen.netlify.app).
+-   [Busimagen](https://image-finder-wheat.vercel.app/).
 
 ## Installation:
 

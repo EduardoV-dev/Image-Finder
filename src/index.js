@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './app';
 
 import 'flag-icon-css/sass/flag-icons.scss';
 import 'react-toastify/dist/ReactToastify.css';
