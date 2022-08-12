@@ -7,6 +7,6 @@ const queryConfig = {
     },
 };
 
-const client = new QueryClient({ defaultOptions: queryConfig });
-
-export default client;
+export const reactQueryClient = new QueryClient({
+    defaultOptions: queryConfig,
+});

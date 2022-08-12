@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const imagesSlice = createSlice({
-    name: 'images',
+const gallerySlice = createSlice({
+    name: 'gallery',
     initialState: {
         term: '',
         page: 1,
@@ -11,9 +11,6 @@ const imagesSlice = createSlice({
     reducers: {
         loadTerm: (state, action) => {
             state.term = action.payload;
-            state.images = [];
-            state.page = 1;
-            state.totalPages = 0;
         },
         appendImages: (state, action) => {
             state.images = [...state.images, ...action.payload.images];
@@ -34,5 +31,6 @@ const imagesSlice = createSlice({
 });
 
 export const { loadTerm, appendImages, nextPage, clearData } =
-    imagesSlice.actions;
-export default imagesSlice.reducer;
+    gallerySlice.actions;
+
+export const galleryReducer = gallerySlice.reducer;

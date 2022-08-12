@@ -2,13 +2,12 @@ import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { debounce } from 'debounce';
 
 import arrowImg from '@assets/png/Up_arrow.png';
 import Footer from '../footer';
 import Header, { headerDefaultProps, headerPropTypes } from '../header';
 import { useShowOnScrollAnimation } from '@hooks';
-import { setScrollY } from '@store/ui';
+import { setScrollY } from '@store/slices/ui';
 import styles from './layout.module.scss';
 
 /**
@@ -35,10 +34,7 @@ const Layout = ({ children, className, ...rest }) => {
     /* --- Effects --- */
 
     useEffect(() => {
-        const handleScroll = debounce(
-            () => dispatch(setScrollY(window.scrollY)),
-            200,
-        );
+        const handleScroll = () => dispatch(setScrollY(window.scrollY));
 
         window.addEventListener('scroll', handleScroll);
 

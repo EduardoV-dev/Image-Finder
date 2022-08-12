@@ -4,8 +4,8 @@ const initialState = {
     keyword: '',
 };
 
-const formSlice = createSlice({
-    name: 'form',
+const searchSlice = createSlice({
+    name: 'search',
     initialState,
     reducers: {
         keywordOnChange: (state, action) => {
@@ -14,5 +14,6 @@ const formSlice = createSlice({
     },
 });
 
-export const { keywordOnChange } = formSlice.actions;
-export default formSlice.reducer;
+export const { keywordOnChange } = searchSlice.actions;
+
+export const searchReducer = searchSlice.reducer;

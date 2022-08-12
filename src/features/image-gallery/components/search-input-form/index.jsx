@@ -1,25 +1,18 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { keywordOnChange } from '@store/form';
-import { loadTerm } from '@store/images';
+import { keywordOnChange } from '../../store/search-slice';
+import { useSearchByTerm } from '../../api';
 
 const SearchInputForm = ({ id }) => {
     /* --- Hooks --- */
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const { t } = useTranslation();
-    const { form, images } = useSelector((state) => state);
 
-    /* --- State --- */
-
-    const { term } = images;
-    const { keyword } = form;
+    const [keyword, search] = useSearchByTerm();
 
     /* --- Handlers --- */
 
@@ -29,10 +22,7 @@ const SearchInputForm = ({ id }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (term === keyword) return;
-
-        dispatch(loadTerm(keyword));
-        navigate(`/${keyword === '' ? '' : `?query=${keyword}`}`);
+        search();
     };
 
     return (

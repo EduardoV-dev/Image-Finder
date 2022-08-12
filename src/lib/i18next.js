@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-const initialize = () =>
+export const initializei18Next = () =>
     i18next
         .use(initReactI18next)
         .use(LanguageDetector)
@@ -26,5 +26,3 @@ const initialize = () =>
             fallbackLng: 'en',
             backend: { loadPath: '/translations/{{lng}}/translation.json' },
         });
-
-export default initialize;

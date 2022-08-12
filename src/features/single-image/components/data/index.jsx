@@ -10,7 +10,7 @@ const Data = () => {
 
     const { t } = useTranslation();
     const [isLoaded, setIsLoaded] = useState(false);
-    const { name, profile_image } = useSelector((state) => state.photo.user);
+    const { name, profile_image } = useSelector((state) => state.picture.user);
 
     /* --- Animations --- */
 

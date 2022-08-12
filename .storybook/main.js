@@ -20,14 +20,16 @@ module.exports = {
         config.resolve.alias = {
             ...config.resolve.alias,
 
-            '@components': path.join(__dirname, '../src/components'),
-            '@modules': path.join(__dirname, '../src/modules'),
-            '@routes': path.join(__dirname, '../src/routes'),
-            '@pages': path.join(__dirname, '../src/pages'),
             '@assets': path.join(__dirname, '../src/assets'),
-            '@services': path.join(__dirname, '../src/services'),
-            '@store': path.join(__dirname, '../src/store'),
+            '@components': path.join(__dirname, '../src/components'),
+            '@config': path.join(__dirname, '../src/components'),
+            '@features': path.join(__dirname, '../src/features'),
             '@hooks': path.join(__dirname, '../src/hooks'),
+            '@lib': path.join(__dirname, '../src/lib'),
+            '@providers': path.join(__dirname, '../src/providers'),
+            '@routes': path.join(__dirname, '../src/routes'),
+            '@store': path.join(__dirname, '../src/store'),
+            '@test': path.join(__dirname, '../src/test'),
         };
         return config;
     },

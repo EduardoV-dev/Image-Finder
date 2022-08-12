@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import initialize from '@lib/i18next';
+import { initializei18Next } from '@lib';
 import { AppProvider } from '@providers';
 import { AppRouter } from '@routes';
 
-// Initializes i18next
-initialize();
+initializei18Next();
 
 const App = () => {
     const { t } = useTranslation();

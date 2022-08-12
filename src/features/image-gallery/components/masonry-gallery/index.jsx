@@ -6,8 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 import { ResultSign, Spinner } from '@components';
 import { ReactComponent as ResultsNotFoundIcon } from '@assets/svg/results-not-found.svg';
+import { useGallery } from '../../api';
+
 import PhotoItem from './item';
-import useImagesFetch from '../../hooks/useImagesFetch';
 
 /**
  * Refreshing rate for fetching more images, more images will be fetched when
@@ -29,7 +30,7 @@ const MasonryGallery = () => {
 
     const { t } = useTranslation();
     const { images, isLoading, isLastPage, term, handleNextPage } =
-        useImagesFetch();
+        useGallery();
 
     /* --- Components --- */
 

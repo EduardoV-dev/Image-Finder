@@ -10,7 +10,7 @@ import styles from './picture.module.scss';
 const Picture = () => {
     /* --- Hooks --- */
 
-    const { photo } = useSelector((state) => state.photo);
+    const { data } = useSelector((state) => state.picture);
     const [hoverTransition, { handleMouseEnter, handleMouseLeave }] =
         useHoverTransition(true);
 
@@ -36,11 +36,11 @@ const Picture = () => {
 
     /* --- Conditional Rendering --- */
 
-    if (JSON.stringify(photo) === '{}') return <></>;
+    if (JSON.stringify(data) === '{}') return <></>;
 
     /* --- State --- */
 
-    const { alt_description, description, tags, imagesURL } = photo;
+    const { alt_description, description, tags, imagesURL } = data;
 
     const dataAnimations = {
         ...hoverTransition,

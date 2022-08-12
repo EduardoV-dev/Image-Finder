@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import formReducer from './form';
-import imagesReducer from './images';
-import photoReducer from './photo';
-import UIReducer from './ui';
+
+import { galleryReducer, searchReducer } from '@features/image-gallery';
+import { photoReducer } from '@features/single-image';
+import UIReducer from './slices/ui';
 
 const store = configureStore({
     reducer: {
-        form: formReducer,
-        images: imagesReducer,
-        photo: photoReducer,
+        search: searchReducer,
+        gallery: galleryReducer,
+        picture: photoReducer,
         ui: UIReducer,
     },
 });

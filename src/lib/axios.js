@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 const ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
-const axios = Axios.create({
+export const axios = Axios.create({
     baseURL: 'https://api.unsplash.com',
     params: { client_id: ACCESS_KEY },
 });
@@ -16,5 +16,3 @@ axios.interceptors.response.use(
         return Promise.reject(error);
     },
 );
-
-export default axios;

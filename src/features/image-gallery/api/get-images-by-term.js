@@ -1,17 +1,26 @@
-import axios from '@lib/axios';
+import { axios } from '@lib';
 import { useQuery } from 'react-query';
 
-import { IMAGES_PER_PAGE, SEARCH_PHOTOS_ENDPOINT } from './config';
+import { IMAGES_PER_PAGE, SEARCH_PHOTOS_ENDPOINT } from '../config';
 import { formatImagesData } from '../utils/format-data';
 
 /**
  * Fetches images by passing a term to search
  *
- * @param {string} term - Term to search for
- * @param {number} page - Number of page to fetch
+ * @param {Object} config - query params
+ * @param {string} config.term - Term to search for
+ * @param {number} config.page - Number of page to fetch
+ *
  * @returns {{data: object[], totalPages: number}} - Images formatted data
  */
-const fetchImagesByTerm = async (term, page) => {
+export const fetchImagesByTerm = async ({ page, term }) => {
+    // Avoids unnecessary fetching
+    if (term === '')
+        return {
+            data: [],
+            totalPages: 0,
+        };
+
     const { results, total_pages } = await axios.get(
         `/${SEARCH_PHOTOS_ENDPOINT}`,
         {
@@ -35,13 +44,13 @@ const fetchImagesByTerm = async (term, page) => {
  * @param {Object} config - query params
  * @param {string} config.term - Term to search for
  * @param {number} config.page - Number of page to fetch
- * @param {object} config.config - react-query useQuery configuration object
+ * @param {import('react-query').UseQueryOptions} [config.config = {}] - react-query useQuery configuration object
  *
  * @returns useQueryData
  */
-export const useImagesByTerm = ({ config, page, term }) =>
+export const useImagesByTerm = ({ config, ...fetchConfig }) =>
     useQuery({
-        queryKey: ['images-by-term', term, page],
-        queryFn: () => fetchImagesByTerm(term, page),
+        queryKey: ['images-by-term', fetchConfig],
+        queryFn: () => fetchImagesByTerm(fetchConfig),
         ...config,
     });

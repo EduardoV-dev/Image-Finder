@@ -1,1 +1,3 @@
-export { default as ImageDetails } from './routes/image-details';
+export * from './routes';
+
+export * from './store';

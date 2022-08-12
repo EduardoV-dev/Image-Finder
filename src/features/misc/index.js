@@ -1,1 +1,2 @@
-export { default as NotFound404 } from './routes/not-found-404';
+// Routes
+export * from './routes';

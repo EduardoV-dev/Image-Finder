@@ -10,13 +10,15 @@ module.exports = {
     moduleNameMapper: {
         '\\.(css|scss)': 'identity-obj-proxy',
 
-        '^@components(.*)$': '<rootDir>/src/components$1',
-        '^@routes(.*)$': '<rootDir>/src/routes$1',
-        '^@modules(.*)$': '<rootDir>/src/modules$1',
-        '^@pages(.*)$': '<rootDir>/src/pages$1',
         '^@assets(.*)$': '<rootDir>/src/assets$1',
-        '^@services(.*)$': '<rootDir>/src/services$1',
-        '^@store(.*)$': '<rootDir>/src/store$1',
+        '^@components(.*)$': '<rootDir>/src/components$1',
+        '^@config(.*)$': '<rootDir>/src/config$1',
+        '^@features(.*)$': '<rootDir>/src/features$1',
         '^@hooks(.*)$': '<rootDir>/src/hooks$1',
+        '^@lib(.*)$': '<rootDir>/src/lib$1',
+        '^@providers(.*)$': '<rootDir>/src/providers$1',
+        '^@routes(.*)$': '<rootDir>/src/routes$1',
+        '^@store(.*)$': '<rootDir>/src/store$1',
+        '^#test(.*)$': '<rootDir>/src/test$1',
     },
 };

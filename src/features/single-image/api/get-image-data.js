@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
-import axios from '@lib/axios';
-import { PHOTOS_ENDPOINT } from '../../image-gallery/api/config';
+import { axios } from '@lib';
+import { PHOTOS_ENDPOINT } from '@config/api';
 
 /**
  * Fetches an image details by passing the image id
@@ -9,7 +9,7 @@ import { PHOTOS_ENDPOINT } from '../../image-gallery/api/config';
  * @param {string} id - Image id to fetch its details
  * @returns {object} - Formatted image details without unnecesary data
  */
-const fetchImageById = async (id) => {
+export const fetchImageById = async (id) => {
     const image = await axios.get(`/${PHOTOS_ENDPOINT}/${id}`);
 
     return {
@@ -30,11 +30,14 @@ const fetchImageById = async (id) => {
  * Custom hook that uses useQuery for fetching a single image detail
  * by passing the image id
  *
- * @param {string} id - Image id to get its details
+ * @param {Object} config - configuration for the custom hook
+ * @param {import('react-query').UseQueryOptions} [config.config = {}] - react-query useQuery configuration object
+ * @param {string} config.id - Image id to get its details
  * @returns useQueryData
  */
-export const useImageById = (id) =>
+export const useImageData = ({ config, id }) =>
     useQuery({
         queryKey: ['image-details', id],
         queryFn: () => fetchImageById(id),
+        ...config,
     });

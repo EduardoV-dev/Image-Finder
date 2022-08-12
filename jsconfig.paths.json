@@ -3,13 +3,14 @@
         "paths": {
             "@assets": ["./assets/*"],
             "@components": ["./components/*"],
+            "@config": ["./config/*"],
             "@features": ["./features/*"],
             "@hooks": ["./hooks/*"],
             "@lib": ["./lib/*"],
             "@providers": ["./providers/*"],
             "@routes": ["./routes/*"],
             "@store": ["./store/*"],
-            "@services": ["./services/*"]
+            "@test": ["./test/*"]
         }
     }
 }

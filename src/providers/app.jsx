@@ -5,13 +5,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import client from '@lib/react-query';
-import store from '@store/store';
 import { Spinner } from '@components';
+import { reactQueryClient } from '@lib/react-query';
+import store from '@store/store';
 
 const AppProvider = ({ children }) => (
     <Suspense fallback={<Spinner />}>
-        <QueryClientProvider {...{ client }}>
+        <QueryClientProvider client={reactQueryClient}>
             <Provider {...{ store }}>
                 <Router>{children}</Router>
             </Provider>
