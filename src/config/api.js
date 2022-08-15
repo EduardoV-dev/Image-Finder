@@ -1,1 +1,1 @@
-export const PHOTOS_ENDPOINT = 'photos';
+export const PHOTOS_ENDPOINT = '/photos';

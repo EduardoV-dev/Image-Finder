@@ -1,7 +1,6 @@
 module.exports = {
     testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-    verbose: true,
     transform: {
         '\\.[jt]sx?$': 'babel-jest',
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|svg?component)$':
@@ -19,6 +18,7 @@ module.exports = {
         '^@providers(.*)$': '<rootDir>/src/providers$1',
         '^@routes(.*)$': '<rootDir>/src/routes$1',
         '^@store(.*)$': '<rootDir>/src/store$1',
-        '^#test(.*)$': '<rootDir>/src/test$1',
+        '^test-utils(.*)$': '<rootDir>/src/test/utils.js',
     },
+    testMatch: ['**/__tests__/**/*.(test|spec).js'],
 };

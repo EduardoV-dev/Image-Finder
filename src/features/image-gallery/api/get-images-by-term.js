@@ -1,8 +1,11 @@
 import { axios } from '@lib';
 import { useQuery } from 'react-query';
 
-import { IMAGES_PER_PAGE, SEARCH_PHOTOS_ENDPOINT } from '../config';
-import { formatImagesData } from '../utils/format-data';
+import { PHOTOS_ENDPOINT } from '@config/api';
+import { IMAGES_PER_PAGE } from '../config';
+import { formatImagesData } from '../utils';
+
+export const SEARCH_PHOTOS_ENDPOINT = `/search${PHOTOS_ENDPOINT}`;
 
 /**
  * Fetches images by passing a term to search
@@ -11,26 +14,23 @@ import { formatImagesData } from '../utils/format-data';
  * @param {string} config.term - Term to search for
  * @param {number} config.page - Number of page to fetch
  *
- * @returns {{data: object[], totalPages: number}} - Images formatted data
+ * @returns {Promise<{data: object[], totalPages: number}>} - Images formatted data
  */
 export const fetchImagesByTerm = async ({ page, term }) => {
     // Avoids unnecessary fetching
-    if (term === '')
+    if (term === '' || page <= 0)
         return {
             data: [],
             totalPages: 0,
         };
 
-    const { results, total_pages } = await axios.get(
-        `/${SEARCH_PHOTOS_ENDPOINT}`,
-        {
-            params: {
-                query: term,
-                per_page: IMAGES_PER_PAGE,
-                page,
-            },
+    const { results, total_pages } = await axios.get(SEARCH_PHOTOS_ENDPOINT, {
+        params: {
+            query: term,
+            per_page: IMAGES_PER_PAGE,
+            page,
         },
-    );
+    });
 
     return {
         data: formatImagesData(results),

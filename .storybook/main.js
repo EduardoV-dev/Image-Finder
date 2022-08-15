@@ -22,7 +22,7 @@ module.exports = {
 
             '@assets': path.join(__dirname, '../src/assets'),
             '@components': path.join(__dirname, '../src/components'),
-            '@config': path.join(__dirname, '../src/components'),
+            '@config': path.join(__dirname, '../src/config'),
             '@features': path.join(__dirname, '../src/features'),
             '@hooks': path.join(__dirname, '../src/hooks'),
             '@lib': path.join(__dirname, '../src/lib'),

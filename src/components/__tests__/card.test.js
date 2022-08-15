@@ -1,7 +1,7 @@
-import Card from '../card';
+import { Card } from '../';
 import { render, screen } from '@testing-library/react';
 
-describe('<Card />', () => {
+describe('<Card /> - UI', () => {
     it('should render correctly', () => {
         render(<Card>Hello world</Card>);
 

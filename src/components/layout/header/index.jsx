@@ -21,7 +21,10 @@ const Header = ({ bgColor, searchInputType }) => {
     /* --- Animations --- */
 
     const [searchInputScale, doPassedScrollYToRender] =
-        useShowOnScrollAnimation(constants.SCROLLY_TO_RENDER_SEARCH_INPUT);
+        useShowOnScrollAnimation({
+            scrollY,
+            scrollYToRender: constants.SCROLLY_TO_RENDER_SEARCH_INPUT,
+        });
 
     /** Transition will be applied if bgColor prop is dark */
 
@@ -36,7 +39,7 @@ const Header = ({ bgColor, searchInputType }) => {
 
     /* --- Components --- */
 
-    const SearchInput = <SearchInputForm id="header-search-form" />;
+    const SearchInput = <SearchInputForm />;
 
     const AnimatedSearchInput = (
         <animated.div style={searchInputScale}>{SearchInput}</animated.div>

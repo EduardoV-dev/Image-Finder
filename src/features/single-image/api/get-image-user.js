@@ -1,6 +1,8 @@
 import { axios } from '@lib';
 import { useQuery } from 'react-query';
 
+export const USERS_ENDPOINT = '/users';
+
 /**
  * Fetches single user data by its username.
  * k
@@ -15,7 +17,9 @@ export const fetchUserData = async (username) => {
             profile_image: '',
         };
 
-    const { name, profile_image } = await axios.get(`/users/${username}`);
+    const { name, profile_image } = await axios.get(
+        `${USERS_ENDPOINT}/${username}`,
+    );
 
     return {
         name,

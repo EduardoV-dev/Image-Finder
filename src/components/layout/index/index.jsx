@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import arrowImg from '@assets/png/Up_arrow.png';
 import Footer from '../footer';
@@ -24,12 +24,14 @@ const Layout = ({ children, className, ...rest }) => {
     /* --- Hooks --- */
 
     const dispatch = useDispatch();
+    const scrollY = useSelector((state) => state.ui.scrollY);
 
     /* --- Animations --- */
 
-    const [scaleAnimation] = useShowOnScrollAnimation(
-        SCROLLY_TO_RENDER_SCROLL_TO_TOP,
-    );
+    const [scaleAnimation] = useShowOnScrollAnimation({
+        scrollY,
+        scrollYToRender: SCROLLY_TO_RENDER_SCROLL_TO_TOP,
+    });
 
     /* --- Effects --- */
 

@@ -21,6 +21,7 @@ const Spinner = ({ loaded }) => {
                     !item && (
                         <animated.div
                             className={styles[`sk-cube-grid`]}
+                            role="progressbar"
                             {...{ style }}
                         >
                             <div
@@ -64,6 +65,6 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
     loaded: false,
-}
+};
 
 export default Spinner;

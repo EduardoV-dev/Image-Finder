@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { keywordOnChange } from '../../store/search-slice';
 import { useSearchByTerm } from '../../api';
 
-const SearchInputForm = ({ id }) => {
+const SearchInputForm = () => {
     /* --- Hooks --- */
 
     const dispatch = useDispatch();
@@ -29,6 +28,7 @@ const SearchInputForm = ({ id }) => {
         <Form
             onSubmit={handleSubmit}
             className="d-flex flex-column flex-sm-row align-items-sm-center"
+            data-testid="search-form"
         >
             <Form.Group className="flex-grow-1">
                 <Form.Control
@@ -36,23 +36,19 @@ const SearchInputForm = ({ id }) => {
                     placeholder={t('home_search_input_placeholder')}
                     onChange={handleChange}
                     value={keyword}
-                    {...{ id }}
+                    data-testid="search-input"
                 />
             </Form.Group>
             <Button
                 type="submit"
                 variant="dark"
                 className="fw-bold ms-sm-2 mt-2 mt-sm-0"
+                data-testid="search-button"
             >
                 {t('home_search_button')}
             </Button>
         </Form>
     );
-};
-
-SearchInputForm.propTypes = {
-    /* id of the input type text. Prop for testing necessities */
-    id: PropTypes.string.isRequired,
 };
 
 export default SearchInputForm;

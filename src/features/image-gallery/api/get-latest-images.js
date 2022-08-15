@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { axios } from '@lib';
 import { PHOTOS_ENDPOINT } from '@config/api';
 import { IMAGES_PER_PAGE } from '../config';
-import { formatImagesData } from '../utils/format-data';
+import { formatImagesData } from '../utils';
 
 /**
  * Get latest photos from Unsplash API
@@ -12,17 +12,17 @@ import { formatImagesData } from '../utils/format-data';
  * @param {number} config.page - Page number to fetch images
  * @param {string} config.term - Term to search for
  *
- * @returns {{data: object[], totalPages: number}} - Images formatted data
+ * @returns {Promise<{data: object[], totalPages: number}>} - Images formatted data
  */
 export const fetchLatestImages = async ({ page, term }) => {
     // Avoids unnecessary fetching
-    if (term !== '')
+    if (term !== '' || page <= 0)
         return {
             data: [],
             totalPages: 0,
         };
 
-    const images = await axios.get(`/${PHOTOS_ENDPOINT}`, {
+    const images = await axios.get(PHOTOS_ENDPOINT, {
         params: {
             page,
             per_page: IMAGES_PER_PAGE,

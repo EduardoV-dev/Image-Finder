@@ -31,7 +31,7 @@ const Form = () => {
                         {t('home_search_label')}
                     </BootForm.Label>
 
-                    <SearchInputForm id="form-search" />
+                    <SearchInputForm />
                 </BootForm.Group>
             </Card>
         </animated.section>

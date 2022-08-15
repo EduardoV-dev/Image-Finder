@@ -10,7 +10,7 @@ import { PHOTOS_ENDPOINT } from '@config/api';
  * @returns {object} - Formatted image details without unnecesary data
  */
 export const fetchImageById = async (id) => {
-    const image = await axios.get(`/${PHOTOS_ENDPOINT}/${id}`);
+    const image = await axios.get(`${PHOTOS_ENDPOINT}/${id}`);
 
     return {
         alt_description: image.alt_description || '',

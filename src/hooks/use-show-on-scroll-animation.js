@@ -1,18 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { config, useSpring } from 'react-spring';
 
 /**
- * Receives a scrollYToRender param for returning the scale animation.
- * Animation will be triggered after passing scrollYToRender param.
+ * Receives scrollY and scrollYToRender params for returning the scale animation.
+ * Animation will be triggered after scrollY passes scrollYToRender param.
  *
- * @param {number} scrollYToRender - window scroll Y.
+ * @param {Object} config - Hook's configuration object
+ * @param {number} config.scrollYToRender - window scroll Y to render the element.
+ * @param {number} config.scrollY - window scroll Y
  * @returns {[spring: any, show: boolean]} - spring for animation, show for telling if the scrollYToRender param has been passed or not.
  */
-const useShowOnScrollAnimation = (scrollYToRender) => {
+const useShowOnScrollAnimation = ({ scrollY, scrollYToRender }) => {
     /* --- Hooks --- */
 
-    const scrollY = useSelector((state) => state.ui.scrollY);
     const [show, setShow] = React.useState(false);
 
     /* --- Animations --- */

@@ -10,7 +10,7 @@
             "@providers": ["./providers/*"],
             "@routes": ["./routes/*"],
             "@store": ["./store/*"],
-            "@test": ["./test/*"]
+            "test-utils": ["./test/utils"]
         }
     }
 }
