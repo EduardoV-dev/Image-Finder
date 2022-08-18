@@ -3,9 +3,9 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     transform: {
         '\\.[jt]sx?$': 'babel-jest',
-        '^.+\\.svg$': 'jest-transformer-svg',
-        '\\.(jpg|jpeg|png|gif|eot|svg|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|)$':
-            '<rootDir>/src/test/file-transformer.js',
+        '^.+\\.svg$': '<rootDir>/src/test/__transformers__/svg.js',
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|)$':
+            '<rootDir>/src/test/__transformers__/file.js',
     },
     moduleNameMapper: {
         '\\.(css|scss)': 'identity-obj-proxy',
@@ -20,8 +20,6 @@ module.exports = {
         '^@routes(.*)$': '<rootDir>/src/routes$1',
         '^@store(.*)$': '<rootDir>/src/store$1',
         '^test-utils(.*)$': '<rootDir>/src/test/utils.js',
-
-        // '\\.(svg)$': '<rootDir>/test/__mocks__/svgr-mock.js',
     },
     testMatch: ['**/__tests__/**/*.(test|spec).(js|jsx)'],
 };
