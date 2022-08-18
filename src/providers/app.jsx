@@ -5,9 +5,11 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { reactQueryClient } from '@lib';
 import { Spinner } from '@components';
-import { reactQueryClient } from '@lib/react-query';
-import store from '@store/store';
+import { setupStore } from '@store';
+
+const store = setupStore();
 
 const AppProvider = ({ children }) => (
     <Suspense fallback={<Spinner />}>

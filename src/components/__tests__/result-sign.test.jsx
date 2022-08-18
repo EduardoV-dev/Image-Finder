@@ -1,13 +1,16 @@
 import { screen, render } from '@testing-library/react';
 
 import { ResultSign } from '../';
+import { ReactComponent as ResultsNotFoundIcon } from '../../assets/svg/404.svg';
 
 describe('<ResultSign /> - UI', () => {
     it('Should render correctly', () => {
+        // console.log(<ResultsNotFoundIcon title="icon" />);
+
         render(
             <ResultSign
                 children="Success"
-                illustration={<svg title="icon" />}
+                illustration={<ResultsNotFoundIcon title="icon" />}
             />,
         );
 

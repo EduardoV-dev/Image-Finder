@@ -1,4 +1,4 @@
-import { Card } from '../';
+import { Card } from '..';
 import { render, screen } from '@testing-library/react';
 
 describe('<Card /> - UI', () => {

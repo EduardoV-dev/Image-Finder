@@ -3,8 +3,15 @@ import { Provider } from 'react-redux';
 import { QueryClientProvider } from 'react-query';
 import { render, renderHook } from '@testing-library/react';
 
-import store from '@store/store';
 import { reactQueryClient } from '@lib';
+import { setupStore } from '@store';
+
+/**
+ * @typedef {Object} customRenderReturn
+ *
+ * @property {import('@reduxjs/toolkit').EnhancedStore<import('@reduxjs/toolkit').CombinedState<any>>} store - configured store
+ * @property {import('@testing-library/react').RenderResult} result - render options
+ */
 
 /**
  * Wrapper component with the providers used for testing
@@ -12,10 +19,11 @@ import { reactQueryClient } from '@lib';
  * @param {Object} props - Providers props
  * @param {ReactNode} props.children - Element to wrap
  * @param {string[]} props.history - Router history
+ * @param {string[]} props.store - Redux store
  *
  * @returns {JSX.Element} - Element wrapped inside the providers
  */
-const AllTheProviders = ({ children, history = ['/'] }) => (
+const AllTheProviders = ({ children, history = ['/'], store }) => (
     <Provider {...{ store }}>
         <QueryClientProvider client={reactQueryClient}>
             <MemoryRouter initialEntries={history}>{children}</MemoryRouter>
@@ -29,15 +37,28 @@ const AllTheProviders = ({ children, history = ['/'] }) => (
  * @param {import('react').ReactNode} ui - Element to render
  * @param {import('@testing-library/react').RenderOptions} options - Render options
  *
- * @returns {import('@testing-library/react').RenderResult}
+ * @returns {customRenderReturn}
  */
-export const renderWithProviders = (ui, options = {}) =>
-    render(ui, {
-        wrapper: (props) => {
-            return <AllTheProviders {...props} {...options.initialProps} />;
-        },
-        ...options,
-    });
+export const renderWithProviders = (
+    ui,
+    { initialProps = {}, ...renderOptions } = {},
+) => {
+    const {
+        history = ['/'],
+        preloadedState = {},
+        store = setupStore(preloadedState),
+    } = initialProps;
+
+    return {
+        store,
+        ...render(ui, {
+            wrapper: (props) => {
+                return <AllTheProviders {...props} {...{ history, store }} />;
+            },
+            ...renderOptions,
+        }),
+    };
+};
 
 /**
  * Renders a react hook, wrapping the hook inside the providers
@@ -45,12 +66,25 @@ export const renderWithProviders = (ui, options = {}) =>
  * @param {() => any} hook - React hook to render
  * @param {import('@testing-library/react').RenderOptions} options - Render options
  *
- * @returns {import('@testing-library/react').RenderHookResult}
+ * @returns {customRenderReturn}
  */
-export const renderHookWithProviders = (hook, options = {}) =>
-    renderHook(hook, {
-        wrapper: (props) => {
-            return <AllTheProviders {...props} {...options.initialProps} />;
-        },
-        ...options,
-    });
+export const renderHookWithProviders = (
+    ui,
+    { initialProps = {}, ...renderOptions } = {},
+) => {
+    const {
+        history = ['/'],
+        preloadedState = {},
+        store = setupStore(preloadedState),
+    } = initialProps;
+
+    return {
+        store,
+        ...renderHook(ui, {
+            wrapper: (props) => {
+                return <AllTheProviders {...props} {...{ history, store }} />;
+            },
+            ...renderOptions,
+        }),
+    };
+};

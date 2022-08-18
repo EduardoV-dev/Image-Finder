@@ -1,7 +1,7 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
-import { SearchInputForm } from '../';
 import { renderWithProviders } from 'test-utils';
+import { SearchInputForm } from '../';
 
 describe('<SearchInputForm />', () => {
     /** @type {HTMLElement} */
