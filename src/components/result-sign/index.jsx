@@ -5,7 +5,7 @@ import { animated, config, useSpring } from 'react-spring';
  *  It's a component that displays the result of an action after trying to fetch data,
  *  whether it was successful or not.
  */
-const ResultSign = ({ children, illustration }) => {
+const ResultSign = ({ children, illustration, testid }) => {
     /* --- Animations --- */
 
     const fadeInSpring = useSpring({
@@ -23,6 +23,7 @@ const ResultSign = ({ children, illustration }) => {
                 margin: '1.5rem auto 0',
                 ...fadeInSpring,
             }}
+            data-testid={testid}
         >
             {illustration}
 
@@ -41,6 +42,12 @@ ResultSign.propTypes = {
     children: PropTypes.node.isRequired,
     /** It has to be a JSX Element as well, SVG as React Component for instance */
     illustration: PropTypes.node.isRequired,
+    /** Id for testing purposes */
+    testid: PropTypes.string,
+};
+
+ResultSign.defaultProps = {
+    testid: '',
 };
 
 export default ResultSign;

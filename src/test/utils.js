@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { QueryClientProvider } from 'react-query';
 import { render, renderHook } from '@testing-library/react';
 
+import { BASE_URL } from '@config';
 import { reactQueryClient } from '@lib';
 import { setupStore } from '@store';
 
 /**
- * @typedef {Object} customRenderReturn
+ * @typedef {Object} CustomRenderReturn
  *
  * @property {import('@reduxjs/toolkit').EnhancedStore<import('@reduxjs/toolkit').CombinedState<any>>} store - configured store
  * @property {import('@testing-library/react').RenderResult} result - render options
@@ -37,7 +38,7 @@ const AllTheProviders = ({ children, history = ['/'], store }) => (
  * @param {import('react').ReactNode} ui - Element to render
  * @param {import('@testing-library/react').RenderOptions} options - Render options
  *
- * @returns {customRenderReturn}
+ * @returns {CustomRenderReturn}
  */
 export const renderWithProviders = (
     ui,
@@ -66,7 +67,7 @@ export const renderWithProviders = (
  * @param {() => any} hook - React hook to render
  * @param {import('@testing-library/react').RenderOptions} options - Render options
  *
- * @returns {customRenderReturn}
+ * @returns {CustomRenderReturn}
  */
 export const renderHookWithProviders = (
     ui,
@@ -78,6 +79,8 @@ export const renderHookWithProviders = (
         store = setupStore(preloadedState),
     } = initialProps;
 
+    console.log(history, preloadedState, store);
+
     return {
         store,
         ...renderHook(ui, {
@@ -88,3 +91,12 @@ export const renderHookWithProviders = (
         }),
     };
 };
+
+/**
+ * Appends the unsplash API baseURL at the beginning of a given path
+ *
+ * @param {string} path - api path
+ *
+ * @returns {string} - https://api.unsplash.com/PATH
+ */
+export const unsplash = (path) => BASE_URL + path;

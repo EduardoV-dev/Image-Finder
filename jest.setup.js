@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 
+import { server } from '@test-utils/mocks/server';
+
 jest.mock('react-i18next', () => ({
     // this mock makes sure any components using the translate hook can use it without a warning being shown
     useTranslation: () => {
@@ -12,3 +14,7 @@ jest.mock('react-i18next', () => ({
         };
     },
 }));
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());

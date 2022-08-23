@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { ResultSign, Spinner } from '@components';
 import { ReactComponent as ResultsNotFoundIcon } from '@assets/svg/results-not-found.svg';
 
-// import ResultsNotFoundIcon from '@assets/svg/results-not-found.svg';
 import { useGallery } from '../../api';
 
 import PhotoItem from './item';
@@ -49,13 +48,16 @@ const MasonryGallery = () => {
     });
 
     const NoResultsSign = (
-        <ResultSign illustration={<ResultsNotFoundIcon />}>
+        <ResultSign illustration={<ResultsNotFoundIcon />} testid="no-results">
             {t('home_not_found')} <span className="text-info">{term}</span>
         </ResultSign>
     );
 
     const NoMoreResultsSign = (
-        <ResultSign illustration={<ResultsNotFoundIcon />}>
+        <ResultSign
+            illustration={<ResultsNotFoundIcon />}
+            testid="no-more-results"
+        >
             {t('home_no_more_results')}{' '}
             <span className="text-info">{term}</span>
         </ResultSign>

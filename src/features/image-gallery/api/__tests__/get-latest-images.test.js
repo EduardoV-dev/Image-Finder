@@ -1,27 +1,12 @@
-import MockAdapter from 'axios-mock-adapter';
-
-import { axios } from '@lib';
-import { PHOTOS_ENDPOINT } from '@config/api';
+import { LATEST_IMAGES, NO_RESULTS } from '@test-utils/mocks/fixtures';
 import { fetchLatestImages } from '../';
 import { formatImagesData } from '../../utils';
-import { imagesResults, noResults } from './fixtures';
 
 describe('fetchLatestImages', () => {
     const API_RESPONSE = {
-        data: formatImagesData(imagesResults),
+        data: formatImagesData(LATEST_IMAGES),
         totalPages: Infinity,
     };
-
-    /** @type {import('axios-mock-adapter').default} */
-    let mock;
-
-    beforeEach(() => {
-        mock = new MockAdapter(axios);
-
-        mock.onGet(PHOTOS_ENDPOINT).reply(200, imagesResults);
-    });
-
-    afterEach(() => mock.reset());
 
     it('Should not return results if term is not empty', async () => {
         const { data: images, totalPages } = await fetchLatestImages({
@@ -29,8 +14,8 @@ describe('fetchLatestImages', () => {
             term: 'not-empty',
         });
 
-        expect(images).toEqual(noResults.data);
-        expect(totalPages).toBe(noResults.totalPages);
+        expect(images).toEqual(NO_RESULTS.data);
+        expect(totalPages).toBe(NO_RESULTS.totalPages);
     });
 
     it('Should not return results if page is less or equal than 0', async () => {
@@ -39,8 +24,8 @@ describe('fetchLatestImages', () => {
             term: '',
         });
 
-        expect(images).toEqual(noResults.data);
-        expect(totalPages).toBe(noResults.totalPages);
+        expect(images).toEqual(NO_RESULTS.data);
+        expect(totalPages).toBe(NO_RESULTS.totalPages);
     });
 
     it('Should return formatted images', async () => {
@@ -49,7 +34,7 @@ describe('fetchLatestImages', () => {
             term: '',
         });
 
-        expect(images).toEqual(formatImagesData(imagesResults));
+        expect(images).toEqual(formatImagesData(LATEST_IMAGES));
         expect(totalPages).toBe(API_RESPONSE.totalPages);
     });
 });

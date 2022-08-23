@@ -1,11 +1,11 @@
 import { axios } from '@lib';
 import { useQuery } from 'react-query';
 
-import { PHOTOS_ENDPOINT } from '@config/api';
+import { PHOTOS_ENDPOINT } from '@config';
 import { IMAGES_PER_PAGE } from '../config';
 import { formatImagesData } from '../utils';
 
-export const SEARCH_PHOTOS_ENDPOINT = `/search${PHOTOS_ENDPOINT}`;
+export const IMAGES_BY_TERM_ENDPOINT = `/search${PHOTOS_ENDPOINT}`;
 
 /**
  * Fetches images by passing a term to search
@@ -24,7 +24,7 @@ export const fetchImagesByTerm = async ({ page, term }) => {
             totalPages: 0,
         };
 
-    const { results, total_pages } = await axios.get(SEARCH_PHOTOS_ENDPOINT, {
+    const { results, total_pages } = await axios.get(IMAGES_BY_TERM_ENDPOINT, {
         params: {
             query: term,
             per_page: IMAGES_PER_PAGE,

@@ -25,8 +25,8 @@ const Form = () => {
             <Card className={styles['form-card']} style={sectionFormSpring}>
                 <BootForm.Group className="w-100">
                     <BootForm.Label
-                        htmlFor="form-search"
                         className="text-white"
+                        data-testid="search-label"
                     >
                         {t('home_search_label')}
                     </BootForm.Label>

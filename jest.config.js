@@ -19,7 +19,7 @@ module.exports = {
         '^@providers(.*)$': '<rootDir>/src/providers$1',
         '^@routes(.*)$': '<rootDir>/src/routes$1',
         '^@store(.*)$': '<rootDir>/src/store$1',
-        '^test-utils(.*)$': '<rootDir>/src/test/utils.js',
+        '^@test-utils(.*)$': '<rootDir>/src/test$1',
     },
     testMatch: ['**/__tests__/**/*.(test|spec).(js|jsx)'],
 };

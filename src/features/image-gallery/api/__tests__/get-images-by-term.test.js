@@ -1,26 +1,12 @@
-import MockAdapter from 'axios-mock-adapter';
-
-import { axios } from '@lib';
-import { imagesResults, noResults } from './fixtures';
-import { fetchImagesByTerm, SEARCH_PHOTOS_ENDPOINT } from '../';
+import { IMAGES_BY_TERM, NO_RESULTS } from '@test-utils/mocks/fixtures';
+import { fetchImagesByTerm } from '../';
 import { formatImagesData } from '../../utils';
 
 describe('fetchImagesByTerm', () => {
     const API_RESPONSE = {
-        results: imagesResults,
+        results: IMAGES_BY_TERM,
         total_pages: 1,
     };
-
-    /** @type {import('axios-mock-adapter').default} */
-    let mock;
-
-    beforeEach(() => {
-        mock = new MockAdapter(axios);
-
-        mock.onGet(SEARCH_PHOTOS_ENDPOINT).reply(200, API_RESPONSE);
-    });
-
-    afterEach(() => mock.reset());
 
     it('Should not return results if term is empty', async () => {
         const { data: images, totalPages } = await fetchImagesByTerm({
@@ -28,8 +14,8 @@ describe('fetchImagesByTerm', () => {
             term: '',
         });
 
-        expect(images).toEqual(noResults.data);
-        expect(totalPages).toEqual(noResults.totalPages);
+        expect(images).toEqual(NO_RESULTS.data);
+        expect(totalPages).toEqual(NO_RESULTS.totalPages);
     });
 
     it('Should not return results if page is less or equal than 0', async () => {
@@ -38,8 +24,8 @@ describe('fetchImagesByTerm', () => {
             term: 'not-empty',
         });
 
-        expect(images).toEqual(noResults.data);
-        expect(totalPages).toEqual(noResults.totalPages);
+        expect(images).toEqual(NO_RESULTS.data);
+        expect(totalPages).toEqual(NO_RESULTS.totalPages);
     });
 
     it('Should return formatted images', async () => {
@@ -48,7 +34,7 @@ describe('fetchImagesByTerm', () => {
             term: 'moon',
         });
 
-        expect(images).toEqual(formatImagesData(imagesResults));
+        expect(images).toEqual(formatImagesData(IMAGES_BY_TERM));
         expect(totalPages).toBe(API_RESPONSE.total_pages);
     });
 });

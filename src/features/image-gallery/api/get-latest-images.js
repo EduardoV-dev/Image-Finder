@@ -5,6 +5,8 @@ import { PHOTOS_ENDPOINT } from '@config/api';
 import { IMAGES_PER_PAGE } from '../config';
 import { formatImagesData } from '../utils';
 
+export const LATEST_IMAGES_ENDPOINT = PHOTOS_ENDPOINT;
+
 /**
  * Get latest photos from Unsplash API
  *
@@ -22,7 +24,7 @@ export const fetchLatestImages = async ({ page, term }) => {
             totalPages: 0,
         };
 
-    const images = await axios.get(PHOTOS_ENDPOINT, {
+    const images = await axios.get(LATEST_IMAGES_ENDPOINT, {
         params: {
             page,
             per_page: IMAGES_PER_PAGE,
