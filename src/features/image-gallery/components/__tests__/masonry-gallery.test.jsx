@@ -57,7 +57,7 @@ describe('<MasonryGallery />', () => {
 
     it('Should render the "no results sign"', async () => {
         const store = setupStore();
-        store.dispatch(loadTerm('no-results'));
+        store.dispatch(loadTerm('term-that-is-long'));
 
         renderWithProviders(<MasonryGallery />, { initialProps: { store } });
 

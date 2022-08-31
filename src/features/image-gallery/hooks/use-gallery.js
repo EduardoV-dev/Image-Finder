@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { appendImages, clearData, nextPage } from '../store';
-import { useImagesByTerm, useLatestImages } from '.';
+import { useAppDispatch, useAppSelector } from '@store';
+import { useImagesByTerm, useLatestImages } from '../api';
+import { formatImagesData } from '../utils';
+import * as galleryStore from '../store';
 
 /**
  * This custom hook handles pagination for images, if the term is not empty,
@@ -15,14 +16,14 @@ import { useImagesByTerm, useLatestImages } from '.';
  *    isLastPage: boolean,
  *    term: string,
  *    handleNextPage: () => void,
- * }} - Hook state and handler
+ * }} Gallery state and handler
  */
 export const useGallery = () => {
     /* --- Hooks --- */
 
-    const dispatch = useDispatch();
-    const { images, page, term, totalPages } = useSelector(
-        (state) => state.gallery,
+    const dispatch = useAppDispatch();
+    const { images, page, term, totalPages } = useAppSelector(
+        galleryStore.selectGalleryState,
     );
 
     /* --- State --- */
@@ -36,8 +37,8 @@ export const useGallery = () => {
             onSuccess: (images) =>
                 isFetchingByTerm &&
                 dispatch(
-                    appendImages({
-                        images: images.data,
+                    galleryStore.appendImages({
+                        images: formatImagesData(images.data),
                         totalPages: images.totalPages,
                     }),
                 ),
@@ -51,8 +52,8 @@ export const useGallery = () => {
             onSuccess: (images) =>
                 !isFetchingByTerm &&
                 dispatch(
-                    appendImages({
-                        images: images.data,
+                    galleryStore.appendImages({
+                        images: formatImagesData(images.data),
                         totalPages: images.totalPages,
                     }),
                 ),
@@ -66,10 +67,10 @@ export const useGallery = () => {
     // Effect dispatched whenever term state changes
     useEffect(() => {
         // Resets pagination data when the term changes
-        dispatch(clearData());
+        dispatch(galleryStore.clearData());
 
         // Resets pagination data when the user gets out of the page
-        return () => dispatch(clearData());
+        return () => dispatch(galleryStore.clearData());
     }, [dispatch, term]);
 
     /* --- Handlers --- */
@@ -79,7 +80,7 @@ export const useGallery = () => {
      *
      * @returns {void} - dispatches next page action
      */
-    const handleNextPage = () => dispatch(nextPage());
+    const handleNextPage = () => dispatch(galleryStore.nextPage());
 
     /* --- State --- */
 

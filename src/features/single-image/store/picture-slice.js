@@ -25,3 +25,10 @@ const pictureSlice = createSlice({
 export const { clearData, loadData, loadUser } = pictureSlice.actions;
 
 export const photoReducer = pictureSlice.reducer;
+
+/* --- SELECTORS --- */
+
+export const selectPictureUser = (state) => state.picture.user;
+export const selectPictureData = (state) => state.picture.data;
+export const selectUserNameFromData = (state) =>
+    state.picture.data.username || '';

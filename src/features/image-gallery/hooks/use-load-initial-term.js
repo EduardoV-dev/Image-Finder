@@ -1,8 +1,8 @@
 import queryString from 'query-string';
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { useAppDispatch } from '@store';
 import { keywordOnChange } from '../store/search-slice';
 import { loadTerm } from '../store/gallery-slice';
 
@@ -11,12 +11,12 @@ import { loadTerm } from '../store/gallery-slice';
  * the home page, this will trigger an automated fetching, handled
  * by * get-gallery.js *
  *
- * @returns {undefined} - doesn't return anything
+ * @returns {void} Doesn't return anything
  */
-export const useInitialTermLoad = () => {
+export const useLoadInitialTerm = () => {
     /* --- Hooks --- */
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const firstRenderRef = useRef(true);
     const { search } = useLocation();
 

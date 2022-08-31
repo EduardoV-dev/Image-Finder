@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 
 import { PHOTOS_ENDPOINT } from '@config';
 import { IMAGES_PER_PAGE } from '../config';
-import { formatImagesData } from '../utils';
 
 export const IMAGES_BY_TERM_ENDPOINT = `/search${PHOTOS_ENDPOINT}`;
 
@@ -33,7 +32,7 @@ export const fetchImagesByTerm = async ({ page, term }) => {
     });
 
     return {
-        data: formatImagesData(results),
+        data: results,
         totalPages: total_pages,
     };
 };

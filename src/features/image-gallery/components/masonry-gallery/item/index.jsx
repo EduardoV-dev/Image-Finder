@@ -11,8 +11,7 @@ const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
     /* --- Hooks --- */
 
     const { t } = useTranslation();
-    const [hoverTransition, { handleMouseEnter, handleMouseLeave }] =
-        useHoverTransition(false);
+    const [hoverTransition, { hoverOn, hoverOff }] = useHoverTransition(false);
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -26,8 +25,8 @@ const PhotoItem = ({ image: { id, url, alt, user, likes } }) => {
                 className={`${styles.container} ${
                     isLoaded && styles['image-loaded']
                 }`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={hoverOn}
+                onMouseLeave={hoverOff}
             >
                 <Image
                     src={url}

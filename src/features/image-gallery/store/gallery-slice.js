@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const gallerySliceName = 'gallery';
+
+const initialState = {
+    term: '',
+    page: 1,
+    images: [],
+    totalPages: 0,
+};
+
 const gallerySlice = createSlice({
-    name: 'gallery',
-    initialState: {
-        term: '',
-        page: 1,
-        images: [],
-        totalPages: 0,
-    },
+    name: gallerySliceName,
+    initialState,
     reducers: {
         loadTerm: (state, action) => {
             state.term = action.payload;
@@ -34,3 +38,7 @@ export const { loadTerm, appendImages, nextPage, clearData } =
     gallerySlice.actions;
 
 export const galleryReducer = gallerySlice.reducer;
+
+/* --- SELECTORS --- */
+
+export const selectGalleryState = (state) => state[gallerySliceName];

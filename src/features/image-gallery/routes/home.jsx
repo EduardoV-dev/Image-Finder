@@ -1,11 +1,11 @@
 import { Layout } from '@components';
 import { Form, Heading, MasonryGallery } from '../components';
-import { useInitialTermLoad } from '../api';
+import { useLoadInitialTerm } from '../hooks';
 
 const Home = () => {
     /* --- Hooks --- */
 
-    useInitialTermLoad();
+    useLoadInitialTerm();
 
     return (
         <Layout bgColor="dark" searchInputType="animated-on-scroll">

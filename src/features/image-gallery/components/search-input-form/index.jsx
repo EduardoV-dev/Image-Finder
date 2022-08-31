@@ -1,14 +1,14 @@
-import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { keywordOnChange } from '../../store/search-slice';
-import { useSearchByTerm } from '../../api';
+import { useAppDispatch } from '@store';
+import { keywordOnChange } from '../../store';
+import { useSearchByTerm } from '../../hooks';
 
 const SearchInputForm = () => {
     /* --- Hooks --- */
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const { t } = useTranslation();
 
     const [keyword, search] = useSearchByTerm();

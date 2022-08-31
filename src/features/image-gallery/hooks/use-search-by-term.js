@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector, selectAllState } from '@store';
 import { loadTerm } from '../store/gallery-slice';
 
 /**
@@ -12,8 +12,8 @@ export const useSearchByTerm = () => {
     /* --- Hooks --- */
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { search: searchState, gallery } = useSelector((state) => state);
+    const dispatch = useAppDispatch();
+    const { search: searchState, gallery } = useAppSelector(selectAllState);
 
     /* --- State --- */
 

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { clearData, loadData, loadUser } from '../store';
+import { useAppDispatch, useAppSelector } from '@store';
 import { useImageData, useImageUser } from '.';
+import { formatSingleImage, formatImageUser } from '../utils';
+import * as actions from '../store';
 
 /**
  * Fetches the image details needed to display the image by
@@ -14,28 +15,33 @@ import { useImageData, useImageUser } from '.';
 export const useImageDetails = () => {
     /* --- Hooks --- */
 
-    // Image id from url
     const { id } = useParams();
 
-    const { username = '' } = useSelector((state) => state.picture.data);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+    const username = useAppSelector(actions.selectUserNameFromData);
 
     /* --- Queries --- */
 
     useImageData({
         id,
-        config: { onSuccess: (data) => dispatch(loadData(data)) },
+        config: {
+            onSuccess: (imageData) =>
+                dispatch(actions.loadData(formatSingleImage(imageData))),
+        },
     });
 
     useImageUser({
         username,
-        config: { onSuccess: (user) => dispatch(loadUser(user)) },
+        config: {
+            onSuccess: (user) =>
+                dispatch(actions.loadUser(formatImageUser(user))),
+        },
     });
 
     /* --- Effects --- */
 
     /* Effect used for cleaning redux state when the user gets out of the page */
     useEffect(() => {
-        return () => dispatch(clearData());
+        return () => dispatch(actions.clearData());
     }, [dispatch]);
 };

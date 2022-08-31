@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { animated, useSpring, config } from 'react-spring';
 
+import { useAppSelector } from '@store';
 import { Image } from '@components';
 import { useHoverTransition } from '@hooks';
+import { selectPictureData } from '../../store';
 import styles from './picture.module.scss';
 
 const Picture = () => {
     /* --- Hooks --- */
 
-    const { data } = useSelector((state) => state.picture);
-    const [hoverTransition, { handleMouseEnter, handleMouseLeave }] =
-        useHoverTransition(true);
-
+    const pictureData = useAppSelector(selectPictureData);
+    const [hoverTransition, { hoverOn, hoverOff }] = useHoverTransition(true);
     const [isLoaded, setIsLoaded] = useState(false);
 
     /* --- Animations --- */
@@ -36,11 +35,11 @@ const Picture = () => {
 
     /* --- Conditional Rendering --- */
 
-    if (JSON.stringify(data) === '{}') return <></>;
+    if (JSON.stringify(pictureData) === '{}') return <></>;
 
     /* --- State --- */
 
-    const { alt_description, description, tags, imagesURL } = data;
+    const { alt_description, description, tags, imageURL } = pictureData;
 
     const dataAnimations = {
         ...hoverTransition,
@@ -67,11 +66,11 @@ const Picture = () => {
     return (
         <section
             className="position-relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={hoverOn}
+            onMouseLeave={hoverOff}
         >
             <Image
-                src={imagesURL.full}
+                src={imageURL}
                 alt={alt_description}
                 onLoad={setIsLoaded}
                 style={entranceScale}

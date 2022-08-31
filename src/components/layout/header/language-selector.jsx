@@ -36,7 +36,7 @@ const LangSelector = () => {
 
     const LangItems = LANGUAGES.map(({ code, name, flag_code }) => (
         <Dropdown.Item
-            key={code}
+            key={code + name}
             onClick={() => handleLangChange(code)}
             disabled={code === currentLanguageCode}
         >

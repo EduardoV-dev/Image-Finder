@@ -1,5 +1,4 @@
 import Axios from 'axios';
-import { toast } from 'react-toastify';
 
 import { BASE_URL } from '@config';
 
@@ -12,9 +11,6 @@ export const axios = Axios.create({
 
 axios.interceptors.response.use(
     (response) => response.data,
-    (error) => {
-        toast.error(error.message);
-
-        return Promise.reject(error);
-    },
+    // Returns custom error message or a generic one
+    (error) => Promise.reject(error.response.data.errors[0] || error.message),
 );

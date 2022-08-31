@@ -9,8 +9,8 @@ import { config, useSpring } from 'react-spring';
  * @param {boolean} displayInHover - determines if the element should be displayed on hover or not.
  *
  * @returns {[fadeTransition: any, {
- *   handleMouseEnter: () => void,
- *   handleMouseLeave: () => void
+ *   hoverOn: () => void,
+ *   hoverOff: () => void
  * }]} - fadeTransition and handlers for hovering
  */
 const useHoverTransition = (displayOnHover) => {
@@ -38,11 +38,11 @@ const useHoverTransition = (displayOnHover) => {
 
     /* --- Handlers --- */
 
-    const handleMouseEnter = () => setIsHovering(true);
+    const hoverOn = () => setIsHovering(true);
 
-    const handleMouseLeave = () => setIsHovering(false);
+    const hoverOff = () => setIsHovering(false);
 
-    return [fadeTransition, { handleMouseEnter, handleMouseLeave }];
+    return [fadeTransition, { hoverOn, hoverOff }];
 };
 
 export default useHoverTransition;

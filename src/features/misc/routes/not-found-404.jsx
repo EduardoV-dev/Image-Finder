@@ -12,13 +12,17 @@ const NotFound404 = () => {
 
     return (
         <Layout>
-            <ResultSign illustration={<NotFoundIcon />}>
+            <ResultSign
+                illustration={<NotFoundIcon />}
+                testid="page-not-found-illustration"
+            >
                 {t('404_not_found')}
             </ResultSign>
 
             <Link
                 to={`/?query=${t('404_query')}`}
                 className="d-flex justify-content-center mt-4 text-decoration-none"
+                data-testid="page-not-found-link"
             >
                 <Button variant="info" className="fw-bold">
                     {t('404_link')}

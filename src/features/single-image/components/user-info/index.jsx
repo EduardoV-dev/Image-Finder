@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { config, useSpring } from 'react-spring';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { Card, Image } from '@components';
+import { useAppSelector } from '@store';
+import { selectPictureUser } from '../../store';
 
-const Data = () => {
+const UserInfo = () => {
     /* --- Hooks --- */
 
     const { t } = useTranslation();
-    const [isLoaded, setIsLoaded] = useState(false);
-    const { name, profile_image } = useSelector((state) => state.picture.user);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const user = useAppSelector(selectPictureUser);
 
     /* --- Animations --- */
 
@@ -19,10 +20,14 @@ const Data = () => {
         to: { opacity: 1, scale: 1 },
 
         config: config.gentle,
-        pause: !isLoaded,
+        pause: !isImageLoaded,
     });
 
-    if (!name || !profile_image) return <></>;
+    if (JSON.stringify(user) === '{}') return <></>;
+
+    /* --- State --- */
+
+    const { name, profile_image } = user;
 
     return (
         <Card className="p-5" style={entranceScale}>
@@ -31,11 +36,15 @@ const Data = () => {
             </p>
 
             <div className="d-flex flex-wrap align-items-center mx-auto">
-                <Image src={profile_image} alt={name} onLoad={setIsLoaded} />
+                <Image
+                    src={profile_image}
+                    alt={name}
+                    onLoad={setIsImageLoaded}
+                />
                 <span className="text-light ms-3">{name}</span>
             </div>
         </Card>
     );
 };
 
-export default Data;
+export default UserInfo;

@@ -9,10 +9,12 @@ const lazyImport = (factory, name) =>
     });
 
 const { Home } = lazyImport(() => import('@features/image-gallery'), 'Home');
+
 const { ImageDetails } = lazyImport(
     () => import('@features/single-image'),
     'ImageDetails',
 );
+
 const { NotFound404 } = lazyImport(
     () => import('@features/misc'),
     'NotFound404',

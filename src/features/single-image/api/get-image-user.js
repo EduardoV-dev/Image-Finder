@@ -3,29 +3,19 @@ import { useQuery } from 'react-query';
 
 export const USERS_ENDPOINT = '/users';
 
+export const formatUser = (user) => ({
+    name: user.name,
+});
+
 /**
- * Fetches single user data by its username.
- * k
+ * Fetches single user data by its username, if the username is empty, will return an
+ * empty object
+ *
  * @param {string} username - the username of whom posted the image
- * @returns {{name: string, profile_image: string}} - The used data in a formatted version without unnecesary data
+ * @returns {Promise<{name: string, profile_image: string}>} - The used data in a formatted version without unnecesary data
  */
-export const fetchUserData = async (username) => {
-    // Avoids unnecessary fetching
-    if (username === '')
-        return {
-            name: '',
-            profile_image: '',
-        };
-
-    const { name, profile_image } = await axios.get(
-        `${USERS_ENDPOINT}/${username}`,
-    );
-
-    return {
-        name,
-        profile_image: profile_image.medium,
-    };
-};
+export const fetchUserData = (username) =>
+    username === '' ? {} : axios.get(`${USERS_ENDPOINT}/${username}`);
 
 /**
  * Custom hook that uses useQuery for fetching the image's user data

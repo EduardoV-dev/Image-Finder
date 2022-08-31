@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { Layout } from '@components';
-import { Data, Picture } from '../components';
+import { UserInfo, Picture } from '../components';
 import { useImageDetails } from '../api';
 
 const ImageDetails = () => {
@@ -21,7 +21,7 @@ const ImageDetails = () => {
                         <Picture />
                     </Col>
                     <Col xs={12} lg={4}>
-                        <Data />
+                        <UserInfo />
                     </Col>
                 </Row>
             </Container>

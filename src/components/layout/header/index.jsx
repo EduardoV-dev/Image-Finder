@@ -3,20 +3,21 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { animated, config, useSpring } from 'react-spring';
-import { useSelector } from 'react-redux';
 
+import logoPath from '@assets/png/logo.png';
+import { useAppSelector } from '@store';
+import { selectScrollY } from '@store/slices';
 import { SearchInputForm } from '@features/image-gallery';
 import { useShowOnScrollAnimation } from '@hooks';
-import * as constants from './constants';
-import logoPath from '@assets/png/logo.png';
 import LanguageSelector from './language-selector';
+import * as constants from './constants';
 
 const Header = ({ bgColor, searchInputType }) => {
     /* --- Hooks --- */
 
-    const scrollY = useSelector((state) => state.ui.scrollY);
     const { t } = useTranslation();
     const { search } = useLocation();
+    const scrollY = useAppSelector(selectScrollY);
 
     /* --- Animations --- */
 
@@ -27,7 +28,6 @@ const Header = ({ bgColor, searchInputType }) => {
         });
 
     /** Transition will be applied if bgColor prop is dark */
-
     const bgTransitionSpring = useSpring({
         backgroundColor:
             scrollY >= constants.SCROLLY_TO_CHANGE_BG_COLOR

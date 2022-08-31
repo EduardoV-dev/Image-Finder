@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { ResultSign, Spinner } from '@components';
 import { ReactComponent as ResultsNotFoundIcon } from '@assets/svg/results-not-found.svg';
 
-import { useGallery } from '../../api';
+import { useGallery } from '../../hooks';
 
 import PhotoItem from './item';
 

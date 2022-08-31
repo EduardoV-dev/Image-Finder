@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { axios } from '@lib';
 import { PHOTOS_ENDPOINT } from '@config/api';
 import { IMAGES_PER_PAGE } from '../config';
-import { formatImagesData } from '../utils';
 
 export const LATEST_IMAGES_ENDPOINT = PHOTOS_ENDPOINT;
 
@@ -32,7 +31,7 @@ export const fetchLatestImages = async ({ page, term }) => {
     });
 
     return {
-        data: formatImagesData(images),
+        data: images,
         totalPages: Infinity,
     };
 };

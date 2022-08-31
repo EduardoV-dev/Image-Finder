@@ -1,13 +1,7 @@
 import { IMAGES_BY_TERM, NO_RESULTS } from '@test-utils/mocks/fixtures';
 import { fetchImagesByTerm } from '../';
-import { formatImagesData } from '../../utils';
 
 describe('fetchImagesByTerm', () => {
-    const API_RESPONSE = {
-        results: IMAGES_BY_TERM,
-        total_pages: 1,
-    };
-
     it('Should not return results if term is empty', async () => {
         const { data: images, totalPages } = await fetchImagesByTerm({
             page: 1,
@@ -29,12 +23,18 @@ describe('fetchImagesByTerm', () => {
     });
 
     it('Should return formatted images', async () => {
+        const API_RESPONSE = {
+            results: IMAGES_BY_TERM,
+            total_pages: 1,
+        };
+
         const { data: images, totalPages } = await fetchImagesByTerm({
             page: 1,
             term: 'moon',
         });
 
-        expect(images).toEqual(formatImagesData(IMAGES_BY_TERM));
+        expect(images).not.toEqual([]);
+        expect(images).toEqual(API_RESPONSE.results);
         expect(totalPages).toBe(API_RESPONSE.total_pages);
     });
 });

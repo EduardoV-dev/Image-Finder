@@ -1,2 +1,2 @@
-export { default as Data } from './data';
+export { default as UserInfo } from './user-info';
 export { default as Picture } from './picture';

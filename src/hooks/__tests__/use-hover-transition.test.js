@@ -13,13 +13,12 @@ describe('useHoverTransition', () => {
 
         it('Appears when hovering and disappears when hovering', () => {
             const { result } = renderHook(() => useHoverTransition(true));
-            const [fadeTransition, { handleMouseEnter, handleMouseLeave }] =
-                result.current;
+            const [fadeTransition, { hoverOn, hoverOff }] = result.current;
 
-            act(() => handleMouseEnter());
+            act(() => hoverOn());
             expect(fadeTransition.opacity.animation.to).toBe(1);
 
-            act(() => handleMouseLeave());
+            act(() => hoverOff());
             expect(fadeTransition.opacity.animation.to).toBe(0);
         });
     });
@@ -34,13 +33,12 @@ describe('useHoverTransition', () => {
 
         it('Disappears when hovering and appears when not hovering', () => {
             const { result } = renderHook(() => useHoverTransition(false));
-            const [fadeTransition, { handleMouseEnter, handleMouseLeave }] =
-                result.current;
+            const [fadeTransition, { hoverOn, hoverOff }] = result.current;
 
-            act(() => handleMouseEnter());
+            act(() => hoverOn());
             expect(fadeTransition.opacity.animation.to).toBe(0);
 
-            act(() => handleMouseLeave());
+            act(() => hoverOff());
             expect(fadeTransition.opacity.animation.to).toBe(1);
         });
     });

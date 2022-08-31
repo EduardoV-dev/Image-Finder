@@ -3,8 +3,8 @@ import { screen, fireEvent, act } from '@testing-library/react';
 import { LATEST_IMAGES, IMAGES_BY_TERM } from '@test-utils/mocks/fixtures';
 import { renderWithProviders } from '@test-utils/utils';
 import { setupStore } from '@store';
-import { loadTerm } from '@features/image-gallery/store';
 import { Home } from '../';
+import { loadTerm } from '../../store';
 
 describe('<Home />', () => {
     it('Should render latest images and form elements', async () => {
@@ -49,7 +49,7 @@ describe('<Home />', () => {
         const searchInput = screen.getByTestId('search-input');
 
         fireEvent.change(searchInput, {
-            target: { value: 'Moon and Sun' },
+            target: { value: 'Sun' },
         });
         fireEvent.click(screen.getByTestId('search-button'));
 

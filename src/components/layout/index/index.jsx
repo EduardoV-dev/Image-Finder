@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@store';
 
 import arrowImg from '@assets/png/Up_arrow.png';
 import Footer from '../footer';
 import Header, { headerDefaultProps, headerPropTypes } from '../header';
 import { useShowOnScrollAnimation } from '@hooks';
 import { setScrollY } from '@store/slices/ui';
+import { selectScrollY } from '@store/slices';
 import styles from './layout.module.scss';
 
 /**
@@ -23,8 +24,8 @@ const SCROLLY_TO_RENDER_SCROLL_TO_TOP = 1000;
 const Layout = ({ children, className, ...rest }) => {
     /* --- Hooks --- */
 
-    const dispatch = useDispatch();
-    const scrollY = useSelector((state) => state.ui.scrollY);
+    const dispatch = useAppDispatch();
+    const scrollY = useAppSelector(selectScrollY);
 
     /* --- Animations --- */
 
